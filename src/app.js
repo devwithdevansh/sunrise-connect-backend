@@ -29,7 +29,6 @@ app.set('trust proxy', true);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(apiRateLimit);
 
 // ─── Request Logger ───────────────────────────────────────────────────────────
 app.use((req, _res, next) => {

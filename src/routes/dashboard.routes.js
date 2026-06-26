@@ -8,6 +8,7 @@ const router = Router();
 
 router.use(authenticate);
 
+router.get('/sync-state',   authorize('ADMIN', 'STAFF', 'parent'),   DashboardController.getSyncState);
 router.get('/system',       authorize('ADMIN'),                      DashboardController.systemMetrics);
 router.get('/parent/:id',   authorize('ADMIN', 'STAFF', 'parent'),   DashboardController.parentDashboard);
 router.get('/student/:id',  authorize('ADMIN', 'STAFF'),             DashboardController.studentDashboard);
