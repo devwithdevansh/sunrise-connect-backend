@@ -1,0 +1,1677 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1782472641817" clover="3.2.0">
+  <project timestamp="1782472641817" name="All files">
+    <metrics statements="1431" coveredstatements="829" conditionals="861" coveredconditionals="338" methods="222" coveredmethods="113" elements="2514" coveredelements="1280" complexity="0" loc="1431" ncloc="1431" packages="11" files="69" classes="69"/>
+    <package name="src">
+      <metrics statements="26" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+      <file name="app.js" path="E:\Sunrise Connect\backend\src\app.js">
+        <metrics statements="26" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+        <line num="28" count="9" type="stmt"/>
+        <line num="29" count="9" type="stmt"/>
+        <line num="30" count="9" type="stmt"/>
+        <line num="33" count="9" type="stmt"/>
+        <line num="34" count="53" type="stmt"/>
+        <line num="35" count="53" type="stmt"/>
+        <line num="39" count="9" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="9" type="stmt"/>
+        <line num="45" count="9" type="stmt"/>
+        <line num="46" count="9" type="stmt"/>
+        <line num="47" count="9" type="stmt"/>
+        <line num="48" count="9" type="stmt"/>
+        <line num="49" count="9" type="stmt"/>
+        <line num="50" count="9" type="stmt"/>
+        <line num="51" count="9" type="stmt"/>
+        <line num="52" count="9" type="stmt"/>
+        <line num="53" count="9" type="stmt"/>
+        <line num="54" count="9" type="stmt"/>
+        <line num="55" count="9" type="stmt"/>
+        <line num="56" count="9" type="stmt"/>
+        <line num="59" count="9" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="64" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.config">
+      <metrics statements="8" coveredstatements="8" conditionals="24" coveredconditionals="13" methods="1" coveredmethods="1"/>
+      <file name="env.js" path="E:\Sunrise Connect\backend\src\config\env.js">
+        <metrics statements="1" coveredstatements="1" conditionals="18" coveredconditionals="9" methods="0" coveredmethods="0"/>
+        <line num="4" count="14" type="stmt"/>
+      </file>
+      <file name="logger.js" path="E:\Sunrise Connect\backend\src\config\logger.js">
+        <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="5" count="14" type="stmt"/>
+        <line num="7" count="14" type="stmt"/>
+        <line num="8" count="118" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="14" type="stmt"/>
+        <line num="19" count="14" type="stmt"/>
+        <line num="31" count="14" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="14" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.controllers">
+      <metrics statements="263" coveredstatements="128" conditionals="110" coveredconditionals="32" methods="63" coveredmethods="21"/>
+      <file name="AcademicYearController.js" path="E:\Sunrise Connect\backend\src\controllers\AcademicYearController.js">
+        <metrics statements="18" coveredstatements="4" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="5" count="9" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="47" count="9" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+      </file>
+      <file name="AuditController.js" path="E:\Sunrise Connect\backend\src\controllers\AuditController.js">
+        <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="1"/>
+        <line num="8" count="9" type="stmt"/>
+        <line num="9" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+      </file>
+      <file name="AuthController.js" path="E:\Sunrise Connect\backend\src\controllers\AuthController.js">
+        <metrics statements="21" coveredstatements="11" conditionals="4" coveredconditionals="0" methods="7" coveredmethods="2"/>
+        <line num="8" count="9" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="32" count="9" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="38" count="9" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="9" type="stmt"/>
+        <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="46" count="0" type="stmt"/>
+      </file>
+      <file name="DashboardController.js" path="E:\Sunrise Connect\backend\src\controllers\DashboardController.js">
+        <metrics statements="9" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="8" count="9" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+      </file>
+      <file name="FeeCategoryController.js" path="E:\Sunrise Connect\backend\src\controllers\FeeCategoryController.js">
+        <metrics statements="16" coveredstatements="4" conditionals="4" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="5" count="9" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="40" count="9" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+      </file>
+      <file name="FeeStructureController.js" path="E:\Sunrise Connect\backend\src\controllers\FeeStructureController.js">
+        <metrics statements="39" coveredstatements="19" conditionals="12" coveredconditionals="4" methods="7" coveredmethods="3"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="48" count="9" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="57" count="9" type="stmt"/>
+        <line num="58" count="2" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="60" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="70" count="9" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="73" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="74" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="83" count="9" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="86" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="96" count="9" type="stmt"/>
+        <line num="97" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="99" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+      </file>
+      <file name="LedgerController.js" path="E:\Sunrise Connect\backend\src\controllers\LedgerController.js">
+        <metrics statements="31" coveredstatements="16" conditionals="14" coveredconditionals="5" methods="7" coveredmethods="2"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
+        <line num="16" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="20" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="25" count="1" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="33" count="10" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="46" count="10" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="10" type="stmt"/>
+        <line num="53" count="1" type="stmt"/>
+        <line num="54" count="1" type="stmt"/>
+        <line num="58" count="10" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+      </file>
+      <file name="MigrationController.js" path="E:\Sunrise Connect\backend\src\controllers\MigrationController.js">
+        <metrics statements="6" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <line num="8" count="9" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+      </file>
+      <file name="ParentController.js" path="E:\Sunrise Connect\backend\src\controllers\ParentController.js">
+        <metrics statements="19" coveredstatements="15" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="4"/>
+        <line num="8" count="9" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="33" count="9" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="9" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+      </file>
+      <file name="PaymentController.js" path="E:\Sunrise Connect\backend\src\controllers\PaymentController.js">
+        <metrics statements="36" coveredstatements="18" conditionals="24" coveredconditionals="9" methods="7" coveredmethods="3"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="10" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="17" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="22" count="10" type="stmt"/>
+        <line num="23" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="24" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="42" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="53" count="10" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="59" count="10" type="stmt"/>
+        <line num="60" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="61" count="2" type="stmt"/>
+      </file>
+      <file name="StudentController.js" path="E:\Sunrise Connect\backend\src\controllers\StudentController.js">
+        <metrics statements="41" coveredstatements="20" conditionals="29" coveredconditionals="10" methods="9" coveredmethods="3"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="10" count="1" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
+        <line num="16" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="25" count="10" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="27" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="28" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="35" count="10" type="stmt"/>
+        <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="41" count="10" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="10" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="53" count="10" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="61" count="10" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="cond" truecount="0" falsecount="7"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="71" count="10" type="stmt"/>
+        <line num="72" count="0" type="stmt"/>
+        <line num="73" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+      </file>
+      <file name="UserController.js" path="E:\Sunrise Connect\backend\src\controllers\UserController.js">
+        <metrics statements="20" coveredstatements="5" conditionals="13" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="9" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="39" count="9" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.middlewares">
+      <metrics statements="63" coveredstatements="57" conditionals="37" coveredconditionals="28" methods="11" coveredmethods="11"/>
+      <file name="auth.middleware.js" path="E:\Sunrise Connect\backend\src\middlewares\auth.middleware.js">
+        <metrics statements="10" coveredstatements="9" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="8" count="44" type="stmt"/>
+        <line num="9" count="44" type="cond" truecount="4" falsecount="0"/>
+        <line num="10" count="6" type="stmt"/>
+        <line num="12" count="38" type="stmt"/>
+        <line num="13" count="38" type="stmt"/>
+        <line num="14" count="38" type="stmt"/>
+        <line num="15" count="38" type="stmt"/>
+        <line num="16" count="38" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+      </file>
+      <file name="authorize.middleware.js" path="E:\Sunrise Connect\backend\src\middlewares\authorize.middleware.js">
+        <metrics statements="5" coveredstatements="5" conditionals="4" coveredconditionals="3" methods="2" coveredmethods="2"/>
+        <line num="6" count="342" type="stmt"/>
+        <line num="7" count="37" type="cond" truecount="1" falsecount="1"/>
+        <line num="8" count="37" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="6" type="stmt"/>
+        <line num="11" count="31" type="stmt"/>
+      </file>
+      <file name="error.middleware.js" path="E:\Sunrise Connect\backend\src\middlewares\error.middleware.js">
+        <metrics statements="10" coveredstatements="6" conditionals="8" coveredconditionals="5" methods="1" coveredmethods="1"/>
+        <line num="4" count="9" type="stmt"/>
+        <line num="5" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="6" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="8" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="19" count="16" type="cond" truecount="1" falsecount="1"/>
+        <line num="20" count="16" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="idempotency.middleware.js" path="E:\Sunrise Connect\backend\src\middlewares\idempotency.middleware.js">
+        <metrics statements="14" coveredstatements="14" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="10" count="5" type="stmt"/>
+        <line num="11" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="15" count="4" type="stmt"/>
+        <line num="16" count="4" type="cond" truecount="4" falsecount="0"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="22" count="3" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="24" count="3" type="stmt"/>
+        <line num="25" count="3" type="stmt"/>
+        <line num="28" count="3" type="stmt"/>
+      </file>
+      <file name="rateLimit.middleware.js" path="E:\Sunrise Connect\backend\src\middlewares\rateLimit.middleware.js">
+        <metrics statements="13" coveredstatements="12" conditionals="9" coveredconditionals="4" methods="3" coveredmethods="3"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="12" count="9" type="cond" truecount="0" falsecount="3"/>
+        <line num="13" count="18" type="stmt"/>
+        <line num="14" count="62" type="cond" truecount="1" falsecount="1"/>
+        <line num="15" count="62" type="stmt"/>
+        <line num="16" count="313" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="62" type="cond" truecount="1" falsecount="1"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="62" type="stmt"/>
+        <line num="21" count="62" type="stmt"/>
+        <line num="22" count="62" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
+        <line num="29" count="9" type="stmt"/>
+      </file>
+      <file name="validate.middleware.js" path="E:\Sunrise Connect\backend\src\middlewares\validate.middleware.js">
+        <metrics statements="11" coveredstatements="11" conditionals="6" coveredconditionals="6" methods="2" coveredmethods="2"/>
+        <line num="1" count="216" type="stmt"/>
+        <line num="2" count="32" type="stmt"/>
+        <line num="3" count="32" type="cond" truecount="2" falsecount="0"/>
+        <line num="4" count="27" type="stmt"/>
+        <line num="6" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="12" count="20" type="cond" truecount="2" falsecount="0"/>
+        <line num="13" count="7" type="stmt"/>
+        <line num="18" count="20" type="stmt"/>
+        <line num="20" count="12" type="stmt"/>
+        <line num="21" count="12" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.models">
+      <metrics statements="49" coveredstatements="49" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="AcademicYear.js" path="E:\Sunrise Connect\backend\src\models\AcademicYear.js">
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="3" count="11" type="stmt"/>
+        <line num="30" count="11" type="stmt"/>
+        <line num="31" count="8" type="cond" truecount="1" falsecount="1"/>
+        <line num="32" count="8" type="stmt"/>
+        <line num="39" count="11" type="stmt"/>
+      </file>
+      <file name="AuditLog.js" path="E:\Sunrise Connect\backend\src\models\AuditLog.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="64" count="15" type="stmt"/>
+        <line num="65" count="15" type="stmt"/>
+        <line num="66" count="15" type="stmt"/>
+        <line num="68" count="15" type="stmt"/>
+      </file>
+      <file name="FeeCategory.js" path="E:\Sunrise Connect\backend\src\models\FeeCategory.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="11" type="stmt"/>
+        <line num="39" count="11" type="stmt"/>
+        <line num="41" count="11" type="stmt"/>
+      </file>
+      <file name="FeeStructure.js" path="E:\Sunrise Connect\backend\src\models\FeeStructure.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="11" type="stmt"/>
+        <line num="72" count="11" type="stmt"/>
+        <line num="76" count="11" type="stmt"/>
+        <line num="78" count="11" type="stmt"/>
+      </file>
+      <file name="Parent.js" path="E:\Sunrise Connect\backend\src\models\Parent.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="17" type="stmt"/>
+        <line num="64" count="17" type="stmt"/>
+        <line num="69" count="17" type="stmt"/>
+      </file>
+      <file name="Payment.js" path="E:\Sunrise Connect\backend\src\models\Payment.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="6" count="15" type="stmt"/>
+        <line num="44" count="15" type="stmt"/>
+        <line num="46" count="15" type="stmt"/>
+      </file>
+      <file name="Student.js" path="E:\Sunrise Connect\backend\src\models\Student.js">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="16" type="stmt"/>
+        <line num="79" count="16" type="stmt"/>
+        <line num="84" count="16" type="stmt"/>
+        <line num="88" count="16" type="stmt"/>
+        <line num="93" count="16" type="stmt"/>
+        <line num="97" count="16" type="stmt"/>
+        <line num="98" count="16" type="stmt"/>
+        <line num="99" count="16" type="stmt"/>
+        <line num="101" count="16" type="stmt"/>
+      </file>
+      <file name="StudentFeeLedger.js" path="E:\Sunrise Connect\backend\src\models\StudentFeeLedger.js">
+        <metrics statements="10" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="16" type="stmt"/>
+        <line num="17" count="16" type="stmt"/>
+        <line num="127" count="16" type="stmt"/>
+        <line num="131" count="16" type="stmt"/>
+        <line num="135" count="16" type="stmt"/>
+        <line num="140" count="16" type="stmt"/>
+        <line num="144" count="16" type="stmt"/>
+        <line num="148" count="16" type="stmt"/>
+        <line num="152" count="16" type="stmt"/>
+        <line num="154" count="16" type="stmt"/>
+      </file>
+      <file name="TransportFeeStructure.js" path="E:\Sunrise Connect\backend\src\models\TransportFeeStructure.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="11" type="stmt"/>
+        <line num="42" count="11" type="stmt"/>
+        <line num="52" count="11" type="stmt"/>
+        <line num="54" count="11" type="stmt"/>
+      </file>
+      <file name="User.js" path="E:\Sunrise Connect\backend\src\models\User.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="15" type="stmt"/>
+        <line num="66" count="15" type="stmt"/>
+        <line num="68" count="15" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.repositories">
+      <metrics statements="78" coveredstatements="52" conditionals="96" coveredconditionals="42" methods="50" coveredmethods="30"/>
+      <file name="auditRepository.js" path="E:\Sunrise Connect\backend\src\repositories\auditRepository.js">
+        <metrics statements="7" coveredstatements="7" conditionals="8" coveredconditionals="7" methods="3" coveredmethods="3"/>
+        <line num="7" count="15" type="stmt"/>
+        <line num="10" count="21" type="cond" truecount="2" falsecount="0"/>
+        <line num="11" count="21" type="stmt"/>
+        <line num="12" count="21" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="20" count="2" type="cond" truecount="3" falsecount="0"/>
+        <line num="21" count="2" type="stmt"/>
+      </file>
+      <file name="ledgerRepository.js" path="E:\Sunrise Connect\backend\src\repositories\ledgerRepository.js">
+        <metrics statements="11" coveredstatements="9" conditionals="15" coveredconditionals="6" methods="8" coveredmethods="6"/>
+        <line num="6" count="13" type="stmt"/>
+        <line num="8" count="22" type="stmt"/>
+        <line num="9" count="22" type="stmt"/>
+        <line num="13" count="28" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="2"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="26" count="12" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+      </file>
+      <file name="parentRepository.js" path="E:\Sunrise Connect\backend\src\repositories\parentRepository.js">
+        <metrics statements="14" coveredstatements="10" conditionals="15" coveredconditionals="12" methods="11" coveredmethods="7"/>
+        <line num="7" count="11" type="stmt"/>
+        <line num="10" count="16" type="stmt"/>
+        <line num="11" count="16" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="21" count="4" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="36" count="2" type="cond" truecount="3" falsecount="0"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="42" count="5" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="55" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+      </file>
+      <file name="paymentRepository.js" path="E:\Sunrise Connect\backend\src\repositories\paymentRepository.js">
+        <metrics statements="22" coveredstatements="16" conditionals="28" coveredconditionals="11" methods="10" coveredmethods="8"/>
+        <line num="6" count="12" type="stmt"/>
+        <line num="8" count="12" type="stmt"/>
+        <line num="9" count="12" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="17" count="2" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="3" falsecount="0"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+        <line num="43" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="46" count="2" type="stmt"/>
+        <line num="50" count="2" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+      </file>
+      <file name="studentRepository.js" path="E:\Sunrise Connect\backend\src\repositories\studentRepository.js">
+        <metrics statements="11" coveredstatements="9" conditionals="15" coveredconditionals="6" methods="8" coveredmethods="6"/>
+        <line num="6" count="12" type="stmt"/>
+        <line num="8" count="14" type="stmt"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="13" count="11" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="1" type="cond" truecount="1" falsecount="2"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+      </file>
+      <file name="userRepository.js" path="E:\Sunrise Connect\backend\src\repositories\userRepository.js">
+        <metrics statements="13" coveredstatements="1" conditionals="15" coveredconditionals="0" methods="10" coveredmethods="0"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.routes">
+      <metrics statements="78" coveredstatements="78" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="academic-year.routes.js" path="E:\Sunrise Connect\backend\src\routes\academic-year.routes.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="12" count="9" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="17" count="9" type="stmt"/>
+      </file>
+      <file name="audit.routes.js" path="E:\Sunrise Connect\backend\src\routes\audit.routes.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="12" count="9" type="stmt"/>
+      </file>
+      <file name="auth.routes.js" path="E:\Sunrise Connect\backend\src\routes\auth.routes.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
+      </file>
+      <file name="dashboard.routes.js" path="E:\Sunrise Connect\backend\src\routes\dashboard.routes.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="12" count="9" type="stmt"/>
+        <line num="13" count="9" type="stmt"/>
+      </file>
+      <file name="fee-category.routes.js" path="E:\Sunrise Connect\backend\src\routes\fee-category.routes.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="9" type="stmt"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+      </file>
+      <file name="fee-structure.routes.js" path="E:\Sunrise Connect\backend\src\routes\fee-structure.routes.js">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
+        <line num="27" count="9" type="stmt"/>
+      </file>
+      <file name="ledger.routes.js" path="E:\Sunrise Connect\backend\src\routes\ledger.routes.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
+      </file>
+      <file name="migration.routes.js" path="E:\Sunrise Connect\backend\src\routes\migration.routes.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="12" count="9" type="stmt"/>
+      </file>
+      <file name="parent.routes.js" path="E:\Sunrise Connect\backend\src\routes\parent.routes.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+      </file>
+      <file name="payment.routes.js" path="E:\Sunrise Connect\backend\src\routes\payment.routes.js">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+      </file>
+      <file name="student.routes.js" path="E:\Sunrise Connect\backend\src\routes\student.routes.js">
+        <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="19" count="9" type="stmt"/>
+        <line num="20" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
+      </file>
+      <file name="user.routes.js" path="E:\Sunrise Connect\backend\src\routes\user.routes.js">
+        <metrics statements="8" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="9" type="stmt"/>
+        <line num="10" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="13" count="9" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="17" count="9" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.services">
+      <metrics statements="806" coveredstatements="374" conditionals="585" coveredconditionals="217" methods="80" coveredmethods="36"/>
+      <file name="AuditService.js" path="E:\Sunrise Connect\backend\src\services\AuditService.js">
+        <metrics statements="11" coveredstatements="4" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="1"/>
+        <line num="19" count="15" type="stmt"/>
+        <line num="27" count="15" type="stmt"/>
+        <line num="28" count="15" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="15" type="stmt"/>
+        <line num="39" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="40" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="0" type="stmt"/>
+      </file>
+      <file name="AuthService.js" path="E:\Sunrise Connect\backend\src\services\AuthService.js">
+        <metrics statements="92" coveredstatements="0" conditionals="46" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="55" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="67" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="68" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="101" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="103" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="106" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="116" count="0" type="stmt"/>
+        <line num="117" count="0" type="stmt"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="126" count="0" type="stmt"/>
+        <line num="127" count="0" type="stmt"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="137" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="139" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="141" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="144" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="145" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="147" count="0" type="stmt"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="149" count="0" type="stmt"/>
+        <line num="151" count="0" type="stmt"/>
+        <line num="152" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="154" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="155" count="0" type="stmt"/>
+        <line num="156" count="0" type="stmt"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="158" count="0" type="stmt"/>
+        <line num="160" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="161" count="0" type="stmt"/>
+        <line num="163" count="0" type="stmt"/>
+        <line num="164" count="0" type="stmt"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="167" count="0" type="stmt"/>
+        <line num="168" count="0" type="stmt"/>
+        <line num="170" count="0" type="stmt"/>
+        <line num="178" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="179" count="0" type="stmt"/>
+        <line num="180" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="181" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="182" count="0" type="stmt"/>
+        <line num="184" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="185" count="0" type="stmt"/>
+        <line num="189" count="0" type="stmt"/>
+        <line num="196" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="197" count="0" type="stmt"/>
+        <line num="198" count="0" type="stmt"/>
+      </file>
+      <file name="DashboardService.js" path="E:\Sunrise Connect\backend\src\services\DashboardService.js">
+        <metrics statements="12" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+      </file>
+      <file name="LedgerService.js" path="E:\Sunrise Connect\backend\src\services\LedgerService.js">
+        <metrics statements="70" coveredstatements="67" conditionals="44" coveredconditionals="29" methods="6" coveredmethods="6"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="1" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="46" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="47" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="3" type="stmt"/>
+        <line num="49" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="3" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="52" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="56" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="58" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="65" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="71" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="74" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="76" count="1" type="stmt"/>
+        <line num="78" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="84" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="85" count="2" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="88" count="2" type="stmt"/>
+        <line num="89" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="91" count="2" type="stmt"/>
+        <line num="92" count="2" type="stmt"/>
+        <line num="93" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="95" count="1" type="cond" truecount="2" falsecount="2"/>
+        <line num="97" count="1" type="stmt"/>
+        <line num="102" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="104" count="1" type="stmt"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="111" count="1" type="stmt"/>
+        <line num="112" count="1" type="stmt"/>
+        <line num="113" count="1" type="stmt"/>
+        <line num="115" count="2" type="stmt"/>
+        <line num="121" count="2" type="stmt"/>
+        <line num="122" count="2" type="stmt"/>
+        <line num="123" count="2" type="stmt"/>
+        <line num="124" count="2" type="stmt"/>
+        <line num="125" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="126" count="2" type="stmt"/>
+        <line num="127" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="129" count="1" type="stmt"/>
+        <line num="134" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="136" count="1" type="stmt"/>
+        <line num="140" count="1" type="stmt"/>
+        <line num="141" count="1" type="stmt"/>
+        <line num="143" count="1" type="stmt"/>
+        <line num="144" count="1" type="stmt"/>
+        <line num="145" count="1" type="stmt"/>
+        <line num="147" count="2" type="stmt"/>
+      </file>
+      <file name="MigrationService.js" path="E:\Sunrise Connect\backend\src\services\MigrationService.js">
+        <metrics statements="22" coveredstatements="0" conditionals="8" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="35" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+      </file>
+      <file name="ParentService.js" path="E:\Sunrise Connect\backend\src\services\ParentService.js">
+        <metrics statements="56" coveredstatements="33" conditionals="25" coveredconditionals="10" methods="6" coveredmethods="5"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="19" count="8" type="stmt"/>
+        <line num="23" count="8" type="stmt"/>
+        <line num="24" count="8" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="8" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="58" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="72" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="73" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="79" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="83" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="101" count="3" type="stmt"/>
+        <line num="102" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="104" count="3" type="stmt"/>
+        <line num="105" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="106" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="108" count="1" type="stmt"/>
+        <line num="109" count="1" type="stmt"/>
+        <line num="110" count="1" type="stmt"/>
+        <line num="111" count="1" type="stmt"/>
+        <line num="116" count="1" type="stmt"/>
+        <line num="120" count="1" type="stmt"/>
+        <line num="121" count="1" type="stmt"/>
+        <line num="123" count="0" type="stmt"/>
+        <line num="124" count="0" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+        <line num="127" count="1" type="stmt"/>
+      </file>
+      <file name="PaymentService.js" path="E:\Sunrise Connect\backend\src\services\PaymentService.js">
+        <metrics statements="51" coveredstatements="51" conditionals="36" coveredconditionals="25" methods="4" coveredmethods="4"/>
+        <line num="15" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="16" count="5" type="stmt"/>
+        <line num="17" count="5" type="stmt"/>
+        <line num="18" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="cond" truecount="1" falsecount="1"/>
+        <line num="23" count="5" type="stmt"/>
+        <line num="24" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="28" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="33" count="4" type="stmt"/>
+        <line num="38" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="44" count="4" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="47" count="1" type="stmt"/>
+        <line num="48" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
+        <line num="51" count="5" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="58" count="4" type="stmt"/>
+        <line num="59" count="4" type="stmt"/>
+        <line num="60" count="4" type="stmt"/>
+        <line num="61" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="62" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="71" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="77" count="2" type="stmt"/>
+        <line num="78" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="80" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="83" count="2" type="stmt"/>
+        <line num="84" count="2" type="cond" truecount="2" falsecount="2"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="96" count="2" type="stmt"/>
+        <line num="101" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="103" count="2" type="stmt"/>
+        <line num="107" count="2" type="stmt"/>
+        <line num="108" count="2" type="stmt"/>
+        <line num="110" count="2" type="stmt"/>
+        <line num="111" count="2" type="stmt"/>
+        <line num="112" count="2" type="stmt"/>
+        <line num="114" count="4" type="stmt"/>
+        <line num="120" count="2" type="stmt"/>
+        <line num="121" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="122" count="1" type="stmt"/>
+        <line num="127" count="1" type="stmt"/>
+      </file>
+      <file name="StudentService.js" path="E:\Sunrise Connect\backend\src\services\StudentService.js">
+        <metrics statements="458" coveredstatements="219" conditionals="389" coveredconditionals="153" methods="38" coveredmethods="20"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="23" count="9" type="stmt"/>
+        <line num="24" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="26" count="9" type="cond" truecount="2" falsecount="2"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="58" count="9" type="stmt"/>
+        <line num="59" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="60" count="9" type="stmt"/>
+        <line num="61" count="9" type="stmt"/>
+        <line num="62" count="9" type="stmt"/>
+        <line num="65" count="9" type="stmt"/>
+        <line num="72" count="9" type="stmt"/>
+        <line num="74" count="9" type="stmt"/>
+        <line num="75" count="9" type="stmt"/>
+        <line num="81" count="9" type="stmt"/>
+        <line num="82" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="91" count="9" type="stmt"/>
+        <line num="92" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="93" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="101" count="9" type="stmt"/>
+        <line num="102" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="103" count="0" type="stmt"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="111" count="9" type="stmt"/>
+        <line num="112" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="113" count="6" type="stmt"/>
+        <line num="118" count="6" type="stmt"/>
+        <line num="121" count="9" type="stmt"/>
+        <line num="122" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="123" count="6" type="stmt"/>
+        <line num="128" count="6" type="stmt"/>
+        <line num="131" count="9" type="stmt"/>
+        <line num="132" count="6" type="stmt"/>
+        <line num="133" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="137" count="9" type="stmt"/>
+        <line num="138" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="141" count="9" type="cond" truecount="4" falsecount="0"/>
+        <line num="142" count="1" type="stmt"/>
+        <line num="143" count="1" type="stmt"/>
+        <line num="144" count="1" type="stmt"/>
+        <line num="145" count="2" type="stmt"/>
+        <line num="146" count="2" type="stmt"/>
+        <line num="147" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="148" count="1" type="stmt"/>
+        <line num="150" count="1" type="stmt"/>
+        <line num="153" count="1" type="stmt"/>
+        <line num="156" count="9" type="stmt"/>
+        <line num="157" count="9" type="cond" truecount="4" falsecount="0"/>
+        <line num="158" count="1" type="stmt"/>
+        <line num="159" count="2" type="stmt"/>
+        <line num="162" count="9" type="stmt"/>
+        <line num="164" count="9" type="stmt"/>
+        <line num="165" count="9" type="stmt"/>
+        <line num="168" count="9" type="stmt"/>
+        <line num="176" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="177" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="178" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="179" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="180" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="185" count="9" type="cond" truecount="4" falsecount="0"/>
+        <line num="188" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="189" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="192" count="9" type="stmt"/>
+        <line num="193" count="9" type="cond" truecount="4" falsecount="0"/>
+        <line num="194" count="1" type="stmt"/>
+        <line num="199" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="200" count="0" type="stmt"/>
+        <line num="202" count="1" type="stmt"/>
+        <line num="205" count="9" type="cond" truecount="2" falsecount="0"/>
+        <line num="206" count="9" type="stmt"/>
+        <line num="208" count="9" type="stmt"/>
+        <line num="209" count="10" type="stmt"/>
+        <line num="210" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="211" count="10" type="stmt"/>
+        <line num="212" count="10" type="stmt"/>
+        <line num="228" count="9" type="stmt"/>
+        <line num="229" count="10" type="stmt"/>
+        <line num="230" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="231" count="10" type="stmt"/>
+        <line num="232" count="10" type="stmt"/>
+        <line num="238" count="9" type="stmt"/>
+        <line num="239" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="240" count="10" type="cond" truecount="5" falsecount="0"/>
+        <line num="241" count="9" type="stmt"/>
+        <line num="243" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="244" count="0" type="stmt"/>
+        <line num="246" count="1" type="cond" truecount="3" falsecount="1"/>
+        <line num="247" count="0" type="stmt"/>
+        <line num="249" count="1" type="stmt"/>
+        <line num="250" count="1" type="stmt"/>
+        <line num="251" count="5" type="cond" truecount="2" falsecount="0"/>
+        <line num="252" count="1" type="stmt"/>
+        <line num="255" count="0" type="stmt"/>
+        <line num="258" count="9" type="stmt"/>
+        <line num="259" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="260" count="10" type="stmt"/>
+        <line num="262" count="10" type="stmt"/>
+        <line num="263" count="154" type="stmt"/>
+        <line num="264" count="154" type="stmt"/>
+        <line num="265" count="154" type="stmt"/>
+        <line num="266" count="154" type="stmt"/>
+        <line num="268" count="154" type="cond" truecount="2" falsecount="3"/>
+        <line num="269" count="0" type="stmt"/>
+        <line num="270" count="0" type="stmt"/>
+        <line num="271" count="0" type="stmt"/>
+        <line num="273" count="154" type="cond" truecount="2" falsecount="0"/>
+        <line num="274" count="154" type="cond" truecount="4" falsecount="0"/>
+        <line num="275" count="14" type="stmt"/>
+        <line num="276" count="14" type="stmt"/>
+        <line num="277" count="14" type="stmt"/>
+        <line num="278" count="140" type="cond" truecount="2" falsecount="0"/>
+        <line num="279" count="124" type="stmt"/>
+        <line num="280" count="124" type="stmt"/>
+        <line num="281" count="124" type="stmt"/>
+        <line num="284" count="16" type="stmt"/>
+        <line num="285" count="16" type="cond" truecount="4" falsecount="0"/>
+        <line num="286" count="12" type="stmt"/>
+        <line num="287" count="12" type="stmt"/>
+        <line num="288" count="78" type="stmt"/>
+        <line num="289" count="12" type="cond" truecount="1" falsecount="1"/>
+        <line num="290" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="291" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="293" count="2" type="stmt"/>
+        <line num="296" count="16" type="cond" truecount="2" falsecount="0"/>
+        <line num="297" count="7" type="stmt"/>
+        <line num="298" count="7" type="stmt"/>
+        <line num="299" count="7" type="stmt"/>
+        <line num="301" count="9" type="stmt"/>
+        <line num="302" count="9" type="stmt"/>
+        <line num="303" count="9" type="stmt"/>
+        <line num="307" count="154" type="stmt"/>
+        <line num="310" count="10" type="stmt"/>
+        <line num="311" count="10" type="stmt"/>
+        <line num="313" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="314" count="10" type="stmt"/>
+        <line num="315" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="316" count="10" type="stmt"/>
+        <line num="319" count="10" type="stmt"/>
+        <line num="320" count="120" type="stmt"/>
+        <line num="321" count="120" type="stmt"/>
+        <line num="348" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="349" count="1" type="stmt"/>
+        <line num="350" count="12" type="stmt"/>
+        <line num="351" count="12" type="stmt"/>
+        <line num="379" count="10" type="cond" truecount="1" falsecount="1"/>
+        <line num="380" count="10" type="stmt"/>
+        <line num="381" count="20" type="stmt"/>
+        <line num="382" count="20" type="stmt"/>
+        <line num="409" count="10" type="cond" truecount="4" falsecount="0"/>
+        <line num="410" count="1" type="stmt"/>
+        <line num="411" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="412" count="1" type="stmt"/>
+        <line num="413" count="1" type="stmt"/>
+        <line num="415" count="1" type="stmt"/>
+        <line num="416" count="1" type="stmt"/>
+        <line num="441" count="1" type="stmt"/>
+        <line num="442" count="1" type="stmt"/>
+        <line num="469" count="9" type="stmt"/>
+        <line num="471" count="9" type="stmt"/>
+        <line num="472" count="9" type="stmt"/>
+        <line num="474" count="0" type="stmt"/>
+        <line num="475" count="0" type="stmt"/>
+        <line num="476" count="0" type="stmt"/>
+        <line num="478" count="9" type="stmt"/>
+        <line num="484" count="3" type="stmt"/>
+        <line num="485" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="486" count="2" type="stmt"/>
+        <line num="487" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="488" count="0" type="stmt"/>
+        <line num="492" count="3" type="stmt"/>
+        <line num="493" count="3" type="stmt"/>
+        <line num="494" count="3" type="stmt"/>
+        <line num="495" count="3" type="stmt"/>
+        <line num="496" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="498" count="3" type="stmt"/>
+        <line num="499" count="3" type="stmt"/>
+        <line num="500" count="3" type="stmt"/>
+        <line num="502" count="3" type="stmt"/>
+        <line num="505" count="3" type="stmt"/>
+        <line num="506" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="509" count="3" type="cond" truecount="3" falsecount="1"/>
+        <line num="510" count="3" type="stmt"/>
+        <line num="511" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="512" count="0" type="stmt"/>
+        <line num="517" count="0" type="stmt"/>
+        <line num="520" count="3" type="stmt"/>
+        <line num="521" count="3" type="stmt"/>
+        <line num="523" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="524" count="1" type="stmt"/>
+        <line num="525" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="526" count="0" type="stmt"/>
+        <line num="528" count="1" type="stmt"/>
+        <line num="530" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="531" count="2" type="stmt"/>
+        <line num="532" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="533" count="0" type="stmt"/>
+        <line num="535" count="2" type="stmt"/>
+        <line num="538" count="3" type="stmt"/>
+        <line num="553" count="36" type="stmt"/>
+        <line num="554" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="555" count="3" type="stmt"/>
+        <line num="557" count="3" type="cond" truecount="5" falsecount="0"/>
+        <line num="558" count="1" type="stmt"/>
+        <line num="561" count="3" type="stmt"/>
+        <line num="567" count="24" type="stmt"/>
+        <line num="568" count="3" type="stmt"/>
+        <line num="570" count="3" type="stmt"/>
+        <line num="571" count="29" type="stmt"/>
+        <line num="573" count="29" type="cond" truecount="2" falsecount="0"/>
+        <line num="574" count="17" type="cond" truecount="2" falsecount="0"/>
+        <line num="576" count="78" type="stmt"/>
+        <line num="577" count="12" type="cond" truecount="3" falsecount="1"/>
+        <line num="578" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="579" count="12" type="stmt"/>
+        <line num="580" count="12" type="cond" truecount="2" falsecount="0"/>
+        <line num="581" count="12" type="cond" truecount="1" falsecount="1"/>
+        <line num="582" count="0" type="stmt"/>
+        <line num="583" count="12" type="cond" truecount="1" falsecount="1"/>
+        <line num="584" count="0" type="stmt"/>
+        <line num="586" count="12" type="stmt"/>
+        <line num="588" count="12" type="stmt"/>
+        <line num="592" count="5" type="stmt"/>
+        <line num="619" count="12" type="cond" truecount="1" falsecount="1"/>
+        <line num="620" count="78" type="stmt"/>
+        <line num="621" count="12" type="cond" truecount="3" falsecount="1"/>
+        <line num="622" count="12" type="stmt"/>
+        <line num="623" count="12" type="stmt"/>
+        <line num="624" count="12" type="stmt"/>
+        <line num="630" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="631" count="1" type="stmt"/>
+        <line num="633" count="3" type="stmt"/>
+        <line num="636" count="3" type="stmt"/>
+        <line num="640" count="3" type="stmt"/>
+        <line num="641" count="3" type="stmt"/>
+        <line num="643" count="0" type="stmt"/>
+        <line num="644" count="0" type="stmt"/>
+        <line num="645" count="0" type="stmt"/>
+        <line num="647" count="3" type="stmt"/>
+        <line num="653" count="1" type="stmt"/>
+        <line num="654" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="655" count="1" type="stmt"/>
+        <line num="661" count="1" type="stmt"/>
+        <line num="666" count="0" type="stmt"/>
+        <line num="667" count="0" type="stmt"/>
+        <line num="668" count="0" type="stmt"/>
+        <line num="669" count="0" type="stmt"/>
+        <line num="670" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="673" count="0" type="stmt"/>
+        <line num="674" count="0" type="stmt"/>
+        <line num="677" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="678" count="0" type="stmt"/>
+        <line num="682" count="0" type="stmt"/>
+        <line num="685" count="0" type="stmt"/>
+        <line num="688" count="0" type="stmt"/>
+        <line num="693" count="0" type="stmt"/>
+        <line num="694" count="0" type="stmt"/>
+        <line num="696" count="0" type="stmt"/>
+        <line num="697" count="0" type="stmt"/>
+        <line num="698" count="0" type="stmt"/>
+        <line num="700" count="0" type="stmt"/>
+        <line num="706" count="0" type="stmt"/>
+        <line num="707" count="0" type="stmt"/>
+        <line num="708" count="0" type="stmt"/>
+        <line num="709" count="0" type="stmt"/>
+        <line num="710" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="712" count="0" type="stmt"/>
+        <line num="713" count="0" type="stmt"/>
+        <line num="714" count="0" type="stmt"/>
+        <line num="719" count="0" type="stmt"/>
+        <line num="721" count="0" type="stmt"/>
+        <line num="727" count="0" type="stmt"/>
+        <line num="728" count="0" type="stmt"/>
+        <line num="730" count="0" type="stmt"/>
+        <line num="731" count="0" type="stmt"/>
+        <line num="732" count="0" type="stmt"/>
+        <line num="734" count="0" type="stmt"/>
+        <line num="740" count="0" type="stmt"/>
+        <line num="741" count="0" type="stmt"/>
+        <line num="742" count="0" type="stmt"/>
+        <line num="743" count="0" type="stmt"/>
+        <line num="744" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="746" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="748" count="0" type="stmt"/>
+        <line num="749" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="752" count="0" type="stmt"/>
+        <line num="753" count="0" type="stmt"/>
+        <line num="754" count="0" type="stmt"/>
+        <line num="755" count="0" type="stmt"/>
+        <line num="756" count="0" type="stmt"/>
+        <line num="759" count="0" type="stmt"/>
+        <line num="764" count="0" type="cond" truecount="0" falsecount="6"/>
+        <line num="766" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="769" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="770" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="772" count="0" type="stmt"/>
+        <line num="773" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="774" count="0" type="stmt"/>
+        <line num="779" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="783" count="0" type="stmt"/>
+        <line num="784" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="786" count="0" type="stmt"/>
+        <line num="801" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="802" count="0" type="stmt"/>
+        <line num="803" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="804" count="0" type="stmt"/>
+        <line num="806" count="0" type="stmt"/>
+        <line num="810" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="812" count="0" type="stmt"/>
+        <line num="821" count="0" type="stmt"/>
+        <line num="822" count="0" type="stmt"/>
+        <line num="823" count="0" type="stmt"/>
+        <line num="825" count="0" type="stmt"/>
+        <line num="826" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="827" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="828" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="829" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="830" count="0" type="stmt"/>
+        <line num="831" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="832" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="833" count="0" type="stmt"/>
+        <line num="834" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="835" count="0" type="stmt"/>
+        <line num="837" count="0" type="stmt"/>
+        <line num="839" count="0" type="stmt"/>
+        <line num="840" count="0" type="stmt"/>
+        <line num="846" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="847" count="0" type="stmt"/>
+        <line num="848" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="849" count="0" type="stmt"/>
+        <line num="867" count="0" type="stmt"/>
+        <line num="873" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="874" count="0" type="stmt"/>
+        <line num="875" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="876" count="0" type="stmt"/>
+        <line num="894" count="0" type="stmt"/>
+        <line num="900" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="901" count="0" type="stmt"/>
+        <line num="902" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="903" count="0" type="stmt"/>
+        <line num="921" count="0" type="stmt"/>
+        <line num="927" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="929" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="930" count="0" type="stmt"/>
+        <line num="947" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="948" count="0" type="stmt"/>
+        <line num="949" count="0" type="stmt"/>
+        <line num="952" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="953" count="0" type="stmt"/>
+        <line num="970" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="971" count="0" type="stmt"/>
+        <line num="972" count="0" type="stmt"/>
+        <line num="976" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="977" count="0" type="stmt"/>
+        <line num="978" count="0" type="stmt"/>
+        <line num="981" count="0" type="stmt"/>
+        <line num="986" count="0" type="stmt"/>
+        <line num="987" count="0" type="stmt"/>
+        <line num="989" count="0" type="stmt"/>
+        <line num="990" count="0" type="stmt"/>
+        <line num="991" count="0" type="stmt"/>
+        <line num="993" count="0" type="stmt"/>
+        <line num="1002" count="0" type="stmt"/>
+        <line num="1003" count="0" type="stmt"/>
+        <line num="1004" count="0" type="stmt"/>
+        <line num="1005" count="0" type="stmt"/>
+        <line num="1006" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1008" count="0" type="stmt"/>
+        <line num="1009" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1010" count="0" type="stmt"/>
+        <line num="1014" count="0" type="stmt"/>
+        <line num="1017" count="0" type="stmt"/>
+        <line num="1018" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1020" count="0" type="stmt"/>
+        <line num="1045" count="0" type="stmt"/>
+        <line num="1047" count="0" type="stmt"/>
+        <line num="1054" count="0" type="stmt"/>
+        <line num="1055" count="0" type="stmt"/>
+        <line num="1057" count="0" type="stmt"/>
+        <line num="1058" count="0" type="stmt"/>
+        <line num="1059" count="0" type="stmt"/>
+        <line num="1061" count="0" type="stmt"/>
+        <line num="1067" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1068" count="0" type="stmt"/>
+        <line num="1071" count="0" type="stmt"/>
+        <line num="1072" count="0" type="stmt"/>
+        <line num="1073" count="0" type="stmt"/>
+        <line num="1075" count="0" type="stmt"/>
+        <line num="1076" count="0" type="stmt"/>
+        <line num="1077" count="0" type="stmt"/>
+        <line num="1079" count="0" type="stmt"/>
+        <line num="1080" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="1081" count="0" type="stmt"/>
+        <line num="1083" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="1084" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1086" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1087" count="0" type="stmt"/>
+        <line num="1089" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1090" count="0" type="stmt"/>
+        <line num="1093" count="0" type="stmt"/>
+        <line num="1094" count="0" type="stmt"/>
+        <line num="1095" count="0" type="stmt"/>
+        <line num="1097" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1098" count="0" type="stmt"/>
+        <line num="1099" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1100" count="0" type="stmt"/>
+        <line num="1103" count="0" type="stmt"/>
+        <line num="1106" count="0" type="stmt"/>
+        <line num="1107" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1108" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1109" count="0" type="stmt"/>
+        <line num="1110" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="1112" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1113" count="0" type="stmt"/>
+        <line num="1116" count="0" type="stmt"/>
+        <line num="1117" count="0" type="stmt"/>
+        <line num="1119" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1120" count="0" type="stmt"/>
+        <line num="1121" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1122" count="0" type="stmt"/>
+        <line num="1124" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1125" count="0" type="stmt"/>
+        <line num="1128" count="0" type="stmt"/>
+        <line num="1131" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1132" count="0" type="stmt"/>
+        <line num="1133" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1134" count="0" type="stmt"/>
+        <line num="1136" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1137" count="0" type="stmt"/>
+        <line num="1141" count="0" type="stmt"/>
+        <line num="1143" count="0" type="stmt"/>
+        <line num="1150" count="0" type="stmt"/>
+        <line num="1152" count="0" type="stmt"/>
+        <line num="1153" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="1154" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="1155" count="0" type="stmt"/>
+        <line num="1157" count="0" type="stmt"/>
+        <line num="1160" count="0" type="stmt"/>
+        <line num="1166" count="0" type="stmt"/>
+        <line num="1170" count="0" type="stmt"/>
+      </file>
+      <file name="UserService.js" path="E:\Sunrise Connect\backend\src\services\UserService.js">
+        <metrics statements="34" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="65" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="66" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="86" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="87" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="91" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.tests.helpers">
+      <metrics statements="22" coveredstatements="22" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="8"/>
+      <file name="dbHelper.js" path="E:\Sunrise Connect\backend\src\tests\helpers\dbHelper.js">
+        <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+        <line num="9" count="14" type="stmt"/>
+        <line num="10" count="14" type="stmt"/>
+        <line num="11" count="14" type="stmt"/>
+        <line num="15" count="14" type="stmt"/>
+        <line num="16" count="14" type="stmt"/>
+        <line num="17" count="14" type="stmt"/>
+        <line num="21" count="37" type="stmt"/>
+        <line num="22" count="37" type="stmt"/>
+        <line num="23" count="122" type="stmt"/>
+      </file>
+      <file name="replicaHelper.js" path="E:\Sunrise Connect\backend\src\tests\helpers\replicaHelper.js">
+        <metrics statements="13" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="5"/>
+        <line num="19" count="5" type="stmt"/>
+        <line num="20" count="5" type="stmt"/>
+        <line num="21" count="5" type="stmt"/>
+        <line num="25" count="5" type="stmt"/>
+        <line num="26" count="38" type="stmt"/>
+        <line num="32" count="5" type="stmt"/>
+        <line num="33" count="38" type="stmt"/>
+        <line num="38" count="5" type="stmt"/>
+        <line num="39" count="5" type="stmt"/>
+        <line num="40" count="5" type="stmt"/>
+        <line num="44" count="34" type="stmt"/>
+        <line num="45" count="34" type="stmt"/>
+        <line num="46" count="236" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.utils">
+      <metrics statements="10" coveredstatements="10" conditionals="5" coveredconditionals="5" methods="4" coveredmethods="4"/>
+      <file name="AppError.js" path="E:\Sunrise Connect\backend\src\utils\AppError.js">
+        <metrics statements="4" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="8" count="30" type="stmt"/>
+        <line num="9" count="30" type="stmt"/>
+        <line num="10" count="30" type="stmt"/>
+        <line num="11" count="30" type="stmt"/>
+      </file>
+      <file name="catchAsync.js" path="E:\Sunrise Connect\backend\src\utils\catchAsync.js">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="550" type="stmt"/>
+        <line num="4" count="31" type="stmt"/>
+      </file>
+      <file name="response.js" path="E:\Sunrise Connect\backend\src\utils\response.js">
+        <metrics statements="4" coveredstatements="4" conditionals="4" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="10" count="26" type="stmt"/>
+        <line num="14" count="26" type="cond" truecount="2" falsecount="0"/>
+        <line num="15" count="26" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.validations">
+      <metrics statements="28" coveredstatements="27" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="auth.schema.js" path="E:\Sunrise Connect\backend\src\validations\auth.schema.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="9" type="stmt"/>
+        <line num="11" count="9" type="stmt"/>
+        <line num="18" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="32" count="9" type="stmt"/>
+      </file>
+      <file name="fee-structure.schema.js" path="E:\Sunrise Connect\backend\src\validations\fee-structure.schema.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="9" type="stmt"/>
+        <line num="17" count="9" type="stmt"/>
+        <line num="25" count="9" type="stmt"/>
+        <line num="40" count="9" type="stmt"/>
+      </file>
+      <file name="ledger.schema.js" path="E:\Sunrise Connect\backend\src\validations\ledger.schema.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="9" type="stmt"/>
+        <line num="13" count="9" type="stmt"/>
+        <line num="30" count="9" type="stmt"/>
+        <line num="38" count="9" type="stmt"/>
+        <line num="46" count="9" type="stmt"/>
+      </file>
+      <file name="parent.schema.js" path="E:\Sunrise Connect\backend\src\validations\parent.schema.js">
+        <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="9" type="stmt"/>
+        <line num="6" count="9" type="stmt"/>
+        <line num="16" count="9" type="stmt"/>
+        <line num="26" count="9" type="stmt"/>
+        <line num="33" count="9" type="stmt"/>
+        <line num="40" count="9" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+      <file name="payment.schema.js" path="E:\Sunrise Connect\backend\src\validations\payment.schema.js">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="9" type="stmt"/>
+        <line num="14" count="9" type="stmt"/>
+        <line num="21" count="9" type="stmt"/>
+      </file>
+      <file name="student.schema.js" path="E:\Sunrise Connect\backend\src\validations\student.schema.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="9" type="stmt"/>
+        <line num="22" count="9" type="stmt"/>
+        <line num="38" count="9" type="stmt"/>
+        <line num="50" count="9" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

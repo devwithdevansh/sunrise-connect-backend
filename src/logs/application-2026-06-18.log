@@ -1,0 +1,20 @@
+2026-06-18 18:58:13 info: Server is running on port 3000 in development mode
+2026-06-18 18:58:15 info: MongoDB connected
+2026-06-18 18:58:27 info: POST /api/v1/auth/parent/login
+2026-06-18 18:58:28 error: Error: Invalid credentials
+    at AuthService.parentLogin (file:///D:/projects/sunrise-connect/backend/src/services/AuthService.js:94:23)
+    at async file:///D:/projects/sunrise-connect/backend/src/controllers/AuthController.js:27:20
+2026-06-18 19:00:54 info: POST /api/v1/auth/parent/login
+2026-06-18 19:00:54 error: Error: Invalid credentials
+    at AuthService.parentLogin (file:///D:/projects/sunrise-connect/backend/src/services/AuthService.js:94:23)
+    at async file:///D:/projects/sunrise-connect/backend/src/controllers/AuthController.js:27:20
+2026-06-18 19:19:29 info: POST /api/v1/auth/parent/login
+2026-06-18 19:19:30 info: Parent login: 6a2ae2ed67dbba4be0eb92de
+2026-06-18 19:19:30 info: POST /api/v1/auth/portal/login
+2026-06-18 19:19:30 info: Portal login: 6a2ae2ed67dbba4be0eb92da
+2026-06-18 19:19:30 info: GET /api/v1/students?parentId=6a2ae2ed67dbba4be0eb92de
+2026-06-18 19:19:31 info: GET /api/v1/ledgers?studentId=6a2ae2ed67dbba4be0eb92e4
+2026-06-18 19:46:55 info: POST /api/v1/auth/portal/login
+2026-06-18 19:46:55 info: Portal login: 6a2ae2ed67dbba4be0eb92da
+2026-06-18 19:46:55 info: GET /api/v1/students?parentId=6a2ae2ed67dbba4be0eb92de
+2026-06-18 19:46:56 info: GET /api/v1/ledgers?studentId=6a2ae2ed67dbba4be0eb92e4

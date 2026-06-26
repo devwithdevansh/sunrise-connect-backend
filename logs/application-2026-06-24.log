@@ -1,0 +1,1257 @@
+2026-06-24 00:01:06 info: GET /api/v1/students?limit=1000
+2026-06-24 00:01:06 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:01:06 info: GET /api/v1/fee-structures
+2026-06-24 00:01:06 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:01:06 info: GET /api/v1/audit?limit=100
+2026-06-24 00:01:06 info: GET /api/v1/academic-years
+2026-06-24 00:01:08 info: GET /api/v1/fee-categories
+2026-06-24 00:01:08 info: GET /api/v1/academic-years
+2026-06-24 00:01:08 info: GET /api/v1/students?limit=1000
+2026-06-24 00:01:08 info: GET /api/v1/audit?limit=100
+2026-06-24 00:01:08 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:01:08 info: GET /api/v1/fee-categories
+2026-06-24 00:01:08 info: GET /api/v1/fee-structures
+2026-06-24 00:01:08 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:01:15 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:01:19 info: GET /api/v1/payments?ledgerIds=6a3aceab0fdba6d54ac4d64f,6a3aceab0fdba6d54ac4d650,6a3aceab0fdba6d54ac4d641,6a3aceab0fdba6d54ac4d64c,6a3aceab0fdba6d54ac4d64b,6a3aceab0fdba6d54ac4d64a,6a3aceab0fdba6d54ac4d649,6a3aceab0fdba6d54ac4d648,6a3aceab0fdba6d54ac4d647,6a3aceab0fdba6d54ac4d646,6a3aceab0fdba6d54ac4d64e,6a3aceab0fdba6d54ac4d645,6a3aceab0fdba6d54ac4d644,6a3aceab0fdba6d54ac4d643,6a3aceab0fdba6d54ac4d642,6a3aceab0fdba6d54ac4d64d,6a3aceab0fdba6d54ac4d639,6a3aceab0fdba6d54ac4d63a,6a3aceab0fdba6d54ac4d638,6a3aceab0fdba6d54ac4d63b,6a3aceab0fdba6d54ac4d63c,6a3aceab0fdba6d54ac4d637,6a3aceab0fdba6d54ac4d63d,6a3aceab0fdba6d54ac4d63e,6a3aceab0fdba6d54ac4d63f,6a3aceab0fdba6d54ac4d640,6a3aceab0fdba6d54ac4d636,6a3aceab0fdba6d54ac4d635&limit=500
+2026-06-24 00:02:21 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:02:21 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:02:22 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:02:23 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:02:25 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:02:26 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:02:27 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:02:28 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:02:29 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:02:50 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:02:51 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:02:58 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:02:59 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:03:00 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:03:01 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:03:02 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:03:05 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:03:06 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:03:07 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:03:08 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:03:57 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:04:31 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:04:46 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:04:52 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:05:13 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:05:58 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:05:59 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:06:14 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:06:16 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:06:17 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:06:19 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:06:20 info: GET /api/v1/ledgers?studentId=6a3acca794b03d5248bebc46&limit=100
+2026-06-24 00:06:21 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:10:06 info: GET /api/v1/students?limit=1000
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/fee-structures
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/audit?limit=100
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/academic-years
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/fee-categories
+2026-06-24 00:10:06 info: GET /api/v1/students?limit=1000
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/fee-structures
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: GET /api/v1/audit?limit=100
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: POST /api/v1/auth/refresh
+2026-06-24 00:10:06 info: GET /api/v1/academic-years
+2026-06-24 00:10:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:10:06 info: POST /api/v1/auth/refresh
+2026-06-24 00:10:06 info: POST /api/v1/auth/refresh
+2026-06-24 00:10:06 info: POST /api/v1/auth/refresh
+2026-06-24 00:10:06 info: POST /api/v1/auth/refresh
+2026-06-24 00:10:29 info: POST /api/v1/auth/refresh
+2026-06-24 00:10:44 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 00:10:51 info: Server is running on port 3000 in development mode
+2026-06-24 00:10:52 info: MongoDB connected
+2026-06-24 00:10:54 info: POST /api/v1/auth/portal/login
+2026-06-24 00:10:55 info: Portal login: 6a33f461c4f79074d9ffe676
+2026-06-24 00:10:55 info: GET /api/v1/students?limit=1000
+2026-06-24 00:10:55 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:10:55 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:10:55 info: GET /api/v1/fee-structures
+2026-06-24 00:10:55 info: GET /api/v1/audit?limit=100
+2026-06-24 00:10:55 info: GET /api/v1/academic-years
+2026-06-24 00:10:55 info: GET /api/v1/fee-categories
+2026-06-24 00:13:43 info: POST /api/v1/payments/6a3ad0bddfa723901bd31c71/reverse
+2026-06-24 00:13:43 info: POST /api/v1/payments/6a3ad0bcdfa723901bd31c6f/reverse
+2026-06-24 00:13:44 info: POST /api/v1/payments/6a3ad0bbdfa723901bd31c6d/reverse
+2026-06-24 00:13:44 info: GET /api/v1/students?limit=1000
+2026-06-24 00:13:44 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:13:44 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:13:44 info: GET /api/v1/fee-structures
+2026-06-24 00:13:44 info: GET /api/v1/audit?limit=100
+2026-06-24 00:13:44 info: GET /api/v1/academic-years
+2026-06-24 00:13:44 info: GET /api/v1/fee-categories
+2026-06-24 00:14:04 info: GET /api/v1/payments?ledgerIds=6a3aceab0fdba6d54ac4d64f,6a3aceab0fdba6d54ac4d650,6a3aceab0fdba6d54ac4d641,6a3aceab0fdba6d54ac4d64c,6a3aceab0fdba6d54ac4d64b,6a3aceab0fdba6d54ac4d64a,6a3aceab0fdba6d54ac4d649,6a3aceab0fdba6d54ac4d648,6a3aceab0fdba6d54ac4d647,6a3aceab0fdba6d54ac4d646,6a3aceab0fdba6d54ac4d64e,6a3aceab0fdba6d54ac4d645,6a3aceab0fdba6d54ac4d644,6a3aceab0fdba6d54ac4d643,6a3aceab0fdba6d54ac4d642,6a3aceab0fdba6d54ac4d64d,6a3aceab0fdba6d54ac4d639,6a3aceab0fdba6d54ac4d63a,6a3aceab0fdba6d54ac4d638,6a3aceab0fdba6d54ac4d63b,6a3aceab0fdba6d54ac4d63c,6a3aceab0fdba6d54ac4d637,6a3aceab0fdba6d54ac4d63d,6a3aceab0fdba6d54ac4d63e,6a3aceab0fdba6d54ac4d63f,6a3aceab0fdba6d54ac4d640,6a3aceab0fdba6d54ac4d636,6a3aceab0fdba6d54ac4d635&limit=500
+2026-06-24 00:14:04 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:14:51 info: Server is running on port 3000 in development mode
+2026-06-24 00:14:52 info: MongoDB connected
+2026-06-24 00:14:52 info: GET /api/v1/students?limit=1000
+2026-06-24 00:14:52 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:14:52 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:14:52 info: GET /api/v1/fee-structures
+2026-06-24 00:14:52 info: GET /api/v1/audit?limit=100
+2026-06-24 00:14:52 info: GET /api/v1/academic-years
+2026-06-24 00:14:52 info: GET /api/v1/fee-categories
+2026-06-24 00:14:53 info: GET /api/v1/academic-years
+2026-06-24 00:14:53 info: GET /api/v1/students?limit=1000
+2026-06-24 00:14:53 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:14:53 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:14:53 info: GET /api/v1/fee-categories
+2026-06-24 00:14:53 info: GET /api/v1/fee-structures
+2026-06-24 00:14:53 info: GET /api/v1/audit?limit=100
+2026-06-24 00:16:09 info: POST /api/v1/auth/parent/login
+2026-06-24 00:16:10 info: Parent login: 6a3acca794b03d5248bebc45
+2026-06-24 00:16:10 info: GET /api/v1/students?parentId=6a3acca794b03d5248bebc45
+2026-06-24 00:16:11 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:16:16 info: GET /api/v1/ledgers?studentId=6a3aceaa0fdba6d54ac4d633&limit=100
+2026-06-24 00:16:29 info: GET /api/v1/payments?ledgerIds=6a3aceab0fdba6d54ac4d64f,6a3aceab0fdba6d54ac4d650,6a3aceab0fdba6d54ac4d641,6a3aceab0fdba6d54ac4d64c,6a3aceab0fdba6d54ac4d64b,6a3aceab0fdba6d54ac4d64a,6a3aceab0fdba6d54ac4d649,6a3aceab0fdba6d54ac4d648,6a3aceab0fdba6d54ac4d647,6a3aceab0fdba6d54ac4d646,6a3aceab0fdba6d54ac4d64e,6a3aceab0fdba6d54ac4d645,6a3aceab0fdba6d54ac4d644,6a3aceab0fdba6d54ac4d643,6a3aceab0fdba6d54ac4d642,6a3aceab0fdba6d54ac4d64d,6a3aceab0fdba6d54ac4d639,6a3aceab0fdba6d54ac4d63a,6a3aceab0fdba6d54ac4d638,6a3aceab0fdba6d54ac4d63b,6a3aceab0fdba6d54ac4d63c,6a3aceab0fdba6d54ac4d637,6a3aceab0fdba6d54ac4d63d,6a3aceab0fdba6d54ac4d63e,6a3aceab0fdba6d54ac4d63f,6a3aceab0fdba6d54ac4d640,6a3aceab0fdba6d54ac4d636,6a3aceab0fdba6d54ac4d635&limit=500
+2026-06-24 00:17:29 info: Server is running on port 3000 in development mode
+2026-06-24 00:17:29 info: GET /api/v1/students?limit=1000
+2026-06-24 00:17:29 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:17:29 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:17:29 info: GET /api/v1/fee-structures
+2026-06-24 00:17:29 info: GET /api/v1/audit?limit=100
+2026-06-24 00:17:29 info: GET /api/v1/academic-years
+2026-06-24 00:17:30 info: MongoDB connected
+2026-06-24 00:17:31 info: GET /api/v1/fee-categories
+2026-06-24 00:17:31 info: GET /api/v1/fee-structures
+2026-06-24 00:17:31 info: GET /api/v1/academic-years
+2026-06-24 00:17:31 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:17:31 info: GET /api/v1/students?limit=1000
+2026-06-24 00:17:31 info: GET /api/v1/audit?limit=100
+2026-06-24 00:17:31 info: GET /api/v1/fee-categories
+2026-06-24 00:17:31 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:17:51 info: Server is running on port 3000 in development mode
+2026-06-24 00:17:52 info: MongoDB connected
+2026-06-24 00:17:54 info: GET /api/v1/students?limit=1000
+2026-06-24 00:17:54 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:17:54 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:17:54 info: GET /api/v1/fee-structures
+2026-06-24 00:17:54 info: GET /api/v1/audit?limit=100
+2026-06-24 00:17:54 info: GET /api/v1/academic-years
+2026-06-24 00:17:54 info: GET /api/v1/fee-categories
+2026-06-24 00:17:54 info: GET /api/v1/fee-structures
+2026-06-24 00:17:54 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:17:54 info: GET /api/v1/students?limit=1000
+2026-06-24 00:17:54 info: GET /api/v1/fee-categories
+2026-06-24 00:17:54 info: GET /api/v1/audit?limit=100
+2026-06-24 00:17:54 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:17:54 info: GET /api/v1/academic-years
+2026-06-24 00:18:59 info: POST /api/v1/payments
+2026-06-24 00:18:59 info: POST /api/v1/payments
+2026-06-24 00:19:00 info: POST /api/v1/payments
+2026-06-24 00:19:00 info: GET /api/v1/students?limit=1000
+2026-06-24 00:19:00 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:19:00 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:19:00 info: GET /api/v1/fee-structures
+2026-06-24 00:19:00 info: GET /api/v1/audit?limit=100
+2026-06-24 00:19:00 info: GET /api/v1/academic-years
+2026-06-24 00:19:00 info: GET /api/v1/fee-categories
+2026-06-24 00:59:40 info: GET /api/v1/students?limit=1000
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/fee-structures
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/audit?limit=100
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/academic-years
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/fee-categories
+2026-06-24 00:59:40 info: GET /api/v1/students?limit=1000
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/payments?limit=1000
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/fee-structures
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/audit?limit=100
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: GET /api/v1/academic-years
+2026-06-24 00:59:40 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 00:59:40 info: POST /api/v1/auth/refresh
+2026-06-24 00:59:40 info: POST /api/v1/auth/refresh
+2026-06-24 00:59:40 info: POST /api/v1/auth/refresh
+2026-06-24 00:59:40 info: POST /api/v1/auth/refresh
+2026-06-24 00:59:40 info: POST /api/v1/auth/refresh
+2026-06-24 01:03:57 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-00.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 01:03:57 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-00.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 01:03:57 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-00.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 01:03:57 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-00.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 01:03:57 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-00.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 01:03:57 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-00.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+    at async Collection.findOne (E:\Sunrise Connect\backend\node_modules\mongodb\lib\collection.js:313:24)
+    at async model.Query._findOne (E:\Sunrise Connect\backend\node_modules\mongoose\lib\query.js:2773:15)
+    at async maybeTracedQueryExec (E:\Sunrise Connect\backend\node_modules\mongoose\lib\query.js:4801:65)
+2026-06-24 01:03:59 info: POST /api/v1/auth/logout
+2026-06-24 01:03:59 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Sunrise Connect\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Sunrise Connect\backend\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Sunrise Connect\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:295:15
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+2026-06-24 01:10:15 info: POST /api/v1/auth/portal/login
+2026-06-24 01:10:16 info: Portal login: 6a33f461c4f79074d9ffe676
+2026-06-24 01:10:16 info: GET /api/v1/students?limit=1000
+2026-06-24 01:10:16 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 01:10:16 info: GET /api/v1/payments?limit=1000
+2026-06-24 01:10:16 info: GET /api/v1/fee-structures
+2026-06-24 01:10:16 info: GET /api/v1/audit?limit=100
+2026-06-24 01:10:16 info: GET /api/v1/academic-years
+2026-06-24 01:10:17 info: GET /api/v1/fee-categories
+2026-06-24 01:18:58 info: Server is running on port 3000 in development mode
+2026-06-24 01:18:59 info: MongoDB connected
+2026-06-24 01:19:53 info: POST /api/v1/auth/portal/login
+2026-06-24 01:19:54 info: Portal login: 6a33f461c4f79074d9ffe676
+2026-06-24 01:19:54 info: GET /api/v1/students?limit=1000
+2026-06-24 01:19:54 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 01:19:54 info: GET /api/v1/payments?limit=1000
+2026-06-24 01:19:54 info: GET /api/v1/fee-structures
+2026-06-24 01:19:54 info: GET /api/v1/audit?limit=100
+2026-06-24 01:19:54 info: GET /api/v1/academic-years
+2026-06-24 01:19:54 info: GET /api/v1/fee-categories
+2026-06-24 01:20:01 info: GET /api/v1/students?limit=1000
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/payments?limit=1000
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/fee-structures
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/academic-years
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/fee-categories
+2026-06-24 01:20:01 info: GET /api/v1/audit?limit=100
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/students?limit=1000
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/academic-years
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/payments?limit=1000
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/fee-structures
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/audit?limit=100
+2026-06-24 01:20:01 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 01:20:01 info: GET /api/v1/fee-categories
+2026-06-24 01:20:01 info: POST /api/v1/auth/refresh
+2026-06-24 01:20:01 info: POST /api/v1/auth/refresh
+2026-06-24 01:20:01 info: POST /api/v1/auth/refresh
+2026-06-24 01:20:01 info: POST /api/v1/auth/refresh
+2026-06-24 01:20:01 info: POST /api/v1/auth/refresh
+2026-06-24 01:20:01 info: POST /api/v1/auth/refresh
+2026-06-24 01:20:29 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 01:20:29 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 01:20:29 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 01:20:29 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 01:20:29 info: POST /api/v1/auth/refresh
+2026-06-24 01:20:35 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 01:20:35 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 01:20:35 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 01:20:40 info: POST /api/v1/auth/portal/login
+2026-06-24 01:20:40 info: Portal login: 6a33f461c4f79074d9ffe676
+2026-06-24 01:20:40 info: GET /api/v1/students?limit=1000
+2026-06-24 01:20:40 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 01:20:40 info: GET /api/v1/payments?limit=1000
+2026-06-24 01:20:40 info: GET /api/v1/fee-structures
+2026-06-24 01:20:40 info: GET /api/v1/audit?limit=100
+2026-06-24 01:20:40 info: GET /api/v1/academic-years
+2026-06-24 01:20:40 info: GET /api/v1/fee-categories
+2026-06-24 01:21:43 info: Server is running on port 3000 in development mode
+2026-06-24 01:21:44 info: MongoDB connected
+2026-06-24 13:26:53 info: Server is running on port 3000 in development mode
+2026-06-24 13:27:07 info: MongoDB connected
+2026-06-24 13:27:49 info: GET /api/v1/students?limit=1000
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: GET /api/v1/academic-years
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: GET /api/v1/audit?limit=100
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: GET /api/v1/fee-structures
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: GET /api/v1/fee-categories
+2026-06-24 13:27:49 info: GET /api/v1/students?limit=1000
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: POST /api/v1/auth/refresh
+2026-06-24 13:27:49 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: POST /api/v1/auth/refresh
+2026-06-24 13:27:49 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: POST /api/v1/auth/refresh
+2026-06-24 13:27:49 info: GET /api/v1/academic-years
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: POST /api/v1/auth/refresh
+2026-06-24 13:27:49 info: GET /api/v1/audit?limit=100
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: POST /api/v1/auth/refresh
+2026-06-24 13:27:49 info: GET /api/v1/fee-structures
+2026-06-24 13:27:49 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 13:27:49 info: POST /api/v1/auth/refresh
+2026-06-24 13:28:18 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 13:28:18 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 13:28:18 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 13:28:18 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 13:28:34 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 13:28:34 error: TypeError: Repo.findById(...).session is not a function
+    at AuthService.rotateRefreshToken (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:156:48)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:33:20
+2026-06-24 13:30:23 info: POST /api/v1/auth/portal/login
+2026-06-24 13:30:23 info: Portal login: 6a33f461c4f79074d9ffe676
+2026-06-24 13:30:23 info: GET /api/v1/students?limit=1000
+2026-06-24 13:30:23 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:30:23 info: GET /api/v1/audit?limit=100
+2026-06-24 13:30:23 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:30:23 info: GET /api/v1/fee-structures
+2026-06-24 13:30:23 info: GET /api/v1/academic-years
+2026-06-24 13:30:24 info: GET /api/v1/fee-categories
+2026-06-24 13:32:00 info: GET /api/v1/parents/check-mobile?primaryMobile=968574120
+2026-06-24 13:32:00 info: POST /api/v1/students
+2026-06-24 13:32:01 info: GET /api/v1/academic-years
+2026-06-24 13:32:01 info: GET /api/v1/students?limit=1000
+2026-06-24 13:32:01 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:32:01 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:32:01 info: GET /api/v1/fee-structures
+2026-06-24 13:32:01 info: GET /api/v1/audit?limit=100
+2026-06-24 13:32:01 info: GET /api/v1/fee-categories
+2026-06-24 13:32:35 info: POST /api/v1/auth/parent/verify
+2026-06-24 13:32:43 info: POST /api/v1/auth/parent/set-password
+2026-06-24 13:32:55 info: POST /api/v1/auth/parent/login
+2026-06-24 13:32:55 error: Error: Invalid credentials
+    at AuthService.parentLogin (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:103:23)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:27:20
+2026-06-24 13:33:03 info: POST /api/v1/auth/parent/login
+2026-06-24 13:33:04 error: Error: Invalid credentials
+    at AuthService.parentLogin (file:///E:/Sunrise%20Connect/backend/src/services/AuthService.js:103:23)
+    at async file:///E:/Sunrise%20Connect/backend/src/controllers/AuthController.js:27:20
+2026-06-24 13:33:33 info: POST /api/v1/auth/parent/login
+2026-06-24 13:33:34 info: Parent login: 6a3a9c3747e1b726ede101c0
+2026-06-24 13:33:34 info: GET /api/v1/students?parentId=6a3a9c3747e1b726ede101c0
+2026-06-24 13:33:34 info: GET /api/v1/ledgers?studentId=6a3a9c3747e1b726ede101c1&limit=100
+2026-06-24 13:33:50 info: GET /api/v1/ledgers?studentId=6a3a9c3747e1b726ede101c1&limit=100
+2026-06-24 13:34:08 info: GET /api/v1/ledgers?studentId=6a3a9c3747e1b726ede101c1&limit=100
+2026-06-24 13:34:15 info: GET /api/v1/ledgers?studentId=6a3a9c3747e1b726ede101c1&limit=100
+2026-06-24 13:34:30 info: POST /api/v1/payments
+2026-06-24 13:34:31 info: POST /api/v1/payments
+2026-06-24 13:34:31 info: GET /api/v1/students?parentId=6a3a9c3747e1b726ede101c0
+2026-06-24 13:34:32 info: GET /api/v1/ledgers?studentId=6a3a9c3747e1b726ede101c1&limit=100
+2026-06-24 13:34:54 info: GET /api/v1/payments?ledgerIds=6a3ac55694b03d5248bebc14,6a3a9c3a47e1b726ede101d0,6a3a9c3a47e1b726ede101d6,6a3a9c3a47e1b726ede101d5,6a3a9c3a47e1b726ede101d4,6a3a9c3a47e1b726ede101d3,6a3a9c3a47e1b726ede101d2,6a3a9c3a47e1b726ede101d1,6a3a9c3a47e1b726ede101d7,6a3a9c3a47e1b726ede101d8,6a3a9c3a47e1b726ede101cf,6a3a9c3a47e1b726ede101da,6a3a9c3a47e1b726ede101d9,6a3a9c3a47e1b726ede101c6,6a3a9c3a47e1b726ede101c5,6a3a9c3a47e1b726ede101c7,6a3a9c3a47e1b726ede101ce,6a3a9c3a47e1b726ede101c8,6a3a9c3a47e1b726ede101c9,6a3a9c3a47e1b726ede101cd,6a3a9c3a47e1b726ede101ca,6a3a9c3a47e1b726ede101cb,6a3a9c3a47e1b726ede101cc,6a3a9c3a47e1b726ede101c4,6a3a9c3a47e1b726ede101c3&limit=500
+2026-06-24 13:35:16 info: GET /api/v1/students?limit=1000
+2026-06-24 13:35:16 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:35:16 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:35:16 info: GET /api/v1/academic-years
+2026-06-24 13:35:16 info: GET /api/v1/fee-structures
+2026-06-24 13:35:16 info: GET /api/v1/audit?limit=100
+2026-06-24 13:35:16 info: GET /api/v1/fee-categories
+2026-06-24 13:35:16 info: GET /api/v1/academic-years
+2026-06-24 13:35:16 info: GET /api/v1/fee-structures
+2026-06-24 13:35:16 info: GET /api/v1/students?limit=1000
+2026-06-24 13:35:16 info: GET /api/v1/fee-categories
+2026-06-24 13:35:16 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:35:16 info: GET /api/v1/audit?limit=100
+2026-06-24 13:35:17 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:36:46 info: POST /api/v1/payments
+2026-06-24 13:36:46 info: POST /api/v1/payments
+2026-06-24 13:36:47 info: GET /api/v1/students?limit=1000
+2026-06-24 13:36:47 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:36:47 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:36:47 info: GET /api/v1/fee-structures
+2026-06-24 13:36:47 info: GET /api/v1/audit?limit=100
+2026-06-24 13:36:47 info: GET /api/v1/academic-years
+2026-06-24 13:36:47 info: GET /api/v1/fee-categories
+2026-06-24 13:37:06 info: POST /api/v1/payments/6a3b901688c136ba8ba0d948/reverse
+2026-06-24 13:37:07 info: GET /api/v1/students?limit=1000
+2026-06-24 13:37:07 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:37:07 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:37:07 info: GET /api/v1/fee-structures
+2026-06-24 13:37:07 info: GET /api/v1/audit?limit=100
+2026-06-24 13:37:07 info: GET /api/v1/academic-years
+2026-06-24 13:37:07 info: GET /api/v1/fee-categories
+2026-06-24 13:37:25 info: POST /api/v1/auth/logout
+2026-06-24 13:37:35 info: Logout: 6a33f461c4f79074d9ffe676
+2026-06-24 13:37:44 info: POST /api/v1/auth/portal/login
+2026-06-24 13:37:45 info: Portal login: 6a39c3f8a56157fcf6043cfe
+2026-06-24 13:37:45 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:37:45 info: GET /api/v1/students?limit=1000
+2026-06-24 13:37:45 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:37:45 info: GET /api/v1/fee-structures
+2026-06-24 13:37:45 info: GET /api/v1/audit?limit=100
+2026-06-24 13:37:45 error: Error: You do not have permission to perform this action
+    at file:///E:/Sunrise%20Connect/backend/src/middlewares/authorize.middleware.js:9:17
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:16:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+2026-06-24 13:37:45 info: GET /api/v1/academic-years
+2026-06-24 13:37:45 info: GET /api/v1/fee-categories
+2026-06-24 13:38:02 info: POST /api/v1/auth/logout
+2026-06-24 13:38:02 info: Logout: 6a39c3f8a56157fcf6043cfe
+2026-06-24 13:38:04 info: POST /api/v1/auth/portal/login
+2026-06-24 13:38:05 info: Portal login: 6a33f461c4f79074d9ffe676
+2026-06-24 13:38:05 info: GET /api/v1/students?limit=1000
+2026-06-24 13:38:05 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:38:05 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:38:05 info: GET /api/v1/fee-structures
+2026-06-24 13:38:05 info: GET /api/v1/academic-years
+2026-06-24 13:38:05 info: GET /api/v1/audit?limit=100
+2026-06-24 13:38:05 info: GET /api/v1/fee-categories
+2026-06-24 13:39:28 info: GET /api/v1/users
+2026-06-24 13:39:28 info: GET /api/v1/users
+2026-06-24 13:39:33 info: GET /api/v1/users
+2026-06-24 13:39:33 info: GET /api/v1/users
+2026-06-24 13:39:43 info: GET /api/v1/users
+2026-06-24 13:39:43 info: GET /api/v1/audit?limit=500
+2026-06-24 13:39:43 info: GET /api/v1/users
+2026-06-24 13:39:43 info: GET /api/v1/audit?limit=500
+2026-06-24 13:42:10 info: PATCH /api/v1/students/6a392ee787037ebb1d2a73eb
+2026-06-24 13:42:11 info: GET /api/v1/students?limit=1000
+2026-06-24 13:42:11 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 13:42:11 info: GET /api/v1/payments?limit=1000
+2026-06-24 13:42:11 info: GET /api/v1/fee-structures
+2026-06-24 13:42:11 info: GET /api/v1/academic-years
+2026-06-24 13:42:11 info: GET /api/v1/audit?limit=100
+2026-06-24 13:42:11 info: GET /api/v1/fee-categories
+2026-06-24 14:15:06 info: GET /api/v1/students?limit=1000
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/payments?limit=1000
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/fee-structures
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/audit?limit=100
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/academic-years
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/fee-categories
+2026-06-24 14:15:06 info: GET /api/v1/ledgers?limit=1000
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/students?limit=1000
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/payments?limit=1000
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/fee-structures
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/audit?limit=100
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: GET /api/v1/academic-years
+2026-06-24 14:15:06 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:297:9
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+    at router (E:\Sunrise Connect\backend\node_modules\router\index.js:60:12)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (E:\Sunrise Connect\backend\node_modules\router\index.js:342:13)
+2026-06-24 14:15:06 info: POST /api/v1/auth/refresh
+2026-06-24 14:15:06 info: POST /api/v1/auth/refresh
+2026-06-24 14:15:06 info: POST /api/v1/auth/refresh
+2026-06-24 14:15:06 info: POST /api/v1/auth/refresh
+2026-06-24 14:15:06 info: POST /api/v1/auth/refresh
+2026-06-24 14:18:38 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-02.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 14:18:38 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-02.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 14:18:38 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-02.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 14:18:38 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-02.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 14:18:38 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-02.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+2026-06-24 14:18:38 error: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-2rrz1tl-shard-00-02.pcdpqxh.mongodb.net
+    at Topology.selectServer (E:\Sunrise Connect\backend\node_modules\mongodb\lib\sdam\topology.js:348:38)
+    at async executeOperationWithRetries (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:157:18)
+    at async executeOperation (E:\Sunrise Connect\backend\node_modules\mongodb\lib\operations\execute_operation.js:83:16)
+    at async FindCursor._initialize (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\find_cursor.js:62:26)
+    at async FindCursor.cursorInit (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:620:27)
+    at async FindCursor.fetchBatch (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:654:13)
+    at async FindCursor.next (E:\Sunrise Connect\backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:326:17)
+    at async Collection.findOne (E:\Sunrise Connect\backend\node_modules\mongodb\lib\collection.js:313:24)
+    at async model.Query._findOne (E:\Sunrise Connect\backend\node_modules\mongoose\lib\query.js:2773:15)
+    at async maybeTracedQueryExec (E:\Sunrise Connect\backend\node_modules\mongoose\lib\query.js:4801:65)
+2026-06-24 14:18:38 info: GET /api/v1/fee-categories
+2026-06-24 14:18:42 info: POST /api/v1/auth/logout
+2026-06-24 14:18:42 error: Error: Invalid or expired token
+    at authenticate (file:///E:/Sunrise%20Connect/backend/src/middlewares/auth.middleware.js:18:17)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Sunrise Connect\backend\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Sunrise Connect\backend\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Sunrise Connect\backend\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Sunrise Connect\backend\node_modules\router\lib\layer.js:152:17)
+    at E:\Sunrise Connect\backend\node_modules\router\index.js:295:15
+    at processParams (E:\Sunrise Connect\backend\node_modules\router\index.js:582:12)
+    at next (E:\Sunrise Connect\backend\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Sunrise Connect\backend\node_modules\router\index.js:186:3)
+2026-06-24 15:14:37 info: Server is running on port 3000 in development mode
+2026-06-24 15:14:38 info: MongoDB connected
