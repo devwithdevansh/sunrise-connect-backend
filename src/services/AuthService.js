@@ -138,9 +138,13 @@ class AuthService {
     const entity = await Repo.findByIdWithTokens(userId);
     if (!entity) throw new AppError('Entity not found', 404);
 
-    const tokenEntry = (entity.refreshTokens || []).find(t =>
-      bcrypt.compareSync(refreshToken, t.tokenHash)
+    // Async bcrypt compare – avoids blocking the event loop (compareSync takes ~100ms)
+    const compareResults = await Promise.all(
+      (entity.refreshTokens || []).map(t =>
+        bcrypt.compare(refreshToken, t.tokenHash).then(ok => (ok ? t : null))
+      )
     );
+    const tokenEntry = compareResults.find(Boolean);
     if (!tokenEntry) throw new AppError('Refresh token invalid', 401);
     if (new Date() > tokenEntry.expiresAt) throw new AppError('Refresh token expired', 401);
 
@@ -178,9 +182,13 @@ class AuthService {
     const Repo = domain === 'parent' ? parentRepository : userRepository;
     const entity = await Repo.findByIdWithTokens(userId);
     if (!entity) return;
-    const tokenEntry = (entity.refreshTokens || []).find(t =>
-      bcrypt.compareSync(refreshToken, t.tokenHash)
+    // Async bcrypt compare – avoids blocking the event loop
+    const compareResults = await Promise.all(
+      (entity.refreshTokens || []).map(t =>
+        bcrypt.compare(refreshToken, t.tokenHash).then(ok => (ok ? t : null))
+      )
     );
+    const tokenEntry = compareResults.find(Boolean);
     if (!tokenEntry) return;
     await Repo.updateOne(
       { _id: userId },

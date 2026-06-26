@@ -6,6 +6,14 @@ import AppError from '../utils/AppError.js';
 const processedKeys = new Map(); // key -> response snapshot
 const TTL_MS = 24 * 60 * 60 * 1000; // 24 hours
 
+// Purge expired keys every hour to prevent unbounded memory growth
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, val] of processedKeys.entries()) {
+    if (now - val.ts > TTL_MS) processedKeys.delete(key);
+  }
+}, 60 * 60 * 1000);
+
 const idempotency = (req, res, next) => {
   const key = req.headers['idempotency-key'];
   if (!key) {

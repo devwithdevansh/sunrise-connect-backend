@@ -16,6 +16,8 @@ const env = {
   LOG_LEVEL: process.env.LOG_LEVEL || 'info',
   RATE_LIMIT_WINDOW_MS: parseInt(process.env.RATE_LIMIT_WINDOW_MS, 10) || 15 * 60 * 1000,
   RATE_LIMIT_MAX: parseInt(process.env.RATE_LIMIT_MAX, 10) || 100,
+  // Comma-separated list of allowed frontend origins (set this in your hosting env vars)
+  ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS || 'https://sunrise-connect.vercel.app',
 };
 
 export default env;

@@ -35,10 +35,14 @@ class StudentService {
 
         let parent = await mongoose.model('Parent').findOne({ primaryMobileNumber: mobile }, null, { session });
         if (!parent) {
+          // Generate a random unusable hash — parent must set password via onboarding flow
+          const { randomBytes } = await import('crypto');
+          const randomPasswordHash = randomBytes(32).toString('hex');
           const newParent = {
             parentName: data.parentName || `Parent of ${data.studentName}`,
             primaryMobileNumber: mobile,
-            passwordHash: 'hashedpassword',
+            passwordHash: randomPasswordHash,
+            isPasswordSet: false,
             isActive: true
           };
           if (data.parentSecondaryMobile) {
@@ -77,56 +81,36 @@ class StudentService {
         session
       );
 
-      // --- Generate all categories of fee ledgers for the academic years ---
-      let educationCategory = await mongoose.model('FeeCategory').findOne({ type: 'EDUCATION' }, null, { session });
-      if (!educationCategory) {
-        educationCategory = await mongoose.model('FeeCategory').create([{
-          name: 'Education',
-          type: 'EDUCATION',
-          description: 'Education fee category',
-          isActive: true
-        }], { session }).then(docs => docs[0]);
-      }
+      // Fetch all fee categories in parallel (saves ~300ms vs sequential awaits)
+      const [
+        educationCategory,
+        transportCategory,
+        termCategory,
+        admissionCategory,
+        bagKitCategory,
+      ] = await Promise.all([
+        mongoose.model('FeeCategory').findOne({ type: 'EDUCATION' }, null, { session }),
+        mongoose.model('FeeCategory').findOne({ type: 'TRANSPORT' }, null, { session }),
+        mongoose.model('FeeCategory').findOne({ type: 'TERM' }, null, { session }),
+        mongoose.model('FeeCategory').findOne({ type: 'ADMISSION' }, null, { session }),
+        mongoose.model('FeeCategory').findOne({ type: 'OTHER' }, null, { session }),
+      ]);
 
-      let transportCategory = await mongoose.model('FeeCategory').findOne({ type: 'TRANSPORT' }, null, { session });
-      if (!transportCategory) {
-        transportCategory = await mongoose.model('FeeCategory').create([{
-          name: 'Transport',
-          type: 'TRANSPORT',
-          description: 'Transport fee category',
-          isActive: true
-        }], { session }).then(docs => docs[0]);
-      }
-
-      let termCategory = await mongoose.model('FeeCategory').findOne({ type: 'TERM' }, null, { session });
-      if (!termCategory) {
-        termCategory = await mongoose.model('FeeCategory').create([{
-          name: 'Term',
-          type: 'TERM',
-          description: 'Term fee category',
-          isActive: true
-        }], { session }).then(docs => docs[0]);
-      }
-
-      let admissionCategory = await mongoose.model('FeeCategory').findOne({ type: 'ADMISSION' }, null, { session });
-      if (!admissionCategory) {
-        admissionCategory = await mongoose.model('FeeCategory').create([{
-          name: 'Admission',
-          type: 'ADMISSION',
-          description: 'Admission fee category',
-          isActive: true
-        }], { session }).then(docs => docs[0]);
-      }
-
-      let bagKitCategory = await mongoose.model('FeeCategory').findOne({ type: 'OTHER' }, null, { session });
-      if (!bagKitCategory) {
-        bagKitCategory = await mongoose.model('FeeCategory').create([{
-          name: 'Bag & Kit',
-          type: 'OTHER',
-          description: 'Bag & Kit fee category',
-          isActive: true
-        }], { session }).then(docs => docs[0]);
-      }
+      // Create any missing categories (rare — only on first ever student)
+      const ensureCategory = async (cat, name, type, description) => {
+        if (cat) return cat;
+        return mongoose.model('FeeCategory').create([{ name, type, description, isActive: true }], { session }).then(d => d[0]);
+      };
+      const [edCat, trCat, tmCat, adCat, bkCat] = await Promise.all([
+        ensureCategory(educationCategory, 'Education', 'EDUCATION', 'Education fee category'),
+        ensureCategory(transportCategory, 'Transport', 'TRANSPORT', 'Transport fee category'),
+        ensureCategory(termCategory, 'Term', 'TERM', 'Term fee category'),
+        ensureCategory(admissionCategory, 'Admission', 'ADMISSION', 'Admission fee category'),
+        ensureCategory(bagKitCategory, 'Bag & Kit', 'OTHER', 'Bag & Kit fee category'),
+      ]);
+      // Reassign for the rest of the function
+      Object.assign(educationCategory ?? {}, edCat);
+      const resolvedCategories = { educationCategory: edCat, transportCategory: trCat, termCategory: tmCat, admissionCategory: adCat, bagKitCategory: bkCat };
 
       const getStartYear = (yrStr) => {
         const match = yrStr.match(/^(\d{4})/);
@@ -328,7 +312,7 @@ class StudentService {
             remainingAmount,
             dueDate: new Date(m.dueDate),
             status,
-            feeCategoryId: educationCategory._id,
+            feeCategoryId: edCat._id,
             academicYear,
             source: 'MANUAL',
             generatedFrom: 'FEE_STRUCTURE',
@@ -358,7 +342,7 @@ class StudentService {
               remainingAmount,
               dueDate: new Date(m.dueDate),
               status,
-              feeCategoryId: transportCategory._id,
+              feeCategoryId: trCat._id,
               academicYear,
               source: 'MANUAL',
               generatedFrom: 'TRANSPORT_STRUCTURE',
@@ -389,7 +373,7 @@ class StudentService {
             remainingAmount,
             dueDate: new Date(t.dueDate),
             status,
-            feeCategoryId: termCategory._id,
+            feeCategoryId: tmCat._id,
             academicYear,
             source: 'MANUAL',
             generatedFrom: 'FEE_STRUCTURE',
@@ -423,7 +407,7 @@ class StudentService {
             remainingAmount: admRem,
             dueDate: new Date(oneTimeDueDate),
             status: admStatus,
-            feeCategoryId: admissionCategory._id,
+            feeCategoryId: adCat._id,
             academicYear,
             source: 'MANUAL',
             generatedFrom: 'FEE_STRUCTURE',
@@ -449,7 +433,7 @@ class StudentService {
             remainingAmount: bagRem,
             dueDate: new Date(oneTimeDueDate),
             status: bagStatus,
-            feeCategoryId: bagKitCategory._id,
+            feeCategoryId: bkCat._id,
             academicYear,
             source: 'MANUAL',
             generatedFrom: 'FEE_STRUCTURE',
