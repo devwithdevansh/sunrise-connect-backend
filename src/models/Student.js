@@ -54,6 +54,10 @@ const studentSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    buyBagKit: {
+      type: Boolean,
+      default: false,
+    },
     admissionMonth: {
       type: String,
       default: 'June',

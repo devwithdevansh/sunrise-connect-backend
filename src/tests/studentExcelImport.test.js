@@ -27,11 +27,11 @@ beforeEach(async () => {
 
   // Create standard categories
   await mongoose.model('FeeCategory').create([
-    { name: 'Education', type: 'EDUCATION', academicYear: '2025-26', isActive: true },
-    { name: 'Transport', type: 'TRANSPORT', academicYear: '2025-26', isActive: true },
-    { name: 'Term', type: 'TERM', academicYear: '2025-26', isActive: true },
-    { name: 'Admission', type: 'ADMISSION', academicYear: '2025-26', isActive: true },
-    { name: 'Bag & Kit', type: 'OTHER', academicYear: '2025-26', isActive: true }
+    { name: 'Education', type: 'EDUCATION', isActive: true },
+    { name: 'Transport', type: 'TRANSPORT', isActive: true },
+    { name: 'Term', type: 'TERM', isActive: true },
+    { name: 'Admission', type: 'ADMISSION', isActive: true },
+    { name: 'Bag & Kit', type: 'OTHER', isActive: true }
   ]);
 
   // Create Fee Structure
@@ -66,6 +66,7 @@ describe('Student excel import multi-year fee generation tests', () => {
       standard: '5',
       division: 'A',
       isNewAdmission: true,
+      buyBagKit: true,
       pendingFees: {
         '2024-25': 'oct to may',
         '2025-26': 'paid'

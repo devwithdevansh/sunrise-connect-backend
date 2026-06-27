@@ -22,11 +22,6 @@ const feeCategorySchema = new mongoose.Schema(
       maxlength: [250, 'Description cannot exceed 250 characters'],
       default: null,
     },
-    academicYear: {
-      type: String,
-      required: [true, 'Academic year is required'],
-      trim: true,
-    },
     isActive: {
       type: Boolean,
       default: true,
@@ -38,7 +33,7 @@ const feeCategorySchema = new mongoose.Schema(
 );
 
 // Indexes
-feeCategorySchema.index({ academicYear: 1, name: 1 }, { unique: true });
+feeCategorySchema.index({ name: 1 }, { unique: true });
 
 // 1. Filtering by Category Type and Status
 // Optimized for admin screens that need to load specific types of active fees 

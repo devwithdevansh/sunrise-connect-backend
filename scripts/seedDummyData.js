@@ -84,13 +84,14 @@ async function seed() {
     
     for (let std = 1; std <= 12; std++) {
       for (const medium of mediums) {
-        let existing = await FeeStructure.findOne({ standard: String(std), medium });
+        let existing = await FeeStructure.findOne({ standard: String(std), medium, academicYear: '2026-2027' });
         if (!existing) {
           // Calculate realistic ascending fee amounts
           const baseFee = medium === 'English' ? 12000 : 10000;
           const annualFee = baseFee + (std * 1000); // Increases by 1000 per standard
           
           await FeeStructure.create({
+            academicYear: '2026-2027',
             standard: String(std),
             medium,
             annualFee,

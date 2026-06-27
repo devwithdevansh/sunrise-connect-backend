@@ -197,18 +197,18 @@ class StudentService {
           admissionCategory,
           bagKitCategory,
         ] = await Promise.all([
-          mongoose.model('FeeCategory').findOne({ type: 'EDUCATION', academicYear, isActive: true }, null, { session }),
-          mongoose.model('FeeCategory').findOne({ type: 'TRANSPORT', academicYear, isActive: true }, null, { session }),
-          mongoose.model('FeeCategory').findOne({ type: 'TERM', academicYear, isActive: true }, null, { session }),
-          mongoose.model('FeeCategory').findOne({ type: 'ADMISSION', academicYear, isActive: true }, null, { session }),
-          mongoose.model('FeeCategory').findOne({ type: 'OTHER', academicYear, isActive: true }, null, { session }),
+          mongoose.model('FeeCategory').findOne({ type: 'EDUCATION', isActive: true }, null, { session }),
+          mongoose.model('FeeCategory').findOne({ type: 'TRANSPORT', isActive: true }, null, { session }),
+          mongoose.model('FeeCategory').findOne({ type: 'TERM', isActive: true }, null, { session }),
+          mongoose.model('FeeCategory').findOne({ type: 'ADMISSION', isActive: true }, null, { session }),
+          mongoose.model('FeeCategory').findOne({ type: 'OTHER', isActive: true }, null, { session }),
         ]);
 
         const ensureCategory = async (cat, name, type, description) => {
           if (cat) return cat;
           const fallback = await mongoose.model('FeeCategory').findOne({ type, isActive: true }, null, { session });
           if (fallback) return fallback;
-          return mongoose.model('FeeCategory').create([{ name, type, description, academicYear, isActive: true }], { session }).then(d => d[0]);
+          return mongoose.model('FeeCategory').create([{ name, type, description, isActive: true }], { session }).then(d => d[0]);
         };
         const [edCat, trCat, tmCat, adCat, bkCat] = await Promise.all([
           ensureCategory(educationCategory, 'Education', 'EDUCATION', 'Education fee category'),
@@ -393,7 +393,7 @@ class StudentService {
           });
         }
 
-        // 4. Admission ledger & 5. Bag & Kit ledger (only for new admissions, only in the earliest year)
+        // 4. Admission ledger (only for new admissions, only in the earliest year)
         if (student.isNewAdmission && academicYear === earliestYear) {
           const match = academicYear.match(/^(\d{4})/);
           const startYear = match ? parseInt(match[1], 10) : 2025;
@@ -425,6 +425,14 @@ class StudentService {
               isRTE: isRTE
             }
           });
+        }
+
+        // 5. Bag & Kit ledger (only if buyBagKit is true, only in the earliest year)
+        if (student.buyBagKit && academicYear === earliestYear) {
+          const match = academicYear.match(/^(\d{4})/);
+          const startYear = match ? parseInt(match[1], 10) : 2025;
+          const baseYear = startYear + 1;
+          const oneTimeDueDate = `${baseYear}-06-15`;
 
           const { paidAmount: bagPaid, concessionAmount: bagConc, remainingAmount: bagRem, status: bagStatus } = getLedgerStatusAndAmounts('BAG_KIT', 'One-time', bagKitAmount, isRTE);
           ledgersToCreate.push({
@@ -488,6 +496,21 @@ class StudentService {
       delete updates.transportMonths;
 
       await studentRepository.updateOne({ _id: studentId }, { $set: updates }, { session });
+
+      // Handle buyBagKit optional toggle
+      if (updates.buyBagKit !== undefined && updates.buyBagKit !== student.buyBagKit) {
+        if (updates.buyBagKit === true) {
+          // Trigger generation of Bag & Kit ledger
+          await this._generateLedgersForAcademicYear(studentId, currentAcademicYearName, session);
+        } else {
+          // Delete unpaid Bag & Kit ledger if it exists
+          await mongoose.model('StudentFeeLedger').deleteOne({
+            studentId,
+            feeType: 'BAG_KIT',
+            status: 'PENDING'
+          }).session(session);
+        }
+      }
 
       if (updates.isActive === false) {
         const today = new Date();
@@ -733,7 +756,7 @@ class StudentService {
         updatedStudentIds.push(student._id);
         
         // Wait for the ledger generation to complete for the target academic year
-        await this._generateLedgersForAcademicYear(student._id, targetAcademicYear, session);
+        await this._generateLedgersForAcademicYear(student._id, targetAcademicYear, session, { forceCreate: true });
 
         await AuditService.log(
           { performedBy, targetStudentId: student._id, action: 'STUDENT_UPDATED', details: { reason: 'Promotion', targetStandard, targetDivision, targetAcademicYear } },
@@ -752,7 +775,8 @@ class StudentService {
     }
   }
 
-  static async _generateLedgersForAcademicYear(studentId, targetAcademicYearStr, parentSession = null) {
+  static async _generateLedgersForAcademicYear(studentId, targetAcademicYearStr, parentSession = null, options = {}) {
+    const { forceCreate = false } = options;
     const session = parentSession || await mongoose.startSession();
     if (!parentSession) session.startTransaction();
     try {
@@ -763,16 +787,15 @@ class StudentService {
       const academicYearStr = targetAcademicYearStr;
 
       const ensureCategory = async (type, name, description) => {
-        let cat = await mongoose.model('FeeCategory').findOne({ type, academicYear: academicYearStr }).session(session);
+        let cat = await mongoose.model('FeeCategory').findOne({ type }).session(session);
         if (!cat) {
-          cat = await mongoose.model('FeeCategory').findOne({ type, name, academicYear: academicYearStr }).session(session);
+          cat = await mongoose.model('FeeCategory').findOne({ type, name }).session(session);
         }
         if (!cat) {
           cat = await mongoose.model('FeeCategory').create([{
             name,
             type,
             description,
-            academicYear: academicYearStr,
             isActive: true
           }], { session }).then(docs => docs[0]);
         }
@@ -820,6 +843,12 @@ class StudentService {
       }
 
       const existingLedgers = await mongoose.model('StudentFeeLedger').find({ studentId: student._id, academicYear: academicYearStr }).session(session);
+      
+      if (existingLedgers.length === 0 && !forceCreate) {
+        if (!parentSession) await session.commitTransaction();
+        return { created: 0, updated: 0 };
+      }
+
       const existingKey = (feeType, feePeriod) => existingLedgers.some(l => l.feeType === feeType && l.feePeriod === feePeriod);
 
       const match = academicYearStr.match(/^(\d{4})/);
@@ -963,8 +992,11 @@ class StudentService {
         }
       }
 
-      if (student.isNewAdmission) {
-        if (admissionCategory && !existingKey('ADMISSION', 'One-time') && !existingKey('ADMISSION', 'Admission')) {
+      // Determine if they already have an existing Admission ledger in any year
+      const hasExistingAdmission = await mongoose.model('StudentFeeLedger').exists({ studentId: student._id, feeType: 'ADMISSION' }).session(session);
+
+      if (admissionCategory && student.isNewAdmission && !hasExistingAdmission) {
+        if (!existingKey('ADMISSION', 'One-time')) {
           ledgersToCreate.push({
             studentId: student._id,
             feePeriod: 'One-time',
@@ -982,16 +1014,22 @@ class StudentService {
             ledgerNumber: `LEDGER_ADM_${academicYearStr.replace('-', '_')}_${student.studentCode || student._id}`,
             snapshot
           });
-        } else if (admissionCategory) {
+        } else {
           await updateLedgerIfNeeded('ADMISSION', 'One-time', admissionAmount);
-          await updateLedgerIfNeeded('ADMISSION', 'Admission', admissionAmount);
         }
+      } else if (admissionCategory && existingKey('ADMISSION', 'One-time')) {
+        await updateLedgerIfNeeded('ADMISSION', 'One-time', admissionAmount);
+      }
 
-        if (bagKitCategory && !existingKey('OTHER', 'Bag & Kit')) {
+      // Determine if they already have an existing Bag & Kit ledger in any year
+      const hasExistingBagKit = await mongoose.model('StudentFeeLedger').exists({ studentId: student._id, feeType: 'BAG_KIT' }).session(session);
+
+      if (bagKitCategory && student.buyBagKit && !hasExistingBagKit) {
+        if (!existingKey('BAG_KIT', 'One-time')) {
           ledgersToCreate.push({
             studentId: student._id,
-            feePeriod: 'Bag & Kit',
-            feeType: 'OTHER',
+            feePeriod: 'One-time',
+            feeType: 'BAG_KIT',
             totalAmount: bagKitAmount,
             paidAmount: 0,
             concessionAmount: 0,
@@ -1002,12 +1040,14 @@ class StudentService {
             academicYear: academicYearStr,
             source: 'MANUAL',
             generatedFrom: 'FEE_STRUCTURE',
-            ledgerNumber: `LEDGER_BK_${academicYearStr.replace('-', '_')}_${student.studentCode || student._id}`,
+            ledgerNumber: `LEDGER_BAG_${academicYearStr.replace('-', '_')}_${student.studentCode || student._id}`,
             snapshot
           });
-        } else if (bagKitCategory) {
-          await updateLedgerIfNeeded('OTHER', 'Bag & Kit', bagKitAmount);
+        } else {
+          await updateLedgerIfNeeded('BAG_KIT', 'One-time', bagKitAmount);
         }
+      } else if (bagKitCategory && existingKey('BAG_KIT', 'One-time')) {
+        await updateLedgerIfNeeded('BAG_KIT', 'One-time', bagKitAmount);
       }
 
       if (ledgersToCreate.length > 0) {

@@ -35,21 +35,18 @@ beforeEach(async () => {
   await mongoose.model('FeeCategory').create({
     name: 'Transport',
     type: 'TRANSPORT',
-    academicYear: '2025-26',
     isActive: true
   });
 
   await mongoose.model('FeeCategory').create({
     name: 'Education',
     type: 'EDUCATION',
-    academicYear: '2025-26',
     isActive: true
   });
 
   await mongoose.model('FeeCategory').create({
     name: 'Term',
     type: 'TERM',
-    academicYear: '2025-26',
     isActive: true
   });
 
