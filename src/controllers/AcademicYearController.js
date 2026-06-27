@@ -13,6 +13,10 @@ export const getAllAcademicYears = catchAsync(async (req, res, next) => {
 });
 
 export const createAcademicYear = catchAsync(async (req, res, next) => {
+  const count = await AcademicYear.countDocuments();
+  if (count === 0) {
+    req.body.isActive = true;
+  }
   const newYear = await AcademicYear.create(req.body);
 
   res.status(201).json({
