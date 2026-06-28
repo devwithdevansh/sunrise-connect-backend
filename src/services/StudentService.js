@@ -203,21 +203,26 @@ class StudentService {
           mongoose.model('FeeCategory').findOne({ type: 'TRANSPORT', isActive: true }, null, { session }),
           mongoose.model('FeeCategory').findOne({ type: 'TERM', isActive: true }, null, { session }),
           mongoose.model('FeeCategory').findOne({ type: 'ADMISSION', isActive: true }, null, { session }),
-          mongoose.model('FeeCategory').findOne({ type: 'OTHER', isActive: true }, null, { session }),
+          mongoose.model('FeeCategory').findOne({ type: 'BAG_KIT', isActive: true }, null, { session }),
         ]);
 
-        const ensureCategory = async (cat, name, type, description) => {
+        const ensureCategory = async (cat, defaultName, type, description) => {
           if (cat) return cat;
-          const fallback = await mongoose.model('FeeCategory').findOne({ type, isActive: true }, null, { session });
-          if (fallback) return fallback;
-          return mongoose.model('FeeCategory').create([{ name, type, description, isActive: true }], { session }).then(d => d[0]);
+          if (type === 'OTHER') {
+            const byName = await mongoose.model('FeeCategory').findOne({ type, name: defaultName, isActive: true }, null, { session });
+            if (byName) return byName;
+          } else {
+            const fallback = await mongoose.model('FeeCategory').findOne({ type, isActive: true }, null, { session });
+            if (fallback) return fallback;
+          }
+          return mongoose.model('FeeCategory').create([{ name: defaultName, type, description, isActive: true }], { session }).then(d => d[0]);
         };
         const [edCat, trCat, tmCat, adCat, bkCat] = await Promise.all([
-          ensureCategory(educationCategory, 'Education', 'EDUCATION', 'Education fee category'),
-          ensureCategory(transportCategory, 'Transport', 'TRANSPORT', 'Transport fee category'),
-          ensureCategory(termCategory, 'Term', 'TERM', 'Term fee category'),
-          ensureCategory(admissionCategory, 'Admission', 'ADMISSION', 'Admission fee category'),
-          ensureCategory(bagKitCategory, 'Bag & Kit', 'OTHER', 'Bag & Kit fee category'),
+          ensureCategory(educationCategory, 'Education Fees', 'EDUCATION', 'Standard monthly education fee'),
+          ensureCategory(transportCategory, 'Transport Fees', 'TRANSPORT', 'Monthly transport fee'),
+          ensureCategory(termCategory, 'Term Fees', 'TERM', 'Bi-annual term fee'),
+          ensureCategory(admissionCategory, 'Admission Fees', 'ADMISSION', 'One-time admission fee'),
+          ensureCategory(bagKitCategory, 'Bag & Kit', 'BAG_KIT', 'Bag & Kit fee category'),
         ]);
 
         // --- Fetch dynamic fee amounts from FeeStructure collection for this specific academic year ---
@@ -936,14 +941,13 @@ class StudentService {
       const isRTE = student.isRTE || false;
       const academicYearStr = targetAcademicYearStr;
 
-      const ensureCategory = async (type, name, description) => {
-        let cat = await mongoose.model('FeeCategory').findOne({ type }).session(session);
-        if (!cat) {
-          cat = await mongoose.model('FeeCategory').findOne({ type, name }).session(session);
-        }
+      const ensureCategory = async (type, defaultName, description) => {
+        let query = { type };
+        if (type === 'OTHER') query.name = defaultName;
+        let cat = await mongoose.model('FeeCategory').findOne(query).session(session);
         if (!cat) {
           cat = await mongoose.model('FeeCategory').create([{
-            name,
+            name: defaultName,
             type,
             description,
             isActive: true
@@ -951,11 +955,11 @@ class StudentService {
         }
         return cat;
       };
-      const educationCategory = await ensureCategory('EDUCATION', 'Education', 'Education fee category');
-      const transportCategory = await ensureCategory('TRANSPORT', 'Transport', 'Transport fee category');
-      const termCategory = await ensureCategory('TERM', 'Term', 'Term fee category');
-      const admissionCategory = await ensureCategory('ADMISSION', 'Admission', 'Admission fee category');
-      const bagKitCategory = await ensureCategory('OTHER', 'Bag & Kit', 'Bag & Kit fee category');
+      const educationCategory = await ensureCategory('EDUCATION', 'Education Fees', 'Standard monthly education fee');
+      const transportCategory = await ensureCategory('TRANSPORT', 'Transport Fees', 'Monthly transport fee');
+      const termCategory = await ensureCategory('TERM', 'Term Fees', 'Bi-annual term fee');
+      const admissionCategory = await ensureCategory('ADMISSION', 'Admission Fees', 'One-time admission fee');
+      const bagKitCategory = await ensureCategory('BAG_KIT', 'Bag & Kit', 'Bag & Kit fee category');
 
       const existingLedgers = await mongoose.model('StudentFeeLedger').find({ studentId: student._id, academicYear: academicYearStr }).session(session);
       

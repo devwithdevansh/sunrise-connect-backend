@@ -38,11 +38,17 @@ export const updateFeeCategory = catchAsync(async (req, res, next) => {
 });
 
 export const deleteFeeCategory = catchAsync(async (req, res, next) => {
-  const category = await FeeCategory.findByIdAndDelete(req.params.id);
+  const category = await FeeCategory.findById(req.params.id);
 
   if (!category) {
     return next(new AppError('No fee category found with that ID', 404));
   }
+
+  if (category.type !== 'OTHER') {
+    return next(new AppError(`Cannot delete system-required category of type ${category.type}`, 400));
+  }
+
+  await category.deleteOne();
 
   res.status(204).json({
     status: 'success',

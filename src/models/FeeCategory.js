@@ -12,7 +12,7 @@ const feeCategorySchema = new mongoose.Schema(
       type: String,
       required: [true, 'Fee category type is required'],
       enum: {
-        values: ['EDUCATION', 'TERM', 'TRANSPORT', 'ADMISSION', 'OTHER'],
+        values: ['EDUCATION', 'TERM', 'TRANSPORT', 'ADMISSION', 'OTHER', 'BAG_KIT'],
         message: '{VALUE} is not a valid fee category type',
       },
     },

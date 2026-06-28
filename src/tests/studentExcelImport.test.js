@@ -31,7 +31,7 @@ beforeEach(async () => {
     { name: 'Transport', type: 'TRANSPORT', isActive: true },
     { name: 'Term', type: 'TERM', isActive: true },
     { name: 'Admission', type: 'ADMISSION', isActive: true },
-    { name: 'Bag & Kit', type: 'OTHER', isActive: true }
+    { name: 'Bag & Kit', type: 'BAG_KIT', isActive: true }
   ]);
 
   // Create Fee Structure
