@@ -857,9 +857,13 @@ class StudentService {
 
       const updatedStudentIds = [];
       for (const student of students) {
+        const updates = { standard: targetStandard, division: targetDivision, isNewAdmission: false };
+        if (student.transportType && student.transportType !== 'None') {
+          updates.transportStartMonth = 'June';
+        }
         await studentRepository.updateOne(
           { _id: student._id },
-          { $set: { standard: targetStandard, division: targetDivision, isNewAdmission: false } },
+          { $set: updates },
           { session }
         );
         updatedStudentIds.push(student._id);
@@ -923,6 +927,14 @@ class StudentService {
         return { created: 0, updated: 0 };
       }
 
+      const allLedgerYears = await mongoose.model('StudentFeeLedger').distinct('academicYear', { studentId: student._id }).session(session);
+      const getStartYear = (yrStr) => {
+        if (!yrStr) return 0;
+        const match = yrStr.match(/^(\d{4})/);
+        return match ? parseInt(match[1], 10) : 0;
+      };
+      const newerYearExists = allLedgerYears.some(yr => getStartYear(yr) > getStartYear(academicYearStr));
+
       // Determine standard to use (historical standard from existing ledgers' snapshots, or current standard as fallback)
       let standardToUse = student.standard;
       const ledgerWithSnapshot = existingLedgers.find(l => l.snapshot && l.snapshot.standard);
@@ -933,15 +945,6 @@ class StudentService {
       if (ledgerWithSnapshot) {
         const activeYearDoc = await mongoose.model('AcademicYear').findOne({ isActive: true }).session(session);
         const activeYearName = activeYearDoc ? activeYearDoc.name : '2025-26';
-
-        // Check if there is a newer academic year in this student's ledgers to protect historical years
-        const allLedgerYears = await mongoose.model('StudentFeeLedger').distinct('academicYear', { studentId: student._id }).session(session);
-        const getStartYear = (yrStr) => {
-          if (!yrStr) return 0;
-          const match = yrStr.match(/^(\d{4})/);
-          return match ? parseInt(match[1], 10) : 0;
-        };
-        const newerYearExists = allLedgerYears.some(yr => getStartYear(yr) > getStartYear(academicYearStr));
 
         if (ledgerWithSnapshot.snapshot.standard !== student.standard && academicYearStr === activeYearName && !newerYearExists) {
           standardToUse = student.standard;
@@ -984,12 +987,17 @@ class StudentService {
 
       let transportAmount = 0;
       if (student.transportType && student.transportType !== 'None') {
-        const tfs = await mongoose.model('TransportFeeStructure').findOne(
-          { transportType: student.transportType, isActive: true },
-          null,
-          { session }
-        );
-        transportAmount = tfs?.amount ?? 0;
+        const existingTransportLedger = existingLedgers.find(l => l.feeType === 'TRANSPORT');
+        if (existingTransportLedger) {
+          transportAmount = existingTransportLedger.totalAmount;
+        } else {
+          const tfs = await mongoose.model('TransportFeeStructure').findOne(
+            { transportType: student.transportType, isActive: true },
+            null,
+            { session }
+          );
+          transportAmount = tfs?.amount ?? 0;
+        }
       }
 
       const existingKey = (feeType, feePeriod) => existingLedgers.some(l => l.feeType === feeType && l.feePeriod === feePeriod);
@@ -1083,28 +1091,63 @@ class StudentService {
         }
       }
 
-      if (transportCategory && student.transportType && student.transportType !== 'None') {
+      let shouldGenerateTransport = transportCategory && student.transportType && student.transportType !== 'None';
+      const existingTransportLedgers = existingLedgers.filter(l => l.feeType === 'TRANSPORT');
+      if (shouldGenerateTransport && newerYearExists && existingTransportLedgers.length === 0) {
+        shouldGenerateTransport = false;
+      }
+
+      if (shouldGenerateTransport) {
+        const allMonthNames = allMonths.map(m => m.name);
+        let transportStartMonthToUse = student.transportStartMonth || student.admissionMonth || 'June';
+        
+        if (existingTransportLedgers.length > 0) {
+          let earliestIdx = 12;
+          for (const l of existingTransportLedgers) {
+            const idx = allMonthNames.indexOf(l.feePeriod);
+            if (idx >= 0 && idx < earliestIdx) {
+              earliestIdx = idx;
+              transportStartMonthToUse = l.feePeriod;
+            }
+          }
+        }
+
+        const startMonthIndex = allMonthNames.indexOf(transportStartMonthToUse);
+        const resolvedStartIdx = startMonthIndex >= 0 ? startMonthIndex : 0;
+
+        // Delete unpaid transport ledgers before the resolved start month
+        const monthsBeforeStart = allMonths.slice(0, resolvedStartIdx).map(m => m.name);
+        const transportLedgersToDelete = existingTransportLedgers.filter(l => monthsBeforeStart.includes(l.feePeriod) && l.status !== 'PAID');
+        if (transportLedgersToDelete.length > 0) {
+          const idsToDelete = transportLedgersToDelete.map(l => l._id);
+          await mongoose.model('StudentFeeLedger').deleteMany({ _id: { $in: idsToDelete } }, { session });
+          existingLedgers = existingLedgers.filter(l => !idsToDelete.includes(l._id));
+        }
+
         for (const m of months) {
-          if (!existingKey('TRANSPORT', m.name)) {
-            ledgersToCreate.push({
-              studentId: student._id,
-              feePeriod: m.name,
-              feeType: 'TRANSPORT',
-              totalAmount: transportAmount,
-              paidAmount: 0,
-              concessionAmount: 0,
-              remainingAmount: transportAmount,
-              dueDate: new Date(m.dueDate),
-              status: 'PENDING',
-              feeCategoryId: transportCategory._id,
-              academicYear: academicYearStr,
-              source: 'MANUAL',
-              generatedFrom: 'TRANSPORT_STRUCTURE',
-              ledgerNumber: `LEDGER_TRA_${academicYearStr.replace('-', '_')}_${m.name.toUpperCase()}_${student.studentCode || student._id}`,
-              snapshot
-            });
-          } else {
-            await updateLedgerIfNeeded('TRANSPORT', m.name, transportAmount);
+          const mIdx = allMonthNames.indexOf(m.name);
+          if (mIdx >= resolvedStartIdx) {
+            if (!existingKey('TRANSPORT', m.name)) {
+              ledgersToCreate.push({
+                studentId: student._id,
+                feePeriod: m.name,
+                feeType: 'TRANSPORT',
+                totalAmount: transportAmount,
+                paidAmount: 0,
+                concessionAmount: 0,
+                remainingAmount: transportAmount,
+                dueDate: new Date(m.dueDate),
+                status: 'PENDING',
+                feeCategoryId: transportCategory._id,
+                academicYear: academicYearStr,
+                source: 'MANUAL',
+                generatedFrom: 'TRANSPORT_STRUCTURE',
+                ledgerNumber: `LEDGER_TRA_${academicYearStr.replace('-', '_')}_${m.name.toUpperCase()}_${student.studentCode || student._id}`,
+                snapshot
+              });
+            } else {
+              await updateLedgerIfNeeded('TRANSPORT', m.name, transportAmount);
+            }
           }
         }
       }
