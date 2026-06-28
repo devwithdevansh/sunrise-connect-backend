@@ -688,6 +688,20 @@ class StudentService {
         const existingPeriods = new Set(existingLedgers.map(l => l.feePeriod));
         const ledgersToCreate = [];
 
+        // When transportStartMonth changed, delete ALL transport ledgers before the new start month
+        // (including PAID ones - so they disappear from the UI completely)
+        if (transportStartMonthChanged) {
+          const monthsBeforeStart = months.slice(0, transportStartIdx < 0 ? 0 : transportStartIdx).map(m => m.name);
+          const idsToDelete = existingLedgers
+            .filter(l => monthsBeforeStart.includes(l.feePeriod))
+            .map(l => l._id);
+          if (idsToDelete.length > 0) {
+            await mongoose.model('StudentFeeLedger').deleteMany({ _id: { $in: idsToDelete } }, { session });
+          }
+          // Rebuild existingPeriods without the deleted ones
+          monthsBeforeStart.forEach(mName => existingPeriods.delete(mName));
+        }
+
         for (let i = 0; i < 12; i++) {
           const m = months[i];
           const isTransportActiveForMonth = effectiveTransportType !== 'None' && i >= transportStartIdx;
@@ -741,13 +755,16 @@ class StudentService {
               });
             }
           } else {
-            // STOP transport or month is prior to start month: cancel remaining unpaid ledgers
+            // Month is prior to transport start month — delete if not yet removed
             if (existingPeriods.has(m.name)) {
               const ledger = existingLedgers.find(l => l.feePeriod === m.name);
-              if (ledger && ledger.status !== 'PAID' && ledger.status !== 'CANCELLED') {
-                ledger.status = 'CANCELLED';
-                ledger.remainingAmount = 0;
-                await ledger.save({ session });
+              if (ledger) {
+                if (ledger.status === 'PAID') {
+                  // Keep PAID ledgers — don't delete money history
+                } else {
+                  // Delete unpaid/cancelled/pending ledgers before start
+                  await mongoose.model('StudentFeeLedger').deleteOne({ _id: ledger._id }, { session });
+                }
               }
             }
           }
