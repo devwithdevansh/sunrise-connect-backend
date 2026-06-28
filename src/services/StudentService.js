@@ -688,19 +688,17 @@ class StudentService {
         const existingPeriods = new Set(existingLedgers.map(l => l.feePeriod));
         const ledgersToCreate = [];
 
-        // When transportStartMonth changed, delete ALL transport ledgers before the new start month
+        // Always ensure transport ledgers before the start month are deleted
         // (including PAID ones - so they disappear from the UI completely)
-        if (transportStartMonthChanged) {
-          const monthsBeforeStart = months.slice(0, transportStartIdx < 0 ? 0 : transportStartIdx).map(m => m.name);
-          const idsToDelete = existingLedgers
-            .filter(l => monthsBeforeStart.includes(l.feePeriod))
-            .map(l => l._id);
-          if (idsToDelete.length > 0) {
-            await mongoose.model('StudentFeeLedger').deleteMany({ _id: { $in: idsToDelete } }, { session });
-          }
-          // Rebuild existingPeriods without the deleted ones
-          monthsBeforeStart.forEach(mName => existingPeriods.delete(mName));
+        const monthsBeforeStart = months.slice(0, transportStartIdx < 0 ? 0 : transportStartIdx).map(m => m.name);
+        const idsToDelete = existingLedgers
+          .filter(l => monthsBeforeStart.includes(l.feePeriod))
+          .map(l => l._id);
+        if (idsToDelete.length > 0) {
+          await mongoose.model('StudentFeeLedger').deleteMany({ _id: { $in: idsToDelete } }, { session });
         }
+        // Rebuild existingPeriods without the deleted ones
+        monthsBeforeStart.forEach(mName => existingPeriods.delete(mName));
 
         for (let i = 0; i < 12; i++) {
           const m = months[i];
