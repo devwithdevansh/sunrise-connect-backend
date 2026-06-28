@@ -583,6 +583,17 @@ class StudentService {
           // Trigger generation of Bag & Kit ledger
           await this._generateLedgersForAcademicYear(studentId, currentAcademicYearName, session);
         } else {
+          // Prevent disabling if a partial payment was already collected
+          const partialBagKit = await mongoose.model('StudentFeeLedger').exists({
+            studentId,
+            feeType: 'BAG_KIT',
+            status: 'PARTIAL'
+          }).session(session);
+
+          if (partialBagKit) {
+            throw new AppError('Cannot disable Bag & Kit: A partial payment has already been collected.', 400);
+          }
+
           // Delete unpaid Bag & Kit ledger if it exists
           await mongoose.model('StudentFeeLedger').deleteOne({
             studentId,
