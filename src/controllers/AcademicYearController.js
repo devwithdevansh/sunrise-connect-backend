@@ -1,4 +1,5 @@
 import AcademicYear from '../models/AcademicYear.js';
+import FeeCategory from '../models/FeeCategory.js';
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/AppError.js';
 
@@ -18,6 +19,27 @@ export const createAcademicYear = catchAsync(async (req, res, next) => {
     req.body.isActive = true;
   }
   const newYear = await AcademicYear.create(req.body);
+
+  // Auto-seed system fee categories if they don't exist
+  const systemCategories = [
+    { type: 'EDUCATION', name: 'Education Fees', description: 'Standard monthly education fee' },
+    { type: 'TERM', name: 'Term Fees', description: 'Bi-annual term fee' },
+    { type: 'TRANSPORT', name: 'Transport Fees', description: 'Monthly transport fee' },
+    { type: 'ADMISSION', name: 'Admission Fees', description: 'One-time admission fee' },
+    { type: 'BAG_KIT', name: 'Bag & Kit', description: 'Bag & Kit fee category' },
+  ];
+
+  for (const cat of systemCategories) {
+    const exists = await FeeCategory.findOne({ type: cat.type });
+    if (!exists) {
+      await FeeCategory.create({
+        name: cat.name,
+        type: cat.type,
+        description: cat.description,
+        isActive: true
+      });
+    }
+  }
 
   res.status(201).json({
     status: 'success',
