@@ -926,8 +926,24 @@ class StudentService {
       // Determine standard to use (historical standard from existing ledgers' snapshots, or current standard as fallback)
       let standardToUse = student.standard;
       const ledgerWithSnapshot = existingLedgers.find(l => l.snapshot && l.snapshot.standard);
+
+      // If ledgers exist but their snapshot standard differs from the student's current standard,
+      // it means the student's standard was updated (e.g., mid-year correction or promotion).
+      // We should use the updated student.standard and update the snapshots.
       if (ledgerWithSnapshot) {
-        standardToUse = ledgerWithSnapshot.snapshot.standard;
+        if (ledgerWithSnapshot.snapshot.standard !== student.standard) {
+          standardToUse = student.standard;
+          // Update snapshots of existing ledgers so they don't block future syncs
+          for (const l of existingLedgers) {
+            if (l.snapshot) {
+              l.snapshot.standard = standardToUse;
+              l.markModified('snapshot');
+              await l.save({ session });
+            }
+          }
+        } else {
+          standardToUse = ledgerWithSnapshot.snapshot.standard;
+        }
       }
 
       let feeStruct = await mongoose.model('FeeStructure').findOne(
