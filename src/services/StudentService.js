@@ -1308,8 +1308,9 @@ class StudentService {
           }
         }
 
-        if (data.transportStartMonth) {
-          const cleanStart = String(data.transportStartMonth).toLowerCase().trim();
+        const rawStartMonth = data.transportStartMonth || data["Transport Start Month"] || data["transportStartMonth"] || data["transport_start_month"];
+        if (rawStartMonth) {
+          const cleanStart = String(rawStartMonth).toLowerCase().trim();
           const monthPrefixes = ['jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'jan', 'feb', 'mar', 'apr', 'may'];
           const fullMonthNames = ['June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May'];
           let matched = null;
