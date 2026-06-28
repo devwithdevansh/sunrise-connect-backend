@@ -1308,6 +1308,24 @@ class StudentService {
           }
         }
 
+        if (data.transportStartMonth) {
+          const cleanStart = String(data.transportStartMonth).toLowerCase().trim();
+          const monthPrefixes = ['jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'jan', 'feb', 'mar', 'apr', 'may'];
+          const fullMonthNames = ['June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May'];
+          let matched = null;
+          for (let idx = 0; idx < monthPrefixes.length; idx++) {
+            if (cleanStart.includes(monthPrefixes[idx])) {
+              matched = fullMonthNames[idx];
+              break;
+            }
+          }
+          if (matched) {
+            data.transportStartMonth = matched;
+          } else {
+            delete data.transportStartMonth;
+          }
+        }
+
         const student = await StudentService.createStudent(data);
 
         results.push({
