@@ -23,7 +23,7 @@ const studentFeeLedgerSchema = new mongoose.Schema(
     },
     academicYear: {
       type: String,
-      required: [true, 'Academic year is required (e.g., "2025-26")'],
+      required: [true, 'Academic year is required (e.g., "2026-2027")'],
       trim: true,
     },
     feeCategoryId: {

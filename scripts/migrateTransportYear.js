@@ -10,8 +10,9 @@ async function migrate() {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log('Connected to MongoDB');
 
-    let activeYear = await AcademicYear.findOne({ isActive: true });
-    const yearStr = activeYear ? activeYear.name : '2025-26';
+    const activeYear = await mongoose.model('AcademicYear').findOne({ isActive: true });
+    if (!activeYear) throw new Error('No active academic year found.');
+    const yearStr = activeYear.name;
 
     const result = await TransportFeeStructure.updateMany(
       { academicYear: { $exists: false } },

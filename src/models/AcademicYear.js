@@ -5,6 +5,7 @@ const academicYearSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, 'Academic year name is required (e.g. 2026-2027)'],
+      match: [/^\d{4}-\d{4}$/, 'Academic year must be in YYYY-YYYY format (e.g. 2026-2027)'],
       unique: true,
       trim: true,
     },

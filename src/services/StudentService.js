@@ -104,7 +104,8 @@ class StudentService {
 
       // Fetch Active Academic Year
       const activeYearDoc = await mongoose.model('AcademicYear').findOne({ isActive: true }, null, { session });
-      const activeYear = activeYearDoc ? activeYearDoc.name : '2025-26';
+      if (!activeYearDoc) throw new AppError('No active academic year found. Please configure one in Setup.', 400);
+      const activeYear = activeYearDoc.name;
 
       // Normalize keys in pendingFees to match database academic year names if start years match
       if (data.pendingFees && typeof data.pendingFees === 'object') {
@@ -538,8 +539,9 @@ class StudentService {
       if (!student) throw new AppError('Student not found', 404);
 
       // Fetch Active Academic Year
-      const activeYear = await mongoose.model('AcademicYear').findOne({ isActive: true }).session(session);
-      const currentAcademicYearName = activeYear ? activeYear.name : '2025-26';
+      const activeYear = await mongoose.model('AcademicYear').findOne({ isActive: true }, null, { session });
+      if (!activeYear) throw new AppError('No active academic year found.', 400);
+      const currentAcademicYearName = activeYear.name;
 
       const oldTransport = student.transportType;
       const transportMonths = updates.transportMonths;
@@ -1018,8 +1020,9 @@ class StudentService {
       const ledgerWithSnapshot = existingLedgers.find(l => l.snapshot && l.snapshot.standard);
 
       if (ledgerWithSnapshot) {
-        const activeYearDoc = await mongoose.model('AcademicYear').findOne({ isActive: true }).session(session);
-        const activeYearName = activeYearDoc ? activeYearDoc.name : '2025-26';
+        const activeYearDoc = await mongoose.model('AcademicYear').findOne({ isActive: true }, null, { session });
+        if (!activeYearDoc) throw new AppError('No active academic year found.', 400);
+        const activeYearName = activeYearDoc.name;
 
         if (academicYearStr === activeYearName && !newerYearExists) {
           standardToUse = student.standard;
@@ -1372,8 +1375,9 @@ class StudentService {
 
   /** Regenerate missing fee ledgers for a student (backfill for legacy data) */
   static async regenerateMissingLedgers(studentId) {
-    const activeAcademicYearDoc = await mongoose.model('AcademicYear').findOne({ isActive: true });
-    const activeAcademicYearStr = activeAcademicYearDoc ? activeAcademicYearDoc.name : '2025-26';
+    const activeAcademicYearDoc = await mongoose.model('AcademicYear').findOne({ isActive: true }, null);
+    if (!activeAcademicYearDoc) throw new AppError('No active academic year found.', 400);
+    const activeAcademicYearStr = activeAcademicYearDoc.name;
     return await this._generateLedgersForAcademicYear(studentId, activeAcademicYearStr);
   }
 
@@ -1397,8 +1401,9 @@ class StudentService {
         }], { session }).then(res => res[0]);
       }
 
-      const activeAcademicYear = await mongoose.model('AcademicYear').findOne({ isActive: true }).session(session);
-      const academicYearStr = activeAcademicYear ? activeAcademicYear.name : '2025-26';
+      const activeAcademicYear = await mongoose.model('AcademicYear').findOne({ isActive: true }, null, { session });
+      if (!activeAcademicYear) throw new AppError('No active academic year found.', 400);
+      const academicYearStr = activeAcademicYear.name;
 
       const ledger = {
         studentId: student._id,
@@ -1614,7 +1619,8 @@ class StudentService {
       }
 
       const activeYearDoc = await mongoose.model('AcademicYear').findOne({ isActive: true }, null, { session });
-      const activeYear = activeYearDoc ? activeYearDoc.name : '2025-26';
+      if (!activeYearDoc) throw new AppError('No active academic year found.', 400);
+      const activeYear = activeYearDoc.name;
 
       const getMonthsForAcademicYear = (yearStr) => {
         const match = yearStr.match(/^(\d{4})/);
