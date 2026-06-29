@@ -867,10 +867,14 @@ class StudentService {
 
   /** List students with optional filtering */
   static async listStudents(filter = {}, pagination = { limit: 20, skip: 0 }) {
-    return studentRepository.find(filter, null, pagination);
+    const { includeInactive, ...actualFilter } = filter;
+    if (includeInactive !== 'true' && includeInactive !== true) {
+      actualFilter.isActive = true;
+    }
+    return studentRepository.find(actualFilter, null, pagination);
   }
 
-  /** Hard Delete a student and cascade delete ledgers and payments */
+  /** Delete a student: Soft delete if payments exist, Hard delete if no payments */
   static async deleteStudent(studentId, performedBy) {
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -882,28 +886,78 @@ class StudentService {
       const ledgers = await mongoose.model('StudentFeeLedger').find({ studentId }).session(session);
       const ledgerIds = ledgers.map(l => l._id);
 
-      // Delete all payments associated with these ledgers
+      // Check if any payments exist for this student's ledgers
+      let hasPayments = false;
       if (ledgerIds.length > 0) {
-        await mongoose.model('Payment').deleteMany({ ledgerId: { $in: ledgerIds } }, { session });
+        const paymentCount = await mongoose.model('Payment').countDocuments({ ledgerId: { $in: ledgerIds } }).session(session);
+        if (paymentCount > 0) {
+          hasPayments = true;
+        }
       }
 
-      // Delete all ledgers
-      await mongoose.model('StudentFeeLedger').deleteMany({ studentId }, { session });
+      if (hasPayments) {
+        // SOFT DELETE
+        await studentRepository.updateOne({ _id: studentId }, { $set: { isActive: false } }, { session });
+        
+        // Cancel all pending/partial ledgers so they don't show up in unpaid fees
+        if (ledgerIds.length > 0) {
+          await mongoose.model('StudentFeeLedger').updateMany(
+            { _id: { $in: ledgerIds }, status: { $in: ['PENDING', 'PARTIAL'] } },
+            { $set: { status: 'CANCELLED' } },
+            { session }
+          );
+        }
 
-      // Delete student
-      await studentRepository.deleteOne({ _id: studentId }, { session });
+        await AuditService.log(
+          { performedBy, targetStudentId: studentId, action: 'STUDENT_SOFT_DELETED', details: { studentCode: student.studentCode, studentName: student.studentName, reason: 'Has payment history' } },
+          session
+        );
+      } else {
+        // HARD DELETE
+        await mongoose.model('StudentFeeLedger').deleteMany({ studentId }, { session });
+        await studentRepository.deleteOne({ _id: studentId }, { session });
 
-      // Audit log
+        await AuditService.log(
+          { performedBy, targetStudentId: studentId, action: 'STUDENT_DELETED', details: { studentCode: student.studentCode, studentName: student.studentName } },
+          session
+        );
+      }
+
+      await session.commitTransaction();
+      return { softDeleted: hasPayments };
+    } catch (e) {
+      await session.abortTransaction();
+      logger.error('StudentService.deleteStudent error', e);
+      throw e;
+    } finally {
+      session.endSession();
+    }
+  }
+
+  /** Restore a soft-deleted student */
+  static async restoreStudent(studentId, performedBy) {
+    const session = await mongoose.startSession();
+    session.startTransaction();
+    try {
+      const student = await studentRepository.findById(studentId);
+      if (!student) throw new AppError('Student not found', 404);
+      if (student.isActive) throw new AppError('Student is already active', 400);
+
+      await studentRepository.updateOne({ _id: studentId }, { $set: { isActive: true } }, { session });
+
+      // Note: We don't automatically un-cancel ledgers because we don't know which ones should be active. 
+      // The admin can manually regenerate or update ledgers if needed.
+
       await AuditService.log(
-        { performedBy, targetStudentId: studentId, action: 'STUDENT_DELETED', details: { studentCode: student.studentCode, studentName: student.studentName } },
+        { performedBy, targetStudentId: studentId, action: 'STUDENT_RESTORED', details: { studentCode: student.studentCode, studentName: student.studentName } },
         session
       );
 
       await session.commitTransaction();
-      return true;
+      return studentRepository.findById(studentId);
     } catch (e) {
       await session.abortTransaction();
-      logger.error('StudentService.deleteStudent error', e);
+      logger.error('StudentService.restoreStudent error', e);
       throw e;
     } finally {
       session.endSession();

@@ -39,8 +39,17 @@ class StudentController {
 
   /** DELETE /api/v1/students/:id */
   static deleteStudent = catchAsync(async (req, res) => {
-    await StudentService.deleteStudent(req.params.id, req.user.id);
-    sendResponse(res, 200, null, 'Student successfully deleted');
+    const result = await StudentService.deleteStudent(req.params.id, req.user.id);
+    const message = result.softDeleted 
+      ? 'Student has payment history and was marked as inactive (soft deleted)' 
+      : 'Student and all records successfully deleted';
+    sendResponse(res, 200, null, message);
+  });
+
+  /** POST /api/v1/students/:id/restore */
+  static restoreStudent = catchAsync(async (req, res) => {
+    const student = await StudentService.restoreStudent(req.params.id, req.user.id);
+    sendResponse(res, 200, student, 'Student successfully restored');
   });
 
   /** POST /api/v1/students/:id/regenerate-ledgers */
