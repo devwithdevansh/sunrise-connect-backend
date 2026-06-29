@@ -1463,7 +1463,9 @@ class StudentService {
 
         if (data.transportType) {
           data.transportType = String(data.transportType).trim();
-          if (!['Railnagar', 'Outside Railnagar', 'None'].includes(data.transportType)) {
+          if (!data.transportType || data.transportType.toLowerCase() === 'none') {
+            data.transportType = 'None';
+          } else if (!['Railnagar', 'Outside Railnagar'].includes(data.transportType)) {
             throw new Error(`Transport Type must be 'Railnagar', 'Outside Railnagar', or 'None'`);
           }
         } else {
@@ -1519,8 +1521,9 @@ class StudentService {
         // transportAllPaid: transport type is set but no pending month = all transport months are already paid
         const transportAllPaid = data.transportAllPaid === true;
         if (transportAllPaid) {
-          // Flag on data so createStudent can see it
+          // Flag on data so createStudent can see it; set transportStartMonth to June so student record is clean
           data.transportAllPaid = true;
+          data.transportStartMonth = 'June'; // All paid from June = full year paid
         } else if (rawStartMonth) {
           const cleanStart = String(rawStartMonth).toLowerCase().trim();
           const monthPrefixes = ['jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'jan', 'feb', 'mar', 'apr', 'may'];
