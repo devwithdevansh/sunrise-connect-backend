@@ -1743,6 +1743,12 @@ class StudentService {
       }
       const activeYear = activeYearDoc.name;
 
+      // Fetch all fee structures for the active year to validate before promoting
+      const feeStructures = await mongoose.model('FeeStructure').find({ academicYear: activeYear });
+      const feeStructureSet = new Set(
+        feeStructures.map(fs => `${fs.medium}__${fs.standard}`)
+      );
+
       // Map of how standards advance
       const preSchoolMap = { 'nursery': 'LKG', 'lkg': 'UKG', 'ukg': '1' };
       const getNextStandard = (currentStd) => {
@@ -1756,17 +1762,36 @@ class StudentService {
       // Fetch all students in the given batch
       const students = await mongoose.model('Student').find({ _id: { $in: studentIds } });
 
-      // Group by nextStandard + division so we can call promoteStudents once per group
+      // Group by nextStandard + division + medium
       const promotionGroups = {};
       const skipped = [];
 
       for (const student of students) {
         const nextStd = getNextStandard(student.standard);
+
+        // Skip Std 12 graduates
         if (!nextStd) {
-          skipped.push({ id: student._id, name: student.studentName, reason: `Already in Std ${student.standard} (max or invalid)` });
+          skipped.push({
+            id: student._id,
+            name: student.studentName,
+            reason: `Std ${student.standard} is the final standard — cannot be promoted further`
+          });
           continue;
         }
-        const key = `${nextStd}__${student.division}`;
+
+        // Skip if no fee structure exists for this medium + next standard in active year
+        const feeKey = `${student.medium}__${nextStd}`;
+        if (feeStructureSet.size > 0 && !feeStructureSet.has(feeKey)) {
+          skipped.push({
+            id: student._id,
+            name: student.studentName,
+            reason: `No fee structure found for ${student.medium} Std ${nextStd} in ${activeYear}. Please add the fee structure first, then re-promote.`
+          });
+          continue;
+        }
+
+        // Group key includes medium so Eng/Guj students don't mix
+        const key = `${student.medium}__${nextStd}__${student.division}`;
         if (!promotionGroups[key]) {
           promotionGroups[key] = {
             targetStandard: nextStd,
