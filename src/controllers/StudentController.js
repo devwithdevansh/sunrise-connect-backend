@@ -92,6 +92,18 @@ class StudentController {
     const result = await StudentService.fixTransportLedgers(studentIds, transportStartMonth);
     sendResponse(res, 200, result, `Fixed ${result.fixedCount} student(s)`);
   });
+  /** POST /api/v1/students/auto-promote-batch
+   * Body: { studentIds: string[] }
+   * Auto promotes students to their next standard.
+   */
+  static autoPromoteBatch = catchAsync(async (req, res) => {
+    const { studentIds } = req.body;
+    if (!studentIds || !Array.isArray(studentIds) || studentIds.length === 0) {
+      throw new AppError('studentIds array is required', 400);
+    }
+    const result = await StudentService.autoPromoteBatch(studentIds, req.user?.id);
+    sendResponse(res, 200, result, `Successfully auto-promoted ${result.promotedCount} student(s)`);
+  });
 }
 
 export default StudentController;

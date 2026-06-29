@@ -19,6 +19,7 @@ router.post('/',     authorize('ADMIN', 'STAFF'), validate(createStudentSchema),
 router.post('/promote', authorize('ADMIN'), StudentController.promoteStudents);
 router.post('/import', authorize('ADMIN'), StudentController.importStudents);
 router.patch('/fix-transport', authorize('ADMIN'), StudentController.fixTransportLedgers);
+router.post('/auto-promote-batch', authorize('ADMIN'), StudentController.autoPromoteBatch);
 router.get('/',      authorize('ADMIN', 'STAFF', 'parent'), validate(listStudentsSchema),  StudentController.listStudents);
 router.get('/:id',   authorize('ADMIN', 'STAFF', 'parent'), StudentController.getStudent);
 router.patch('/:id', authorize('ADMIN', 'STAFF'), validate(updateStudentSchema), StudentController.updateStudent);
