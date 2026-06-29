@@ -50,6 +50,21 @@ class FeeStructureController {
    * Create a new transport fee structure
    */
   static createTransportFeeStructure = catchAsync(async (req, res) => {
+    const existing = await TransportFeeStructure.findOne({
+      transportType: req.body.transportType,
+      academicYear: req.body.academicYear
+    });
+    if (existing) {
+      if (existing.isActive) {
+        throw new AppError('Transport fee structure already exists for this zone and academic year', 400);
+      }
+      const updated = await TransportFeeStructure.findByIdAndUpdate(
+        existing._id,
+        { ...req.body, isActive: true },
+        { new: true, runValidators: true }
+      );
+      return sendResponse(res, 200, updated);
+    }
     const newStructure = await TransportFeeStructure.create(req.body);
     sendResponse(res, 201, newStructure);
   });

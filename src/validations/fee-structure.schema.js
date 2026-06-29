@@ -17,6 +17,7 @@ export const createFeeStructureSchema = {
 
 export const createTransportFeeStructureSchema = {
   body: z.object({
+    academicYear: z.string().min(1),
     transportType: z.enum(['Railnagar', 'Outside Railnagar']),
     amount: z.number().nonnegative(),
     frequency: z.enum(['MONTHLY', 'QUARTERLY', 'YEARLY']).default('MONTHLY'),
