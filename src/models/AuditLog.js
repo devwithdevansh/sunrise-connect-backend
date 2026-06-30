@@ -35,6 +35,8 @@ const auditLogSchema = new mongoose.Schema(
         'STUDENT_CREATED',
         'STUDENT_UPDATED',
         'STUDENT_DELETED',
+        'STUDENT_SOFT_DELETED',
+        'STUDENT_RESTORED',
         'LEDGER_CREATED',
         'LEDGER_PAYMENT_ADDED',
         'LEDGER_CONCESSION_APPLIED',
