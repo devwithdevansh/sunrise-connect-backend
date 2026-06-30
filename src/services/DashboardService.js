@@ -10,9 +10,9 @@ import paymentRepository from '../repositories/paymentRepository.js';
 class DashboardService {
   /** Aggregated view for a specific parent */
   static async getParentDashboard(parentId) {
-    const studentCount = await studentRepository.countDocuments({ parentId });
+    const studentCount = await studentRepository.countDocuments({ parentId, isActive: true });
     const ledgerAgg = await ledgerRepository.aggregate([
-      { $match: { studentId: { $in: await studentRepository.find({ parentId }, '_id').then(s => s.map(x => x._id)) } } },
+      { $match: { studentId: { $in: await studentRepository.find({ parentId, isActive: true }, '_id').then(s => s.map(x => x._id)) } } },
       {
         $group: {
           _id: null,
@@ -51,7 +51,7 @@ class DashboardService {
   static async getSystemMetrics() {
     const [parentCount, studentCount, ledgerAgg, paymentAgg] = await Promise.all([
       parentRepository.countDocuments({}),
-      studentRepository.countDocuments({}),
+      studentRepository.countDocuments({ isActive: true }),
       ledgerRepository.aggregate([
         { $group: { _id: null, totalAmount: { $sum: '$totalAmount' }, paidAmount: { $sum: '$paidAmount' }, concessionAmount: { $sum: '$concessionAmount' } } },
       ]),
