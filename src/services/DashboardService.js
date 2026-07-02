@@ -49,6 +49,45 @@ class DashboardService {
     return { ledgerStats };
   }
 
+  /** Daily metrics for Dashboard */
+  static async getDailyMetrics(date) {
+    let matchStage = { isReversal: false };
+    if (date) {
+      matchStage.createdAt = {
+        $gte: new Date(`${date}T00:00:00.000Z`),
+        $lte: new Date(`${date}T23:59:59.999Z`),
+      };
+    } else {
+      const today = new Date().toISOString().split('T')[0];
+      matchStage.createdAt = {
+        $gte: new Date(`${today}T00:00:00.000Z`),
+        $lte: new Date(`${today}T23:59:59.999Z`),
+      };
+    }
+
+    const [paymentAgg, unpaidCount] = await Promise.all([
+      paymentRepository.aggregate([
+        { $match: matchStage },
+        {
+          $group: {
+            _id: null,
+            totalAmount: { $sum: '$amount' },
+            cashAmount: { $sum: { $cond: [{ $in: [{ $toUpper: '$method' }, ['CASH']] }, '$amount', 0] } },
+            bankAmount: { $sum: { $cond: [{ $not: { $in: [{ $toUpper: '$method' }, ['CASH']] } }, '$amount', 0] } },
+            totalConcessions: { $sum: '$concessionAmount' }
+          }
+        }
+      ]),
+      ledgerRepository.countDocuments({ status: { $ne: 'PAID' }, remainingAmount: { $gt: 0 } })
+    ]);
+
+    const stats = paymentAgg[0] || { totalAmount: 0, cashAmount: 0, bankAmount: 0, totalConcessions: 0 };
+    return {
+      ...stats,
+      unpaidCount
+    };
+  }
+
   /** System-wide metrics */
   static async getSystemMetrics() {
     const [parentCount, studentCount, ledgerAgg, paymentAgg] = await Promise.all([
