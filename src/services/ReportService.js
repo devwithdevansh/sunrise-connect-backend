@@ -21,6 +21,10 @@ class ReportService {
     if (filters.academicYearId) {
       ledgerMatch.academicYear = new mongoose.Types.ObjectId(filters.academicYearId);
     }
+    if (filters.studentIds) {
+      const idsArray = filters.studentIds.split(',').map(id => new mongoose.Types.ObjectId(id.trim()));
+      ledgerMatch.studentId = { $in: idsArray };
+    }
 
     const pipeline = [
       { $match: ledgerMatch },

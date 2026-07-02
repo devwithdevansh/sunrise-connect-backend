@@ -6,9 +6,9 @@ import sendResponse from '../utils/response.js';
 class ReportController {
   /** GET /api/v1/reports/unpaid */
   static getUnpaidReport = catchAsync(async (req, res) => {
-    // Optional filters: standard, academicYearId
-    const { standard, academicYearId } = req.query;
-    const report = await ReportService.getUnpaidReport({ standard, academicYearId });
+    // Optional filters: standard, academicYearId, studentIds
+    const { standard, academicYearId, studentIds } = req.query;
+    const report = await ReportService.getUnpaidReport({ standard, academicYearId, studentIds });
     sendResponse(res, 200, report);
   });
 
