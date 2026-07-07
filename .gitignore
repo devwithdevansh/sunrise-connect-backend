@@ -41,3 +41,6 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# Firebase
+firebase-service-account.json

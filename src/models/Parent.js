@@ -56,6 +56,15 @@ const parentSchema = new mongoose.Schema(
       },
     ],
 
+    // FCM push tokens — one entry per device the parent has logged in from
+    fcmTokens: [
+      {
+        token: { type: String, required: true },
+        platform: { type: String, default: 'android', enum: ['android', 'ios', 'web'] },
+        updatedAt: { type: Date, default: Date.now },
+      },
+    ],
+
   },
   { timestamps: true }
 );

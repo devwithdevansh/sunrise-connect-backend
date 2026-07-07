@@ -14,6 +14,7 @@ import '../models/StudentFeeLedger.js';
 import '../models/Payment.js';
 import '../models/AuditLog.js';
 import '../models/AcademicYear.js';
+import '../models/Notification.js';
 
 /**
  * Initialize MongoDB connection using Mongoose.
@@ -28,6 +29,7 @@ const connectDB = async () => {
     // (e.g. dropping old "name" unique index that blocks multi-year categories)
     await mongoose.model('FeeCategory').syncIndexes();
     await mongoose.model('FeeStructure').syncIndexes();
+    await mongoose.model('Notification').syncIndexes();
     logger.info('MongoDB indexes synchronized');
   } catch (err) {
     logger.error('MongoDB connection error:', err);
