@@ -3,6 +3,8 @@
 // or from the FIREBASE_SERVICE_ACCOUNT environment variable.
 
 import { createRequire } from 'module';
+import { initializeApp, cert, getApps } from 'firebase-admin/app';
+import { getMessaging } from 'firebase-admin/messaging';
 import { existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -16,20 +18,17 @@ const SERVICE_ACCOUNT_PATH = join(
   '../../config/firebase-service-account.json'
 );
 
-let _adminInstance = null;
+let _isInitialized = false;
 
 /**
- * Returns the Firebase Admin instance (singleton).
+ * Returns an object compatible with the old Firebase Admin instance.
  * Returns null if Firebase is not configured.
  */
 export function getFirebaseAdmin() {
-  if (_adminInstance) return _adminInstance;
+  if (_isInitialized) return { messaging: () => getMessaging() };
 
   try {
-    const require = createRequire(import.meta.url);
-    const admin = require('firebase-admin');
-
-    if (!admin.apps.length) {
+    if (!getApps().length) {
       let serviceAccount;
 
       // 1. Preferred: Environment Variable (Hostinger/Vercel/etc.)
@@ -38,6 +37,7 @@ export function getFirebaseAdmin() {
       }
       // 2. Local JSON file (Development)
       else if (existsSync(SERVICE_ACCOUNT_PATH)) {
+        const require = createRequire(import.meta.url);
         serviceAccount = require(SERVICE_ACCOUNT_PATH);
       }
       // 3. Firebase not configured
@@ -49,15 +49,15 @@ export function getFirebaseAdmin() {
         return null;
       }
 
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount),
+      initializeApp({
+        credential: cert(serviceAccount),
       });
 
       logger.info('Firebase Admin SDK initialised successfully.');
     }
 
-    _adminInstance = admin;
-    return _adminInstance;
+    _isInitialized = true;
+    return { messaging: () => getMessaging() };
   } catch (err) {
     logger.error('Failed to initialise Firebase Admin SDK', err);
     return null;
