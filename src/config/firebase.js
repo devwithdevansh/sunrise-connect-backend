@@ -33,7 +33,17 @@ export function getFirebaseAdmin() {
 
       // 1. Preferred: Environment Variable (Hostinger/Vercel/etc.)
       if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-        serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+        let envVal = process.env.FIREBASE_SERVICE_ACCOUNT;
+        // Hostinger aggressively escapes JSON strings, so we decode from Base64 if needed
+        if (!envVal.trim().startsWith('{') && !envVal.trim().startsWith('\\{')) {
+          envVal = Buffer.from(envVal, 'base64').toString('utf8');
+        } else if (envVal.includes('\\"')) {
+           // Fallback just in case they leave it as JSON with Hostinger's weird escapes
+           envVal = envVal.replace(/\\"/g, '"').replace(/\\\\n/g, '\\n');
+           if (envVal.startsWith('\\{')) envVal = envVal.substring(1);
+           if (envVal.endsWith('\\}')) envVal = envVal.substring(0, envVal.length - 1) + '}';
+        }
+        serviceAccount = JSON.parse(envVal);
       }
       // 2. Local JSON file (Development)
       else if (existsSync(SERVICE_ACCOUNT_PATH)) {
