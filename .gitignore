@@ -44,3 +44,6 @@ Thumbs.db
 
 # Firebase
 firebase-service-account.json
+
+# Local Configs
+config/

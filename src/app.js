@@ -22,6 +22,7 @@ import academicYearRoutes from './routes/academic-year.routes.js';
 import userRoutes             from './routes/user.routes.js';
 import reportRoutes           from './routes/report.routes.js';
 import notificationRoutes     from './routes/notification.routes.js';
+import whatsappRoutes         from './routes/whatsapp.routes.js';
 
 const app = express();
 
@@ -76,6 +77,7 @@ app.use(`${V1}/academic-years`, academicYearRoutes);
 app.use(`${V1}/users`,          userRoutes);
 app.use(`${V1}/reports`,        reportRoutes);
 app.use(`${V1}/notifications`,  notificationRoutes);
+app.use(`${V1}/whatsapp`,       whatsappRoutes);
 
 // ─── 404 Handler ──────────────────────────────────────────────────────────────
 app.all('/{*splat}', (req, _res, next) => {
