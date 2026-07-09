@@ -175,6 +175,42 @@ class WhatsappService {
 
     return { messages, total };
   }
+
+  /**
+   * Process incoming webhook events from Meta (messages, statuses)
+   */
+  async processWebhookEvent(payload) {
+    if (payload.statuses) {
+      // It's a delivery status update
+      for (const status of payload.statuses) {
+        logger.info(`[WhatsApp Webhook] Status update: Message ID ${status.id} is now ${status.status}`);
+        
+        if (status.status === 'failed') {
+          const errorCode = status.errors ? status.errors[0].code : 'Unknown';
+          const errorMsg = status.errors ? status.errors[0].title : 'Unknown';
+          logger.error(`[WhatsApp Webhook] Message ${status.id} failed to deliver. Error ${errorCode}: ${errorMsg}`);
+          // TODO: In the future, we could query the database by tracking wamid (status.id)
+          // and updating individual recipient delivery status.
+        }
+      }
+    }
+
+    if (payload.messages) {
+      // It's an incoming message from a parent
+      for (const msg of payload.messages) {
+        const fromNumber = msg.from; // Sender's phone number
+        
+        if (msg.type === 'text') {
+          const textBody = msg.text.body;
+          logger.info(`[WhatsApp Webhook] Incoming text from ${fromNumber}: ${textBody}`);
+        } else {
+          logger.info(`[WhatsApp Webhook] Incoming message of type ${msg.type} from ${fromNumber}`);
+        }
+        
+        // TODO: In the future, we could save this message to a database table to show a live chat UI.
+      }
+    }
+  }
 }
 
 export default new WhatsappService();

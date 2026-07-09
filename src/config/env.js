@@ -22,6 +22,7 @@ const env = {
   RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET || '65c3eMSo5DNCZ4IEVPda4aYh',
   WHATSAPP_PHONE_NUMBER_ID: process.env.WHATSAPP_PHONE_NUMBER_ID || '',
   WHATSAPP_API_TOKEN: process.env.WHATSAPP_API_TOKEN || '',
+  WHATSAPP_WEBHOOK_VERIFY_TOKEN: process.env.WHATSAPP_WEBHOOK_VERIFY_TOKEN || 'SunriseWebhook2026',
 };
 
 export default env;

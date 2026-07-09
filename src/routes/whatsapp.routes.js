@@ -23,4 +23,10 @@ router.get(
   WhatsappController.list
 );
 
+// ─── Webhook Routes (Public) ────────────────────────────────────────────────
+// GET  /api/v1/whatsapp/webhook       → verify webhook setup from Meta
+// POST /api/v1/whatsapp/webhook       → receive incoming webhook events from Meta
+router.get('/webhook', WhatsappController.verifyWebhook);
+router.post('/webhook', WhatsappController.handleWebhook);
+
 export default router;

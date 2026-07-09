@@ -3,6 +3,7 @@ import WhatsappService from '../services/WhatsappService.js';
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/AppError.js';
 import mongoose from 'mongoose';
+import env from '../config/env.js';
 
 class WhatsappController {
   send = catchAsync(async (req, res) => {
@@ -48,6 +49,41 @@ class WhatsappController {
         total,
       },
     });
+  });
+
+  verifyWebhook = (req, res) => {
+    const mode = req.query['hub.mode'];
+    const token = req.query['hub.verify_token'];
+    const challenge = req.query['hub.challenge'];
+
+    if (mode && token) {
+      if (mode === 'subscribe' && token === env.WHATSAPP_WEBHOOK_VERIFY_TOKEN) {
+        console.log('WEBHOOK_VERIFIED');
+        res.status(200).send(challenge);
+      } else {
+        res.sendStatus(403);
+      }
+    } else {
+      res.sendStatus(400);
+    }
+  };
+
+  handleWebhook = catchAsync(async (req, res) => {
+    // Meta requires a 200 OK response quickly
+    res.sendStatus(200);
+
+    const body = req.body;
+    if (body.object) {
+      if (
+        body.entry &&
+        body.entry[0].changes &&
+        body.entry[0].changes[0] &&
+        body.entry[0].changes[0].value
+      ) {
+        const value = body.entry[0].changes[0].value;
+        await WhatsappService.processWebhookEvent(value);
+      }
+    }
   });
 }
 
