@@ -107,7 +107,7 @@ class WhatsappService {
               }
             };
 
-            if (body) {
+            if (body && templateName !== 'jaspers_market_plain_text_v1' && templateName !== 'hello_world') {
               payload.template.components = [
                 {
                   type: 'body',

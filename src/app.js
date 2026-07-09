@@ -32,17 +32,8 @@ app.set('trust proxy', true);
 // Security headers (XSS, clickjacking, content-type sniffing, etc.)
 app.use(helmet());
 
-// Restrict CORS to the deployed frontend only.
-// Set ALLOWED_ORIGINS in your hosting env vars (comma-separated for multiple).
-const allowedOrigins = env.ALLOWED_ORIGINS
-  ? env.ALLOWED_ORIGINS.split(',')
-  : ['https://sunrise-connect.vercel.app'];
 app.use(cors({
-  origin: (origin, callback) => {
-    // Allow server-to-server calls (no origin) and whitelisted origins
-    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error(`CORS blocked: ${origin}`));
-  },
+  origin: true,
   credentials: true,
 }));
 
