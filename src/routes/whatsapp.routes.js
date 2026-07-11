@@ -12,14 +12,14 @@ const router = Router();
 router.post(
   '/send',
   authenticate,
-  authorize('ADMIN', 'STAFF'),
+  authorize('ADMIN'),
   WhatsappController.send
 );
 
 router.get(
   '/',
   authenticate,
-  authorize('ADMIN', 'STAFF'),
+  authorize('ADMIN'),
   WhatsappController.list
 );
 
