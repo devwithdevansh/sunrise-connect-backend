@@ -106,6 +106,7 @@ class WhatsappService {
             const now = new Date();
             const endOfCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999);
             
+            const studentNames = [];
             for (const st of students) {
               // 2. Fetch pending ledgers up to the current month
               const ledgers = await StudentFeeLedger.find({ 
@@ -114,9 +115,14 @@ class WhatsappService {
                 dueDate: { $lte: endOfCurrentMonth }
               });
               
+              let studentFeeDue = 0;
               for (const l of ledgers) {
-                feeDue += (l.remainingAmount || 0);
+                studentFeeDue += (l.remainingAmount || 0);
                 if (l.dueDate) dueDates.push(l.dueDate);
+              }
+              if (studentFeeDue > 0) {
+                studentNames.push(st.studentName);
+                feeDue += studentFeeDue;
               }
             }
 
@@ -153,6 +159,7 @@ class WhatsappService {
                   {
                     type: 'body',
                     parameters: [
+                      { type: 'text', text: studentNames.join(', ') },
                       { type: 'text', text: startMonthStr },
                       { type: 'text', text: endMonthStr },
                       { type: 'text', text: feeDue.toString() }
