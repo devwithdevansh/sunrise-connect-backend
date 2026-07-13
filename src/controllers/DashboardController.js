@@ -11,7 +11,8 @@ import FeeCategory from '../models/FeeCategory.js';
 import FeeStructure from '../models/FeeStructure.js';
 import TransportFeeStructure from '../models/TransportFeeStructure.js';
 import AuditLog from '../models/AuditLog.js';
-
+import Payment from '../models/Payment.js';
+import User from '../models/User.js';
 class DashboardController {
   /** GET /api/v1/dashboard/system */
   static systemMetrics = catchAsync(async (req, res) => {
@@ -39,25 +40,33 @@ class DashboardController {
       transportStructures,
       auditLogs,
       academicYears,
-      feeCategories
+      feeCategories,
+      transactions,
+      users
     ] = await Promise.all([
       Student.find({}).populate('parentId', 'parentName primaryMobileNumber secondaryMobileNumber').lean(),
       FeeStructure.find({ isActive: true }).lean(),
       TransportFeeStructure.find({ isActive: true }).lean(),
       AuditLog.find().sort({ createdAt: -1 }).limit(100).lean(),
       AcademicYear.find({}).sort({ startDate: -1 }).lean(),
-      FeeCategory.find({}).sort({ order: 1 }).lean()
+      FeeCategory.find({}).sort({ order: 1 }).lean(),
+      Payment.find().sort({ createdAt: -1 }).limit(2000).populate({
+        path: 'ledgerId',
+        select: 'studentId academicYear feePeriod feeCategory totalAmount',
+      }).lean(),
+      User.find({}).select('-password').lean()
     ]);
 
     sendResponse(res, 200, {
       students,
       ledgers: [],
-      transactions: [],
+      transactions,
       feeStructures,
       transportStructures,
       auditLogs,
       academicYears,
-      feeCategories
+      feeCategories,
+      users
     });
   });
 
