@@ -41,7 +41,7 @@ class DashboardController {
       academicYears,
       feeCategories
     ] = await Promise.all([
-      Student.find({}).select('name standard division rollNumber studentCode medium zone transportStartMonth isRTE isActive parentId').populate('parentId', 'parentName primaryMobileNumber secondaryMobileNumber').lean(),
+      Student.find({}).populate('parentId', 'parentName primaryMobileNumber secondaryMobileNumber').lean(),
       FeeStructure.find({ isActive: true }).lean(),
       TransportFeeStructure.find({ isActive: true }).lean(),
       AuditLog.find().sort({ createdAt: -1 }).limit(100).lean(),
