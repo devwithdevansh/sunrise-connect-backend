@@ -146,7 +146,7 @@ class WhatsappService {
             }
 
             // Determine language code based on template name
-            const languageCode = templateName.endsWith('_gu') ? 'gu' : 'en';
+            const languageCode = templateName.includes('_gu') ? 'gu' : 'en';
 
             payload = {
               messaging_product: 'whatsapp',
