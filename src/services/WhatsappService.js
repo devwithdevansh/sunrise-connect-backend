@@ -238,7 +238,7 @@ class WhatsappService {
           }
 
           try {
-            const url = `https://graph.facebook.com/v25.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
+            const url = `https://graph.facebook.com/v20.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
             const response = await fetch(url, {
               method: 'POST',
               headers: {
