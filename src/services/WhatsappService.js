@@ -107,6 +107,7 @@ class WhatsappService {
             const endOfCurrentMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0, 23, 59, 59, 999);
             
             const studentNames = [];
+            const allPeriods = new Set();
             for (const st of students) {
               // 2. Fetch all pending ledgers
               const ledgers = await StudentFeeLedger.find({ 
@@ -117,7 +118,7 @@ class WhatsappService {
               let studentFeeDue = 0;
               for (const l of ledgers) {
                 studentFeeDue += (l.remainingAmount || 0);
-                if (l.dueDate) dueDates.push(l.dueDate);
+                if (l.feePeriod) allPeriods.add(l.feePeriod);
               }
               if (studentFeeDue > 0) {
                 studentNames.push(st.studentName);
@@ -131,18 +132,37 @@ class WhatsappService {
               continue;
             }
 
-            let startMonthStr = '-';
-            let endMonthStr = '-';
+            let periodsStr = '-';
             
-            if (dueDates.length > 0) {
-              dueDates.sort((a, b) => a - b);
-              const minDate = dueDates[0];
-              const maxDate = dueDates[dueDates.length - 1];
+            if (allPeriods.size > 0) {
+              const periodsArr = Array.from(allPeriods);
+              const terms = periodsArr.filter(p => p.toLowerCase().includes('term'));
+              const others = periodsArr.filter(p => !p.toLowerCase().includes('term') && p !== 'One-time');
+              const oneTime = periodsArr.filter(p => p === 'One-time');
               
-              // Meta template variables expect English month strings even in Gujarati templates
-              const monthFormatter = new Intl.DateTimeFormat('en-US', { month: 'long' });
-              startMonthStr = monthFormatter.format(minDate);
-              endMonthStr = monthFormatter.format(maxDate);
+              // Sort months in academic year order
+              const monthsOrder = ['June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May'];
+              others.sort((a, b) => monthsOrder.indexOf(a) - monthsOrder.indexOf(b));
+              
+              let parts = [];
+              
+              if (terms.length > 0) {
+                parts.push(terms.join(', '));
+              }
+              
+              if (others.length > 0) {
+                if (others.length === 1) {
+                  parts.push(others[0]);
+                } else {
+                  parts.push(`${others[0]} to ${others[others.length - 1]}`);
+                }
+              }
+              
+              if (oneTime.length > 0) {
+                parts.push('One-time');
+              }
+              
+              periodsStr = parts.join(' + ');
             }
 
             // Determine language code based on language from frontend
@@ -164,8 +184,7 @@ class WhatsappService {
                     type: 'body',
                     parameters: [
                       { type: 'text', text: studentNames.join(', ') },
-                      { type: 'text', text: startMonthStr },
-                      { type: 'text', text: endMonthStr },
+                      { type: 'text', text: periodsStr },
                       { type: 'text', text: feeDue.toString() }
                     ]
                   }
