@@ -108,11 +108,10 @@ class WhatsappService {
             
             const studentNames = [];
             for (const st of students) {
-              // 2. Fetch pending ledgers up to the current month
+              // 2. Fetch all pending ledgers
               const ledgers = await StudentFeeLedger.find({ 
                 studentId: st._id, 
-                status: { $in: ['PENDING', 'PARTIAL'] },
-                dueDate: { $lte: endOfCurrentMonth }
+                status: { $in: ['PENDING', 'PARTIAL'] }
               });
               
               let studentFeeDue = 0;

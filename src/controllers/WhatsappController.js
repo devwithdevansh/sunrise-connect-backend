@@ -7,7 +7,7 @@ import env from '../config/env.js';
 
 class WhatsappController {
   send = catchAsync(async (req, res) => {
-    const { templateName, body, targetType, targetFilter, parentIds } = req.body;
+    const { templateName, body, targetType, targetFilter, parentIds, language } = req.body;
 
     if (!body || !targetType) {
       throw new AppError('Body and targetType are required', 400);
@@ -19,6 +19,7 @@ class WhatsappController {
 
     const payload = {
       templateName: templateName || 'custom_message',
+      language,
       body,
       targetType,
       targetFilter,
