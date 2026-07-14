@@ -151,6 +151,10 @@ studentFeeLedgerSchema.index({ studentId: 1, dueDate: 1 });
 // Used to quickly filter out archived/historical ledgers from massive aggregations.
 studentFeeLedgerSchema.index({ isArchived: 1 });
 
+// 8. Unpaid Reports Optimization (Status + RemainingAmount)
+// Crucial for ReportService.getUnpaidReport to avoid full collection scans
+studentFeeLedgerSchema.index({ status: 1, remainingAmount: 1, studentId: 1 });
+
 const StudentFeeLedger = mongoose.model('StudentFeeLedger', studentFeeLedgerSchema);
 
 export default StudentFeeLedger;
