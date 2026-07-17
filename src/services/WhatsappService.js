@@ -105,6 +105,12 @@ class WhatsappService {
             if (targetType === 'STUDENT' && targetFilter && targetFilter.student) {
               studentQuery._id = targetFilter.student;
             }
+            if (targetType === 'CLASS' && targetFilter && targetFilter.standard) {
+              studentQuery.standard = targetFilter.standard;
+              if (targetFilter.medium) {
+                studentQuery.medium = targetFilter.medium;
+              }
+            }
             const students = await Student.find(studentQuery);
 
             for (const st of students) {
