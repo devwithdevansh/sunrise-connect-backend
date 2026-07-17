@@ -24,7 +24,7 @@ router.use(authenticate);
 router.post('/batch', authorize('ADMIN', 'STAFF', 'parent'), idempotency, validate(batchPaymentSchema), PaymentController.createBatchPayments);
 router.post('/razorpay/order', authorize('ADMIN', 'STAFF', 'parent'), validate(createRazorpayOrderSchema), PaymentController.createRazorpayOrder);
 router.post('/razorpay/verify', authorize('ADMIN', 'STAFF', 'parent'), idempotency, validate(verifyRazorpayPaymentSchema), PaymentController.verifyRazorpayPayment);
-router.post('/', authorize('ADMIN', 'STAFF', 'parent'), idempotency, validate(createPaymentSchema), PaymentController.createPayment);
+router.post('/', authorize('ADMIN', 'STAFF'), idempotency, validate(createPaymentSchema), PaymentController.createPayment);
 router.get('/', authorize('ADMIN', 'STAFF', 'parent'), validate(listPaymentsSchema), PaymentController.listPayments);
 router.get('/:id', authorize('ADMIN', 'STAFF'), PaymentController.getPayment);
 router.post('/:id/reverse', authorize('ADMIN', 'STAFF'), validate(reversePaymentSchema), PaymentController.reversePayment);
