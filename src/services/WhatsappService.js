@@ -71,6 +71,7 @@ class WhatsappService {
       try {
         let successCount = 0;
         let failureCount = 0;
+        let lastError = null;
 
         const parentDocs = await Parent.find({ _id: { $in: targetParentIds } }).select('primaryMobileNumber');
 
@@ -253,8 +254,6 @@ class WhatsappService {
             
             payloadsToSend.push(payload);
           }
-
-          let lastError = null;
           for (const payload of payloadsToSend) {
             try {
               const url = `https://graph.facebook.com/v20.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
