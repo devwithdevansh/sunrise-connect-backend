@@ -195,6 +195,7 @@ class PaymentService {
       const reversal = await paymentRepository.create({
         ledgerId: payment.ledgerId,
         amount: -payment.amount,
+        concessionAmount: -concessionToReverse,
         method: payment.method,
         details: { reversalOf: paymentId, reason },
         isReversal: true,

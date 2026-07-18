@@ -51,7 +51,7 @@ class DashboardService {
 
   /** Daily metrics for Dashboard */
   static async getDailyMetrics(date) {
-    let matchStage = { isReversal: false };
+    let matchStage = {};
     if (date) {
       matchStage.createdAt = {
         $gte: new Date(`${date}T00:00:00.000Z`),
@@ -97,8 +97,8 @@ class DashboardService {
         { $group: { _id: null, totalAmount: { $sum: '$totalAmount' }, paidAmount: { $sum: '$paidAmount' }, concessionAmount: { $sum: '$concessionAmount' } } },
       ]),
       paymentRepository.aggregate([
-        { $match: { isReversal: false } },
-        { $group: { _id: null, totalPayments: { $sum: '$amount' }, count: { $sum: 1 } } },
+        { $match: {} },
+        { $group: { _id: null, totalPayments: { $sum: '$amount' }, count: { $sum: { $cond: [{ $eq: ['$isReversal', true] }, -1, 1] } } } },
       ]),
     ]);
     return {

@@ -121,7 +121,7 @@ class ReportService {
    */
   static async getCollectionReport(filters = {}) {
     const { startDate, endDate } = filters;
-    const matchStage = { isReversal: { $ne: true } };
+    const matchStage = {};
 
     if (startDate || endDate) {
       matchStage.createdAt = {};
