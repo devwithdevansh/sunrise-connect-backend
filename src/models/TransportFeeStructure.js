@@ -10,10 +10,7 @@ const transportFeeStructureSchema = new mongoose.Schema(
     transportType: {
       type: String,
       required: [true, 'Transport type is required'],
-      enum: {
-        values: ['Railnagar', 'Outside Railnagar'],
-        message: '{VALUE} is not a valid transport type',
-      },
+      trim: true,
     },
     amount: {
       type: Number,

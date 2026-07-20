@@ -39,11 +39,7 @@ const studentSchema = new mongoose.Schema(
     },
     transportType: {
       type: String,
-      required: [true, 'Transport type is required'],
-      enum: {
-        values: ['Railnagar', 'Outside Railnagar', 'None'],
-        message: '{VALUE} is not a valid transport type',
-      },
+      trim: true,
       default: 'None',
     },
     isRTE: {

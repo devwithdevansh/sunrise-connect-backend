@@ -1526,8 +1526,6 @@ class StudentService {
           data.transportType = String(data.transportType).trim();
           if (!data.transportType || data.transportType.toLowerCase() === 'none') {
             data.transportType = 'None';
-          } else if (!['Railnagar', 'Outside Railnagar'].includes(data.transportType)) {
-            throw new Error(`Transport Type must be 'Railnagar', 'Outside Railnagar', or 'None'`);
           }
         } else {
           data.transportType = 'None';
