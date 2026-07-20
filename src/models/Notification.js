@@ -64,6 +64,7 @@ const notificationSchema = new mongoose.Schema(
     readBy: [
       {
         parentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Parent' },
+        studentId: { type: mongoose.Schema.Types.ObjectId, ref: 'Student' },
         readAt: { type: Date, default: Date.now },
       },
     ],

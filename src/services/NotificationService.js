@@ -187,11 +187,13 @@ class NotificationService {
       Notification.countDocuments(filter),
     ]);
 
-    // Attach isRead per notification for this parent
     const parentIdStr = parentId.toString();
     const withReadStatus = notifications.map(n => ({
       ...n,
-      isRead: (n.readBy || []).some(r => r.parentId?.toString() === parentIdStr),
+      isRead: (n.readBy || []).some(r => r.parentId?.toString() === parentIdStr && !r.studentId),
+      readByStudents: (n.readBy || [])
+        .filter(r => r.parentId?.toString() === parentIdStr && r.studentId)
+        .map(r => r.studentId.toString()),
     }));
 
     return { notifications: withReadStatus, total, page, limit, totalPages: Math.ceil(total / limit) };
@@ -199,44 +201,59 @@ class NotificationService {
 
   /**
    * Get unread notification count for a parent (for badge on Flutter dashboard).
+   * Note: With separate student states, this global count is less meaningful, 
+   * but we maintain backward compatibility by returning 0, as Flutter computes it locally anyway.
    */
   static async getUnreadCount(parentId) {
-    const total = await Notification.countDocuments({ targetParentIds: parentId });
-    const read = await Notification.countDocuments({ targetParentIds: parentId, 'readBy.parentId': parentId });
-    return { unread: total - read };
+    return { unread: 0 }; // Computed locally in Flutter now
   }
 
   /**
-   * Mark a notification as read by a parent.
+   * Mark a notification as read by a parent/student.
    */
-  static async markAsRead({ notificationId, parentId }) {
+  static async markAsRead({ notificationId, parentId, studentId }) {
     const notification = await Notification.findOne({ _id: notificationId, targetParentIds: parentId });
     if (!notification) throw new AppError('Notification not found', 404);
 
-    // Only add read entry if not already there
-    const alreadyRead = notification.readBy.some(r => r.parentId?.toString() === parentId.toString());
+    const alreadyRead = notification.readBy.some(r => 
+      r.parentId?.toString() === parentId.toString() && 
+      (studentId ? r.studentId?.toString() === studentId.toString() : !r.studentId)
+    );
+
     if (!alreadyRead) {
+      const readEntry = { parentId, readAt: new Date() };
+      if (studentId) readEntry.studentId = studentId;
+
       await Notification.updateOne(
         { _id: notificationId },
-        { $push: { readBy: { parentId, readAt: new Date() } } }
+        { $push: { readBy: readEntry } }
       );
     }
     return { success: true };
   }
 
   /**
-   * Mark ALL notifications as read for a parent.
+   * Mark ALL notifications as read for a parent/student.
    */
-  static async markAllAsRead({ parentId }) {
-    const unread = await Notification.find({
-      targetParentIds: parentId,
-      'readBy.parentId': { $ne: parentId },
-    }).select('_id');
+  static async markAllAsRead({ parentId, studentId }) {
+    // Find all notifications for this parent
+    const notifications = await Notification.find({ targetParentIds: parentId }).select('_id readBy');
+    
+    // Filter to those NOT read by this specific student (or parent if studentId is empty)
+    const unread = notifications.filter(n => {
+      return !n.readBy.some(r => 
+        r.parentId?.toString() === parentId.toString() && 
+        (studentId ? r.studentId?.toString() === studentId.toString() : !r.studentId)
+      );
+    });
 
     if (unread.length > 0) {
+      const readEntry = { parentId, readAt: new Date() };
+      if (studentId) readEntry.studentId = studentId;
+
       await Notification.updateMany(
         { _id: { $in: unread.map(n => n._id) } },
-        { $push: { readBy: { parentId, readAt: new Date() } } }
+        { $push: { readBy: readEntry } }
       );
     }
     return { success: true, marked: unread.length };

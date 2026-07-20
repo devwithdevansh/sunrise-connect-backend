@@ -73,7 +73,8 @@ class NotificationController {
   static markRead = catchAsync(async (req, res) => {
     const parentId = req.user.id;
     const notificationId = req.params.id;
-    const result = await NotificationService.markAsRead({ notificationId, parentId });
+    const { studentId } = req.body;
+    const result = await NotificationService.markAsRead({ notificationId, parentId, studentId });
     sendResponse(res, 200, result, 'Marked as read');
   });
 
@@ -83,7 +84,8 @@ class NotificationController {
    */
   static markAllRead = catchAsync(async (req, res) => {
     const parentId = req.user.id;
-    const result = await NotificationService.markAllAsRead({ parentId });
+    const { studentId } = req.body;
+    const result = await NotificationService.markAllAsRead({ parentId, studentId });
     sendResponse(res, 200, result, `${result.marked} notification(s) marked as read`);
   });
 
