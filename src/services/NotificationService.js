@@ -62,6 +62,7 @@ class NotificationService {
    * @param {object} opts.targetFilter - { standard, medium, parentId } depending on targetType
    */
   static async sendBroadcast({ sentBy, title, body, targetType, targetFilter = {}, type = 'BROADCAST', metadata = {} }) {
+    // ── 1. Resolve target parents ─────────────────────────────────────────────
     let parentIds = [];
     let targetStudentIds = [];
 
