@@ -41,7 +41,7 @@ const notificationSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: {
-        values: ['ALL', 'CLASS', 'PARENT'],
+        values: ['ALL', 'CLASS', 'PARENT', 'STUDENT'],
         message: '{VALUE} is not a valid target type',
       },
     },
@@ -57,6 +57,14 @@ const notificationSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Parent',
+      },
+    ],
+
+    // Resolved list of specific student IDs this notification applies to (empty means it applies to all siblings)
+    targetStudentIds: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Student',
       },
     ],
 
