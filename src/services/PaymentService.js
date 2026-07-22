@@ -75,7 +75,7 @@ class PaymentService {
 
             const notif = await NotificationService.sendBroadcast({
               sentBy: performedBy || parentIdStr,
-              title: 'Fee Payment Successful 🎉',
+              title: 'Fee Payment Successful',
               body: `Payment of ₹${amount} for ${studentName}'s ${feeTypeLabel}${periodLabel} has been successfully received. Receipt #${receiptNumber}.`,
               targetType: 'PARENT',
               targetFilter: { parentId: parentIdStr },
@@ -214,7 +214,7 @@ class PaymentService {
 
               const notif = await NotificationService.sendBroadcast({
                 sentBy: performedBy || parentIdStr,
-                title: 'Fee Payment Successful 🎉',
+                title: 'Fee Payment Successful',
                 body: `Payment of ₹${payment.amount} for ${studentName}'s ${feeTypeLabel}${periodLabel} has been successfully received. Receipt #${payment.receiptNumber}.`,
                 targetType: 'PARENT',
                 targetFilter: { parentId: parentIdStr },

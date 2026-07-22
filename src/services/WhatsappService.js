@@ -73,16 +73,25 @@ class WhatsappService {
         let failureCount = 0;
         let lastError = null;
 
-        const parentDocs = await Parent.find({ _id: { $in: targetParentIds } }).select('primaryMobileNumber');
+        const parentDocs = await Parent.find({ _id: { $in: targetParentIds } }).select('primaryMobileNumber secondaryMobileNumber');
 
         for (const parent of parentDocs) {
-          if (!parent.primaryMobileNumber) continue;
-
-          let phone = parent.primaryMobileNumber;
-          // Ensure it has country code, assuming India +91 if length is 10
-          if (phone.length === 10) {
-            phone = '91' + phone;
+          let numbersToMessage = [];
+          if (parent.primaryMobileNumber) {
+            let phone = parent.primaryMobileNumber;
+            if (phone.length === 10) phone = '91' + phone;
+            numbersToMessage.push(phone);
           }
+          if (parent.secondaryMobileNumber) {
+            let phone = parent.secondaryMobileNumber;
+            if (phone.length === 10) phone = '91' + phone;
+            if (!numbersToMessage.includes(phone)) numbersToMessage.push(phone);
+          }
+
+          if (numbersToMessage.length === 0) continue;
+          
+          // Use the first number as a placeholder during payload generation
+          let phone = numbersToMessage[0];
 
           let payloadsToSend = [];
 
@@ -261,29 +270,32 @@ class WhatsappService {
             payloadsToSend.push(payload);
           }
           for (const payload of payloadsToSend) {
-            try {
-              const url = `https://graph.facebook.com/v20.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
-              const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                  'Authorization': `Bearer ${env.WHATSAPP_API_TOKEN}`,
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-              });
+            for (const number of numbersToMessage) {
+              const currentPayload = { ...payload, to: number };
+              try {
+                const url = `https://graph.facebook.com/v20.0/${env.WHATSAPP_PHONE_NUMBER_ID}/messages`;
+                const response = await fetch(url, {
+                  method: 'POST',
+                  headers: {
+                    'Authorization': `Bearer ${env.WHATSAPP_API_TOKEN}`,
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(currentPayload)
+                });
 
-              if (!response.ok) {
-                const errJson = await response.json();
-                lastError = JSON.stringify(errJson);
-                logger.error(`WhatsApp send failed to ${phone}: ${lastError}`);
+                if (!response.ok) {
+                  const errJson = await response.json();
+                  lastError = JSON.stringify(errJson);
+                  logger.error(`WhatsApp send failed to ${number}: ${lastError}`);
+                  failureCount++;
+                } else {
+                  successCount++;
+                }
+              } catch (err) {
+                lastError = err.message;
+                logger.error(`WhatsApp send failed to ${number}: ${lastError}`);
                 failureCount++;
-              } else {
-                successCount++;
               }
-            } catch (fetchErr) {
-              lastError = fetchErr.toString();
-              logger.error(`WhatsApp network error to ${phone}: ${fetchErr}`);
-              failureCount++;
             }
           }
         }
