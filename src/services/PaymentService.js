@@ -61,14 +61,32 @@ class PaymentService {
           const student = await studentRepository.findById(ledger.studentId);
           if (student && student.parentId) {
             const parentIdStr = student.parentId._id?.toString() || student.parentId.toString();
+            const feeTypeLabel = {
+              EDUCATION: 'Education Fee',
+              TERM: 'Term Fee',
+              TRANSPORT: 'Transport Fee',
+              ADMISSION: 'Admission Fee',
+              BAG_KIT: 'Bag & Kit Fee',
+              OTHER: 'Fee'
+            }[ledger.feeType] || 'Fee';
+
+            const periodLabel = ledger.feePeriod ? ` (${ledger.feePeriod})` : '';
+            const studentName = student.name || student.studentName || 'your child';
+
             const notif = await NotificationService.sendBroadcast({
               sentBy: performedBy || parentIdStr,
-              title: 'Payment Received',
-              body: `A payment of ₹${amount} has been successfully processed for receipt #${receiptNumber}.`,
+              title: 'Fee Payment Successful 🎉',
+              body: `Payment of ₹${amount} for ${studentName}'s ${feeTypeLabel}${periodLabel} has been successfully received. Receipt #${receiptNumber}.`,
               targetType: 'PARENT',
               targetFilter: { parentId: parentIdStr },
               type: 'PAYMENT_RECEIVED',
-              metadata: { studentId: ledger.studentId.toString() }
+              metadata: { 
+                studentId: ledger.studentId.toString(),
+                feePeriod: ledger.feePeriod || '',
+                feeType: ledger.feeType || '',
+                receiptNumber: receiptNumber.toString(),
+                amount: amount.toString()
+              }
             });
           }
         } catch (err) {
@@ -181,14 +199,33 @@ class PaymentService {
             if (!ledger) continue;
             const student = await studentRepository.findById(ledger.studentId);
             if (student && student.parentId && payment.amount > 0) {
+              const parentIdStr = student.parentId._id?.toString() || student.parentId.toString();
+              const feeTypeLabel = {
+                EDUCATION: 'Education Fee',
+                TERM: 'Term Fee',
+                TRANSPORT: 'Transport Fee',
+                ADMISSION: 'Admission Fee',
+                BAG_KIT: 'Bag & Kit Fee',
+                OTHER: 'Fee'
+              }[ledger.feeType] || 'Fee';
+
+              const periodLabel = ledger.feePeriod ? ` (${ledger.feePeriod})` : '';
+              const studentName = student.name || student.studentName || 'your child';
+
               const notif = await NotificationService.sendBroadcast({
-                sentBy: performedBy || student.parentId,
-                title: 'Payment Received',
-                body: `A payment of ₹${payment.amount} has been successfully processed for receipt #${payment.receiptNumber}.`,
+                sentBy: performedBy || parentIdStr,
+                title: 'Fee Payment Successful 🎉',
+                body: `Payment of ₹${payment.amount} for ${studentName}'s ${feeTypeLabel}${periodLabel} has been successfully received. Receipt #${payment.receiptNumber}.`,
                 targetType: 'PARENT',
-                targetFilter: { parentId: student.parentId.toString() },
+                targetFilter: { parentId: parentIdStr },
                 type: 'PAYMENT_RECEIVED',
-                metadata: { studentId: ledger.studentId.toString() }
+                metadata: { 
+                  studentId: ledger.studentId.toString(),
+                  feePeriod: ledger.feePeriod || '',
+                  feeType: ledger.feeType || '',
+                  receiptNumber: payment.receiptNumber.toString(),
+                  amount: payment.amount.toString()
+                }
               });
             }
           }
