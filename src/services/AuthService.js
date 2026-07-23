@@ -160,20 +160,63 @@ class AuthService {
    * 5. Refresh-token rotation (pull old / push new atomically)
    * ---------------------------------------------------------------- */
   static async rotateRefreshToken({ domain, userId, refreshToken }) {
-    const Repo = domain === 'parent' ? parentRepository : userRepository;
-    const entity = await Repo.findByIdWithTokens(userId);
-    if (!entity) throw new AppError('Entity not found', 404);
+    if (!refreshToken) throw new AppError('Refresh token is required', 400);
 
-    // Filter out expired refresh tokens first to reduce CPU-heavy bcrypt comparisons
-    const activeTokens = (entity.refreshTokens || []).filter(t => t.expiresAt > new Date());
+    let targetDomain = domain;
+    let targetUserId = userId;
+    let tokenEntry = null;
 
-    // Async bcrypt compare – avoids blocking the event loop
-    const compareResults = await Promise.all(
-      activeTokens.map(t =>
-        bcrypt.compare(refreshToken, t.tokenHash).then(ok => (ok ? t : null))
-      )
-    );
-    const tokenEntry = compareResults.find(Boolean);
+    if (targetUserId && targetDomain) {
+      const Repo = targetDomain === 'parent' ? parentRepository : userRepository;
+      const entity = await Repo.findByIdWithTokens(targetUserId);
+      if (!entity) throw new AppError('Entity not found', 404);
+
+      const activeTokens = (entity.refreshTokens || []).filter(t => t.expiresAt > new Date());
+      const compareResults = await Promise.all(
+        activeTokens.map(t =>
+          bcrypt.compare(refreshToken, t.tokenHash).then(ok => (ok ? t : null))
+        )
+      );
+      tokenEntry = compareResults.find(Boolean);
+    } else {
+      // Automatic lookup if domain or userId was omitted
+      const parents = await mongoose.model('Parent').find({ 'refreshTokens.expiresAt': { $gt: new Date() } }).select('+refreshTokens').lean();
+      for (const parent of parents) {
+        const activeTokens = (parent.refreshTokens || []).filter(t => t.expiresAt > new Date());
+        const compareResults = await Promise.all(
+          activeTokens.map(t =>
+            bcrypt.compare(refreshToken, t.tokenHash).then(ok => (ok ? t : null))
+          )
+        );
+        const found = compareResults.find(Boolean);
+        if (found) {
+          targetDomain = 'parent';
+          targetUserId = parent._id.toString();
+          tokenEntry = found;
+          break;
+        }
+      }
+
+      if (!tokenEntry) {
+        const users = await mongoose.model('User').find({ 'refreshTokens.expiresAt': { $gt: new Date() } }).select('+refreshTokens').lean();
+        for (const u of users) {
+          const activeTokens = (u.refreshTokens || []).filter(t => t.expiresAt > new Date());
+          const compareResults = await Promise.all(
+            activeTokens.map(t =>
+              bcrypt.compare(refreshToken, t.tokenHash).then(ok => (ok ? t : null))
+            )
+          );
+          const found = compareResults.find(Boolean);
+          if (found) {
+            targetDomain = 'user';
+            targetUserId = u._id.toString();
+            tokenEntry = found;
+            break;
+          }
+        }
+      }
+    }
+
     if (!tokenEntry) throw new AppError('Refresh token invalid', 401);
     if (new Date() > tokenEntry.expiresAt) throw new AppError('Refresh token expired', 401);
 
@@ -184,8 +227,8 @@ class AuthService {
     const session = await mongoose.startSession();
     session.startTransaction();
     try {
-      const modelName = domain === 'parent' ? 'Parent' : 'User';
-      const user = await mongoose.model(modelName).findById(userId).select('+refreshTokens').session(session);
+      const modelName = targetDomain === 'parent' ? 'Parent' : 'User';
+      const user = await mongoose.model(modelName).findById(targetUserId).select('+refreshTokens').session(session);
       
       // Filter out expired tokens and the current rotated token
       let filteredTokens = (user.refreshTokens || []).filter(
@@ -202,10 +245,10 @@ class AuthService {
       user.refreshTokens = filteredTokens;
       await user.save({ session });
 
-      const payload = { id: userId, role: entity.role || (domain === 'parent' ? 'parent' : 'user') };
+      const payload = { id: targetUserId, role: user.role || (targetDomain === 'parent' ? 'parent' : 'user') };
       const accessToken = jwt.sign(payload, env.JWT_SECRET, { expiresIn: env.JWT_EXPIRES_IN });
 
-      logger.info(`Refresh token rotated for ${userId} (domain: ${domain})`);
+      logger.info(`Refresh token rotated for ${targetUserId} (domain: ${targetDomain})`);
       await session.commitTransaction();
       return { accessToken, refreshToken: newPlain };
     } catch (err) {
