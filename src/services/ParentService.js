@@ -98,10 +98,21 @@ class ParentService {
    * Clears passwordHash and resets isPasswordSet so parent must re-onboard.
    */
   static async resetParentPassword({ primaryMobileNumber, lastFourDigits, performedBy = null }) {
-    const parent = await parentRepository.findOne({ primaryMobileNumber });
+    const mobileInput = primaryMobileNumber ? primaryMobileNumber.toString().trim() : '';
+    const parent = await parentRepository.findOne({
+      $or: [
+        { primaryMobileNumber: mobileInput },
+        { secondaryMobileNumber: mobileInput }
+      ]
+    });
     if (!parent) throw new AppError('Parent not found', 404);
 
-    const actualLastFour = parent.primaryMobileNumber.slice(-4);
+    let matchedNumber = parent.primaryMobileNumber;
+    if (parent.secondaryMobileNumber && parent.secondaryMobileNumber.trim() === mobileInput) {
+      matchedNumber = parent.secondaryMobileNumber;
+    }
+
+    const actualLastFour = matchedNumber.slice(-4);
     if (actualLastFour !== lastFourDigits) throw new AppError('Last four digits mismatch', 400);
     if (!parent.isPasswordSet) throw new AppError('Parent has not completed onboarding yet', 400);
 

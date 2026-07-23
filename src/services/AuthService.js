@@ -62,10 +62,22 @@ class AuthService {
    * 2. Parent first-login: verify last four digits of mobile number
    * ---------------------------------------------------------------- */
   static async verifyParentLastFour({ primaryMobileNumber, lastFourDigits }) {
-    const parent = await parentRepository.findOne({ primaryMobileNumber });
+    const mobileInput = primaryMobileNumber ? primaryMobileNumber.toString().trim() : '';
+    const parent = await parentRepository.findOne({
+      $or: [
+        { primaryMobileNumber: mobileInput },
+        { secondaryMobileNumber: mobileInput }
+      ]
+    });
     if (!parent) throw new AppError('Parent not found', 404);
     if (parent.isPasswordSet) throw new AppError('Onboarding already completed. Please log in normally.', 400);
-    const lastFour = parent.primaryMobileNumber.slice(-4);
+
+    let matchedNumber = parent.primaryMobileNumber;
+    if (parent.secondaryMobileNumber && parent.secondaryMobileNumber.trim() === mobileInput) {
+      matchedNumber = parent.secondaryMobileNumber;
+    }
+
+    const lastFour = matchedNumber.slice(-4);
     if (lastFour !== lastFourDigits) throw new AppError('Verification failed', 401);
     return { success: true, parentId: parent._id };
   }
