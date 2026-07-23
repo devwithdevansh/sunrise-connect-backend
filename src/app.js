@@ -23,6 +23,7 @@ import userRoutes             from './routes/user.routes.js';
 import reportRoutes           from './routes/report.routes.js';
 import notificationRoutes     from './routes/notification.routes.js';
 import whatsappRoutes         from './routes/whatsapp.routes.js';
+import expenseRoutes          from './routes/expense.routes.js';
 
 const app = express();
 
@@ -80,6 +81,7 @@ app.use(`${V1}/users`,          userRoutes);
 app.use(`${V1}/reports`,        reportRoutes);
 app.use(`${V1}/notifications`,  notificationRoutes);
 app.use(`${V1}/whatsapp`,       whatsappRoutes);
+app.use(`${V1}/expenses`,       expenseRoutes);
 
 // ─── 404 Handler ──────────────────────────────────────────────────────────────
 app.all('/{*splat}', (req, _res, next) => {
