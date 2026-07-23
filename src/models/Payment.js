@@ -40,6 +40,11 @@ const paymentSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    performedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      default: null,
+    },
   },
   { timestamps: true }
 );

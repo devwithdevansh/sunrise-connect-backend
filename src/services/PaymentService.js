@@ -39,7 +39,7 @@ class PaymentService {
 
       const status = remaining === 0 ? 'PAID' : 'PARTIAL';
       // Insert payment record
-      const payment = await paymentRepository.create({ ledgerId, amount, concessionAmount, method, details, receiptNumber }, { session });
+      const payment = await paymentRepository.create({ ledgerId, amount, concessionAmount, method, details, receiptNumber, performedBy }, { session });
 
       // Atomic OCC ledger update
       const updateResult = await ledgerRepository.updateOne(
@@ -149,7 +149,8 @@ class PaymentService {
             amount,
             concessionAmount,
             method,
-            details: { remark, transactionId: batchTxnId }
+            details: { remark, transactionId: batchTxnId },
+            performedBy
           }, { session });
 
           // Atomic OCC ledger update

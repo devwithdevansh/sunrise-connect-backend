@@ -87,11 +87,12 @@ const paymentRepository = {
           isReversal: 1,
           createdAt: 1,
           updatedAt: 1,
+          performedBy: 1,
           feePeriod: '$ledger.feePeriod',
           feeType: '$ledger.feeType',
           studentName: '$ledger.snapshot.studentName',
           academicYear: '$ledger.academicYear',
-          concessionAmount: '$ledger.concessionAmount',
+          concessionAmount: 1, // Keep payment's concession amount instead of ledger's total
           totalAmount: '$ledger.totalAmount',
           reversalOf: '$details.reversalOf'
         },
