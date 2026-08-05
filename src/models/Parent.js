@@ -43,6 +43,10 @@ const parentSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    allowOtpReset: {
+      type: Boolean,
+      default: false,
+    },
     isActive: {
       type: Boolean,
       default: true,

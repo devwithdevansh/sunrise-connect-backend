@@ -545,13 +545,15 @@ class StudentService {
       const parentNameUpdate = updates.parentName;
       const parentMobileUpdate = updates.parentMobile;
       const parentSecondaryMobileUpdate = updates.parentSecondaryMobile;
+      const parentAllowOtpResetUpdate = updates.parentAllowOtpReset;
 
       // Delete parent updates from the student updates object so we don't save them on the Student document
       delete updates.parentName;
       delete updates.parentMobile;
       delete updates.parentSecondaryMobile;
+      delete updates.parentAllowOtpReset;
 
-      if (student.parentId && (parentNameUpdate !== undefined || parentMobileUpdate !== undefined || parentSecondaryMobileUpdate !== undefined)) {
+      if (student.parentId && (parentNameUpdate !== undefined || parentMobileUpdate !== undefined || parentSecondaryMobileUpdate !== undefined || parentAllowOtpResetUpdate !== undefined)) {
         const parentId = student.parentId._id || student.parentId;
         const parent = await mongoose.model('Parent').findById(parentId).session(session);
         if (parent) {
@@ -560,6 +562,10 @@ class StudentService {
           
           if (parentNameUpdate !== undefined) {
             parentUpdates.parentName = parentNameUpdate;
+          }
+
+          if (parentAllowOtpResetUpdate !== undefined) {
+            parentUpdates.allowOtpReset = parentAllowOtpResetUpdate;
           }
 
           let secondaryMobileToSet = undefined;

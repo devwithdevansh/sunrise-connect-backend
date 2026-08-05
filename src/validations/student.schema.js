@@ -38,6 +38,7 @@ export const updateStudentSchema = {
     parentName: z.string().optional(),
     parentMobile: z.string().optional(),
     parentSecondaryMobile: z.string().nullable().optional(),
+    parentAllowOtpReset: z.boolean().optional(),
   }),
   params: z.object({ id: z.string().min(1) }),
 };

@@ -70,6 +70,9 @@ class AuthService {
       ]
     });
     if (!parent) throw new AppError('Parent not found', 404);
+    if (parent.isPasswordSet && !parent.allowOtpReset) {
+      throw new AppError('Password reset is locked. Please contact your school admin.', 400);
+    }
 
     let matchedNumber = parent.primaryMobileNumber;
     if (parent.secondaryMobileNumber && parent.secondaryMobileNumber.trim() === mobileInput) {
@@ -94,7 +97,7 @@ class AuthService {
       const hash = await bcrypt.hash(newPassword, 12);
       await parentRepository.updateOne(
         { _id: parentId },
-        { $set: { passwordHash: hash, isPasswordSet: true } },
+        { $set: { passwordHash: hash, isPasswordSet: true, allowOtpReset: false } },
         { session }
       );
 
