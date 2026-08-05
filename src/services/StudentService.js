@@ -1009,7 +1009,7 @@ class StudentService {
         await this._deactivateStudent(studentId, session);
 
         if (siblingCount === 0 || activeSiblingCount === 0) {
-          await mongoose.model('Parent').updateOne({ _id: student.parentId }, { $set: { isActive: false } }, { session });
+          await mongoose.model('Parent').deleteOne({ _id: student.parentId }, { session });
         }
 
         await AuditService.log(
@@ -1021,10 +1021,8 @@ class StudentService {
         await mongoose.model('StudentFeeLedger').deleteMany({ studentId }, { session });
         await studentRepository.deleteOne({ _id: studentId }, { session });
 
-        if (siblingCount === 0) {
+        if (siblingCount === 0 || activeSiblingCount === 0) {
           await mongoose.model('Parent').deleteOne({ _id: student.parentId }, { session });
-        } else if (activeSiblingCount === 0) {
-          await mongoose.model('Parent').updateOne({ _id: student.parentId }, { $set: { isActive: false } }, { session });
         }
 
         await AuditService.log(
