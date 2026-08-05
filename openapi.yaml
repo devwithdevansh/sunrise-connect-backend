@@ -1,0 +1,670 @@
+openapi: "3.0.3"
+info:
+  title: Sunrise Connect – Fee Management API
+  version: "1.0.0"
+  description: |
+    REST API for Sunrise School fee collection and ledger management.
+    Base URL: `/api/v1`
+
+servers:
+  - url: /api/v1
+    description: Local development
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    Success:
+      type: object
+      properties:
+        success: { type: boolean }
+        data: {}
+
+    Error:
+      type: object
+      properties:
+        success: { type: boolean, example: false }
+        message: { type: string }
+
+    Parent:
+      type: object
+      properties:
+        _id: { type: string }
+        parentName: { type: string }
+        primaryMobileNumber: { type: string }
+        secondaryMobileNumber: { type: string, nullable: true }
+        email: { type: string, nullable: true }
+        address: { type: string, nullable: true }
+        isPasswordSet: { type: boolean }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+
+    Student:
+      type: object
+      properties:
+        _id: { type: string }
+        parentId: { type: string }
+        studentCode: { type: string }
+        studentName: { type: string }
+        medium: { type: string, enum: [English, Gujarati] }
+        standard: { type: string }
+        division: { type: string }
+        transportType: { type: string }
+        isRTE: { type: boolean }
+        isActive: { type: boolean }
+        createdAt: { type: string, format: date-time }
+
+    Ledger:
+      type: object
+      properties:
+        _id: { type: string }
+        studentId: { type: string }
+        academicYear: { type: string }
+        feeCategoryId: { type: string }
+        feePeriod: { type: string }
+        ledgerNumber: { type: string }
+        totalAmount: { type: number }
+        paidAmount: { type: number }
+        concessionAmount: { type: number }
+        remainingAmount: { type: number }
+        status: { type: string, enum: [PENDING, PARTIAL, PAID, WAIVED, CANCELLED] }
+        dueDate: { type: string, format: date-time }
+
+    Payment:
+      type: object
+      properties:
+        _id: { type: string }
+        ledgerId: { type: string }
+        amount: { type: number }
+        method: { type: string, enum: [CASH, CHEQUE, ONLINE, UPI, REVERSAL] }
+        details: { type: object }
+        isReversal: { type: boolean }
+        createdAt: { type: string, format: date-time }
+
+    AuditLog:
+      type: object
+      properties:
+        _id: { type: string }
+        performedBy: { type: string, nullable: true }
+        targetParentId: { type: string, nullable: true }
+        targetStudentId: { type: string, nullable: true }
+        targetLedgerId: { type: string, nullable: true }
+        action: { type: string }
+        details: { type: object }
+        createdAt: { type: string, format: date-time }
+
+security:
+  - BearerAuth: []
+
+paths:
+  # ─── AUTH ──────────────────────────────────────────────────────────────────
+  /auth/portal/login:
+    post:
+      tags: [Auth]
+      summary: Admin / Staff portal login
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, minLength: 6 }
+      responses:
+        "200":
+          description: Access + refresh token pair
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - $ref: "#/components/schemas/Success"
+                  - type: object
+                    properties:
+                      data:
+                        type: object
+                        properties:
+                          accessToken: { type: string }
+                          refreshToken: { type: string }
+        "401": { description: Invalid credentials }
+        "400": { description: Validation error }
+
+  /auth/parent/verify:
+    post:
+      tags: [Auth]
+      summary: Parent onboarding – verify last 4 digits
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [primaryMobileNumber, lastFourDigits]
+              properties:
+                primaryMobileNumber: { type: string }
+                lastFourDigits: { type: string, minLength: 4, maxLength: 4 }
+      responses:
+        "200": { description: Verification passed, returns parentId }
+        "400": { description: Validation error or already onboarded }
+        "401": { description: Last four digits mismatch }
+        "404": { description: Parent not found }
+
+  /auth/parent/set-password:
+    post:
+      tags: [Auth]
+      summary: Parent onboarding – set password (one-time)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [parentId, newPassword]
+              properties:
+                parentId: { type: string }
+                newPassword: { type: string, minLength: 8 }
+      responses:
+        "200": { description: Password set successfully }
+        "400": { description: Already set or validation error }
+        "404": { description: Parent not found }
+
+  /auth/parent/login:
+    post:
+      tags: [Auth]
+      summary: Parent login with mobile + password
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [primaryMobileNumber, password]
+              properties:
+                primaryMobileNumber: { type: string }
+                password: { type: string }
+      responses:
+        "200": { description: Token pair }
+        "401": { description: Invalid credentials }
+        "404": { description: Parent not found }
+
+  /auth/refresh:
+    post:
+      tags: [Auth]
+      summary: Rotate refresh token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [domain, userId, refreshToken]
+              properties:
+                domain: { type: string, enum: [parent, user] }
+                userId: { type: string }
+                refreshToken: { type: string }
+      responses:
+        "200": { description: New token pair }
+        "401": { description: Invalid or expired refresh token }
+
+  /auth/logout:
+    post:
+      tags: [Auth]
+      summary: Logout current device
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refreshToken]
+              properties:
+                refreshToken: { type: string }
+      responses:
+        "200": { description: Logged out }
+        "401": { description: Not authenticated }
+
+  /auth/logout-all:
+    post:
+      tags: [Auth]
+      summary: Logout all devices
+      responses:
+        "200": { description: All sessions cleared }
+        "401": { description: Not authenticated }
+
+  # ─── PARENTS ───────────────────────────────────────────────────────────────
+  /parents:
+    post:
+      tags: [Parents]
+      summary: Create parent (ADMIN/STAFF)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [parentName, primaryMobileNumber]
+              properties:
+                parentName: { type: string }
+                primaryMobileNumber: { type: string }
+                secondaryMobileNumber: { type: string }
+                email: { type: string }
+                address: { type: string }
+      responses:
+        "201":
+          description: Parent created
+          content:
+            application/json:
+              schema:
+                allOf: [{ $ref: "#/components/schemas/Success" }, { properties: { data: { $ref: "#/components/schemas/Parent" } } }]
+        "400": { description: Validation error }
+        "401": { description: Not authenticated }
+        "403": { description: Forbidden }
+
+    get:
+      tags: [Parents]
+      summary: List parents (ADMIN/STAFF)
+      parameters:
+        - in: query
+          name: limit
+          schema: { type: integer, default: 20 }
+        - in: query
+          name: skip
+          schema: { type: integer, default: 0 }
+      responses:
+        "200": { description: Array of parents }
+
+  /parents/reset-password:
+    post:
+      tags: [Parents]
+      summary: Admin-only password reset
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [primaryMobileNumber, lastFourDigits]
+              properties:
+                primaryMobileNumber: { type: string }
+                lastFourDigits: { type: string, minLength: 4, maxLength: 4 }
+      responses:
+        "200": { description: Password reset, parent must re-onboard }
+        "400": { description: Digits mismatch or not onboarded }
+        "403": { description: Not ADMIN }
+        "404": { description: Parent not found }
+
+  /parents/{id}:
+    get:
+      tags: [Parents]
+      summary: Get parent by id (ADMIN/STAFF/own parent)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Parent document }
+        "404": { description: Not found }
+
+    patch:
+      tags: [Parents]
+      summary: Update parent (ADMIN/STAFF)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                parentName: { type: string }
+                secondaryMobileNumber: { type: string }
+                email: { type: string }
+                address: { type: string }
+      responses:
+        "200": { description: Updated parent }
+
+  # ─── STUDENTS ──────────────────────────────────────────────────────────────
+  /students:
+    post:
+      tags: [Students]
+      summary: Create student (ADMIN/STAFF)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [parentId, studentCode, studentName, medium, standard, division]
+              properties:
+                parentId: { type: string }
+                studentCode: { type: string }
+                studentName: { type: string }
+                medium: { type: string, enum: [English, Gujarati] }
+                standard: { type: string }
+                division: { type: string }
+                transportType: { type: string }
+                isRTE: { type: boolean }
+      responses:
+        "201": { description: Student created }
+
+    get:
+      tags: [Students]
+      summary: List students (ADMIN/STAFF)
+      parameters:
+        - in: query
+          name: parentId
+          schema: { type: string }
+        - in: query
+          name: standard
+          schema: { type: string }
+        - in: query
+          name: limit
+          schema: { type: integer, default: 20 }
+      responses:
+        "200": { description: Array of students }
+
+  /students/{id}:
+    get:
+      tags: [Students]
+      summary: Get student by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Student document }
+        "404": { description: Not found }
+
+    patch:
+      tags: [Students]
+      summary: Update student (ADMIN/STAFF)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Updated student }
+
+  # ─── LEDGERS ───────────────────────────────────────────────────────────────
+  /ledgers:
+    post:
+      tags: [Ledgers]
+      summary: Create ledger (ADMIN/STAFF)
+      responses:
+        "201": { description: Ledger created }
+
+    get:
+      tags: [Ledgers]
+      summary: List ledgers (ADMIN/STAFF)
+      parameters:
+        - in: query
+          name: studentId
+          schema: { type: string }
+        - in: query
+          name: status
+          schema: { type: string, enum: [PENDING, PARTIAL, PAID, WAIVED, CANCELLED] }
+      responses:
+        "200": { description: Array of ledgers }
+
+  /ledgers/{id}:
+    get:
+      tags: [Ledgers]
+      summary: Get ledger by id (ADMIN/STAFF/own parent)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Ledger document }
+
+  /ledgers/{id}/payment:
+    post:
+      tags: [Ledgers]
+      summary: Record a payment on a ledger (ADMIN/STAFF)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [amount]
+              properties:
+                amount: { type: number, minimum: 0.01 }
+                details: { type: object }
+      responses:
+        "200": { description: Updated ledger }
+        "400": { description: Over-payment or invalid amount }
+        "409": { description: Concurrency conflict }
+
+  /ledgers/{id}/concession:
+    post:
+      tags: [Ledgers]
+      summary: Apply concession (ADMIN only)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [amount, reason]
+              properties:
+                amount: { type: number, minimum: 0.01 }
+                reason: { type: string }
+      responses:
+        "200": { description: Updated ledger }
+
+  /ledgers/{id}/mark-paid:
+    patch:
+      tags: [Ledgers]
+      summary: Mark ledger as PAID when fully settled (ADMIN/STAFF)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Ledger status set to PAID }
+        "400": { description: Not fully settled }
+
+  # ─── PAYMENTS ──────────────────────────────────────────────────────────────
+  /payments:
+    post:
+      tags: [Payments]
+      summary: Create payment (ADMIN/STAFF) – requires Idempotency-Key header
+      parameters:
+        - in: header
+          name: Idempotency-Key
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [ledgerId, amount, method]
+              properties:
+                ledgerId: { type: string }
+                amount: { type: number, minimum: 0.01 }
+                method: { type: string, enum: [CASH, CHEQUE, ONLINE, UPI] }
+                details: { type: object }
+      responses:
+        "201": { description: Payment created }
+        "400": { description: Validation / over-payment / missing idempotency key }
+        "409": { description: Concurrency conflict }
+
+    get:
+      tags: [Payments]
+      summary: List payments (ADMIN/STAFF)
+      parameters:
+        - in: query
+          name: ledgerId
+          schema: { type: string }
+        - in: query
+          name: isReversal
+          schema: { type: boolean }
+      responses:
+        "200": { description: Array of payments }
+
+  /payments/{id}:
+    get:
+      tags: [Payments]
+      summary: Get payment by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Payment document }
+        "404": { description: Not found }
+
+  /payments/{id}/reverse:
+    post:
+      tags: [Payments]
+      summary: Reverse a payment (ADMIN only)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason: { type: string }
+      responses:
+        "200": { description: Reversal record created, ledger decremented }
+        "400": { description: Cannot reverse a reversal }
+        "404": { description: Payment not found }
+
+  # ─── DASHBOARD ─────────────────────────────────────────────────────────────
+  /dashboard/system:
+    get:
+      tags: [Dashboard]
+      summary: System-wide metrics (ADMIN only)
+      responses:
+        "200": { description: Aggregate counts and totals }
+
+  /dashboard/parent/{id}:
+    get:
+      tags: [Dashboard]
+      summary: Parent dashboard – student count + ledger stats
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Parent dashboard data }
+
+  /dashboard/student/{id}:
+    get:
+      tags: [Dashboard]
+      summary: Student dashboard – ledger stats
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Student dashboard data }
+
+  # ─── MIGRATION ─────────────────────────────────────────────────────────────
+  /migration/parents:
+    post:
+      tags: [Migration]
+      summary: Bulk import parents (ADMIN only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [parents]
+              properties:
+                parents:
+                  type: array
+                  items: { $ref: "#/components/schemas/Parent" }
+      responses:
+        "200": { description: Migration summary }
+
+  /migration/students:
+    post:
+      tags: [Migration]
+      summary: Bulk import students (ADMIN only)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [students]
+              properties:
+                students:
+                  type: array
+                  items: { $ref: "#/components/schemas/Student" }
+      responses:
+        "200": { description: Migration summary }
+
+  # ─── AUDIT ─────────────────────────────────────────────────────────────────
+  /audit:
+    get:
+      tags: [Audit]
+      summary: Search audit logs (ADMIN only)
+      parameters:
+        - in: query
+          name: action
+          schema: { type: string }
+        - in: query
+          name: limit
+          schema: { type: integer, default: 20 }
+        - in: query
+          name: skip
+          schema: { type: integer, default: 0 }
+      responses:
+        "200": { description: Array of audit log entries }
+
+  /audit/{id}:
+    get:
+      tags: [Audit]
+      summary: Get audit log entry by id (ADMIN only)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200": { description: Audit log entry }
+        "404": { description: Not found }
