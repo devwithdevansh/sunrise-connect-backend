@@ -552,10 +552,30 @@ class StudentService {
         const parentId = student.parentId._id || student.parentId;
         const parent = await mongoose.model('Parent').findById(parentId).session(session);
         if (parent) {
+          let targetParentId = parentId;
           const parentUpdates = {};
+          
           if (parentNameUpdate !== undefined) {
             parentUpdates.parentName = parentNameUpdate;
           }
+
+          let secondaryMobileToSet = undefined;
+          if (parentSecondaryMobileUpdate !== undefined) {
+            if (parentSecondaryMobileUpdate === null || parentSecondaryMobileUpdate === '') {
+              secondaryMobileToSet = null;
+            } else {
+              let secMobile = parentSecondaryMobileUpdate.replace(/\D/g, '');
+              if (secMobile.length > 10) secMobile = secMobile.slice(-10);
+              if (!/^[6-9]\d{9}$/.test(secMobile)) {
+                throw new AppError('Enter Indian number or invalid number for secondary mobile', 400);
+              }
+              secondaryMobileToSet = secMobile;
+            }
+          }
+
+          let primaryMobileChanged = false;
+          let newPrimaryMobile = null;
+
           if (parentMobileUpdate !== undefined) {
             let mobile = parentMobileUpdate.replace(/\D/g, '');
             if (mobile.length > 10) mobile = mobile.slice(-10);
@@ -563,45 +583,150 @@ class StudentService {
               throw new AppError('Enter Indian number or invalid number for primary mobile', 400);
             }
             if (mobile !== parent.primaryMobileNumber) {
-              // Check if another parent already has this number
-              const otherParent = await mongoose.model('Parent').findOne({ primaryMobileNumber: mobile }).session(session);
-              if (otherParent && String(otherParent._id) !== String(parent._id)) {
-                throw new AppError('This primary mobile number is already registered to another parent.', 400);
-              }
-              parentUpdates.primaryMobileNumber = mobile;
-            }
-          }
-          if (parentSecondaryMobileUpdate !== undefined) {
-            if (parentSecondaryMobileUpdate === null || parentSecondaryMobileUpdate === '') {
-              parentUpdates.secondaryMobileNumber = null;
-            } else {
-              let secMobile = parentSecondaryMobileUpdate.replace(/\D/g, '');
-              if (secMobile.length > 10) secMobile = secMobile.slice(-10);
-              if (!/^[6-9]\d{9}$/.test(secMobile)) {
-                throw new AppError('Enter Indian number or invalid number for secondary mobile', 400);
-              }
-              if (secMobile !== parent.secondaryMobileNumber) {
-                // Check if another parent already has this secondary mobile number
-                const otherParent = await mongoose.model('Parent').findOne({
-                  $or: [
-                    { primaryMobileNumber: secMobile },
-                    { secondaryMobileNumber: secMobile }
-                  ]
-                }).session(session);
-                if (otherParent && String(otherParent._id) !== String(parent._id)) {
-                  throw new AppError('This secondary mobile number is already in use by another parent.', 400);
-                }
-                parentUpdates.secondaryMobileNumber = secMobile;
-              }
+              primaryMobileChanged = true;
+              newPrimaryMobile = mobile;
             }
           }
 
-          if (Object.keys(parentUpdates).length > 0) {
-            await mongoose.model('Parent').updateOne({ _id: parentId }, { $set: parentUpdates }, { session });
-            await AuditService.log(
-              { performedBy, targetStudentId: studentId, action: 'PARENT_UPDATED', details: parentUpdates },
-              session
-            );
+          if (primaryMobileChanged) {
+            // Check if another parent already has this primary mobile number
+            const otherParent = await mongoose.model('Parent').findOne({ primaryMobileNumber: newPrimaryMobile }).session(session);
+            
+            if (otherParent) {
+              // Instead of throwing an error, we link the student to this existing parent
+              updates.parentId = otherParent._id;
+              targetParentId = otherParent._id;
+
+              // If name or secondary mobile are updated, we apply them to the existing parent
+              const existingParentUpdates = {};
+              if (parentNameUpdate !== undefined) {
+                existingParentUpdates.parentName = parentNameUpdate;
+              }
+              if (secondaryMobileToSet !== undefined && secondaryMobileToSet !== otherParent.secondaryMobileNumber) {
+                if (secondaryMobileToSet !== null) {
+                  // Check if this secondary mobile is already used by another parent
+                  const secOtherParent = await mongoose.model('Parent').findOne({
+                    _id: { $ne: otherParent._id },
+                    $or: [
+                      { primaryMobileNumber: secondaryMobileToSet },
+                      { secondaryMobileNumber: secondaryMobileToSet }
+                    ]
+                  }).session(session);
+                  if (secOtherParent) {
+                    throw new AppError('This secondary mobile number is already in use by another parent.', 400);
+                  }
+                }
+                existingParentUpdates.secondaryMobileNumber = secondaryMobileToSet;
+              }
+
+              if (Object.keys(existingParentUpdates).length > 0) {
+                await mongoose.model('Parent').updateOne({ _id: otherParent._id }, { $set: existingParentUpdates }, { session });
+                await AuditService.log(
+                  { performedBy, targetStudentId: studentId, action: 'PARENT_UPDATED', details: existingParentUpdates },
+                  session
+                );
+              }
+            } else {
+              // No parent exists with the new mobile number.
+              // Check if the current parent is shared by other students
+              const otherStudentsCount = await mongoose.model('Student').countDocuments({
+                parentId: parent._id,
+                _id: { $ne: studentId }
+              }).session(session);
+
+              const { randomBytes } = await import('crypto');
+              const randomPasswordHash = randomBytes(32).toString('hex');
+
+              if (otherStudentsCount > 0) {
+                // Parent is shared: split and create a NEW parent
+                const newParentData = {
+                  parentName: parentNameUpdate !== undefined ? parentNameUpdate : parent.parentName,
+                  primaryMobileNumber: newPrimaryMobile,
+                  secondaryMobileNumber: secondaryMobileToSet !== undefined ? secondaryMobileToSet : parent.secondaryMobileNumber,
+                  passwordHash: randomPasswordHash,
+                  isPasswordSet: false,
+                  isActive: true,
+                  refreshTokens: [],
+                  fcmTokens: []
+                };
+
+                // Validate new parent's secondary mobile is not already in use by another parent
+                if (newParentData.secondaryMobileNumber) {
+                  const secOtherParent = await mongoose.model('Parent').findOne({
+                    $or: [
+                      { primaryMobileNumber: newParentData.secondaryMobileNumber },
+                      { secondaryMobileNumber: newParentData.secondaryMobileNumber }
+                    ]
+                  }).session(session);
+                  if (secOtherParent) {
+                    throw new AppError('This secondary mobile number is already in use by another parent.', 400);
+                  }
+                }
+
+                const newParent = await mongoose.model('Parent').create([newParentData], { session }).then(docs => docs[0]);
+                updates.parentId = newParent._id;
+                targetParentId = newParent._id;
+
+                await AuditService.log(
+                  { performedBy, targetParentId: newParent._id, action: 'PARENT_CREATED', details: { parentName: newParent.parentName } },
+                  session
+                );
+              } else {
+                // Parent is NOT shared: update the parent document directly
+                parentUpdates.primaryMobileNumber = newPrimaryMobile;
+                parentUpdates.passwordHash = randomPasswordHash;
+                parentUpdates.isPasswordSet = false;
+                parentUpdates.refreshTokens = [];
+                parentUpdates.fcmTokens = [];
+
+                if (secondaryMobileToSet !== undefined) {
+                  if (secondaryMobileToSet !== null && secondaryMobileToSet !== parent.secondaryMobileNumber) {
+                    const secOtherParent = await mongoose.model('Parent').findOne({
+                      _id: { $ne: parent._id },
+                      $or: [
+                        { primaryMobileNumber: secondaryMobileToSet },
+                        { secondaryMobileNumber: secondaryMobileToSet }
+                      ]
+                    }).session(session);
+                    if (secOtherParent) {
+                      throw new AppError('This secondary mobile number is already in use by another parent.', 400);
+                    }
+                  }
+                  parentUpdates.secondaryMobileNumber = secondaryMobileToSet;
+                }
+
+                await mongoose.model('Parent').updateOne({ _id: parentId }, { $set: parentUpdates }, { session });
+                await AuditService.log(
+                  { performedBy, targetStudentId: studentId, action: 'PARENT_UPDATED', details: parentUpdates },
+                  session
+                );
+              }
+            }
+          } else {
+            // Primary mobile NOT changed: just update parentName and/or secondaryMobile on the current parent
+            if (secondaryMobileToSet !== undefined && secondaryMobileToSet !== parent.secondaryMobileNumber) {
+              if (secondaryMobileToSet !== null) {
+                const secOtherParent = await mongoose.model('Parent').findOne({
+                  _id: { $ne: parent._id },
+                  $or: [
+                    { primaryMobileNumber: secondaryMobileToSet },
+                    { secondaryMobileNumber: secondaryMobileToSet }
+                  ]
+                }).session(session);
+                if (secOtherParent) {
+                  throw new AppError('This secondary mobile number is already in use by another parent.', 400);
+                }
+              }
+              parentUpdates.secondaryMobileNumber = secondaryMobileToSet;
+            }
+
+            if (Object.keys(parentUpdates).length > 0) {
+              await mongoose.model('Parent').updateOne({ _id: parentId }, { $set: parentUpdates }, { session });
+              await AuditService.log(
+                { performedBy, targetStudentId: studentId, action: 'PARENT_UPDATED', details: parentUpdates },
+                session
+              );
+            }
           }
         }
       }
