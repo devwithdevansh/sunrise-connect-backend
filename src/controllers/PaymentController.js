@@ -6,6 +6,7 @@ import sendResponse from '../utils/response.js';
 import AppError from '../utils/AppError.js';
 import ledgerRepository from '../repositories/ledgerRepository.js';
 import studentRepository from '../repositories/studentRepository.js';
+import GatewayLog from '../models/GatewayLog.js';
 
 class PaymentController {
   /** POST /api/v1/payments */
@@ -146,10 +147,34 @@ class PaymentController {
       }
     }
 
+    // Capture the raw gateway response safely (don't block parent payments if this fails)
+    try {
+      const rpPayment = await RazorpayService.fetchPayment(razorpay_payment_id);
+      if (rpPayment) {
+        // Use upsert to handle idempotency replays gracefully
+        await GatewayLog.findOneAndUpdate(
+          { paymentId: razorpay_payment_id },
+          {
+            paymentId: razorpay_payment_id,
+            orderId: razorpay_order_id,
+            method: rpPayment.method,
+            amount: (rpPayment.amount || 0) / 100, // convert paisa to INR
+            status: rpPayment.status,
+            gateway: 'RAZORPAY',
+            rawResponse: rpPayment,
+          },
+          { upsert: true, new: true }
+        );
+      }
+    } catch (err) {
+      console.error('Failed to capture GatewayLog:', err);
+    }
+
     // Embed razorpay details in each payment
     const enrichedPayments = payments.map(p => ({
       ...p,
       method: 'ONLINE',
+      gatewayTransactionId: razorpay_payment_id, // indexed first-class field for reconciliation
       details: {
         razorpay_order_id,
         razorpay_payment_id,

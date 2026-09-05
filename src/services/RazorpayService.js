@@ -46,6 +46,20 @@ class RazorpayService {
     
     return expectedSignature === signature;
   }
+
+  /**
+   * Fetch payment details directly from Razorpay
+   * @param {string} paymentId - The razorpay_payment_id
+   * @returns {Promise<Object|null>} The payment details or null if failed
+   */
+  async fetchPayment(paymentId) {
+    try {
+      return await this.instance.payments.fetch(paymentId);
+    } catch (error) {
+      console.error(`Error fetching Razorpay payment ${paymentId}:`, error);
+      return null;
+    }
+  }
 }
 
 export default new RazorpayService();

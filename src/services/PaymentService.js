@@ -285,8 +285,9 @@ class PaymentService {
         amount: -payment.amount,
         concessionAmount: -concessionToReverse,
         method: payment.method,
-        details: { reversalOf: paymentId, reason },
+        details: { reversalOf: paymentId, reason }, // kept for backward compat with old records
         isReversal: true,
+        reversedPaymentId: payment._id,              // proper ObjectId link to the original payment
       }, { session });
 
       // OCC ledger decrement

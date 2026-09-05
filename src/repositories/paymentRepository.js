@@ -76,6 +76,15 @@ const paymentRepository = {
       },
       { $unwind: { path: '$ledger', preserveNullAndEmptyArrays: true } },
       {
+        $lookup: {
+          from: 'gatewaylogs',
+          localField: 'gatewayTransactionId',
+          foreignField: 'paymentId',
+          as: 'gatewayLog',
+        }
+      },
+      { $unwind: { path: '$gatewayLog', preserveNullAndEmptyArrays: true } },
+      {
         $project: {
           _id: 1,
           ledgerId: 1,
@@ -85,6 +94,8 @@ const paymentRepository = {
           method: 1,
           details: 1,
           isReversal: 1,
+          gatewayTransactionId: 1,
+          gatewayLog: 1,
           createdAt: 1,
           updatedAt: 1,
           performedBy: 1,

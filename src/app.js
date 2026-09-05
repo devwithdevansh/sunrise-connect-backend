@@ -64,6 +64,24 @@ app.get('/health', (_req, res) => {
   res.status(200).json({ status: 'UP', message: 'Sunrise Connect Backend is running' });
 });
 
+// ─── Android App Links ────────────────────────────────────────────────────────
+app.get('/.well-known/assetlinks.json', (_req, res) => {
+  res.status(200).json([
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "com.devwithdevansh.sunrise_connect",
+        "sha256_cert_fingerprints": [
+          "92:06:CA:FD:02:5A:D8:2D:8B:7E:3B:91:5A:A6:9C:44:F4:11:B4:D0:7B:06:12:0A:2C:1E:8C:DF:7E:6A:56:08",
+          "6F:26:10:AD:E8:EA:B1:99:35:D6:4C:E3:73:34:2D:4F:69:EC:7C:C6:94:33:0D:9E:4E:21:97:8D:28:2A:30:53",
+          "BF:E0:E8:56:D3:94:4B:F5:A6:05:0C:EF:EC:F2:85:99:95:43:C5:46:DC:E9:1F:AE:07:D1:EE:F1:9D:E2:E4:9F"
+        ]
+      }
+    }
+  ]);
+});
+
 // ─── API Routes ───────────────────────────────────────────────────────────────
 const V1 = '/api/v1';
 app.use(`${V1}/auth`,       authRoutes);
