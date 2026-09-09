@@ -243,6 +243,18 @@ class WhatsappService {
                 }
               });
             }
+          } else if (templateName === 'app_announcement') {
+            const finalTemplateName = language === 'gu' ? 'student_password_temp_guj' : 'new_application_template_eng';
+            // Both templates were created with language "English" in Meta, so the code must be 'en'
+            payloadsToSend.push({
+              messaging_product: 'whatsapp',
+              to: phone,
+              type: 'template',
+              template: {
+                name: finalTemplateName,
+                language: { code: 'en' }
+              }
+            });
           } else {
             // Generic template message
             const languageCode = language === 'gu' ? 'gu' : 'en_US'; // Keep en_US default for other generic templates if not specified
