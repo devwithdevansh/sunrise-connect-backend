@@ -15,7 +15,7 @@ import AppError from '../utils/AppError.js';
 
 class PaymentService {
   /** Create a payment and atomically update the ledger paidAmount */
-  static async createPayment({ ledgerId, amount, concessionAmount = 0, method, details = {}, performedBy = null }) {
+  static async createPayment({ ledgerId, amount, concessionAmount = 0, method, details = {}, performedBy = null, gatewayTransactionId = null }) {
     if (amount <= 0) throw new AppError('Payment amount must be positive', 400);
     const session = await mongoose.startSession();
     session.startTransaction();
@@ -39,7 +39,7 @@ class PaymentService {
 
       const status = remaining === 0 ? 'PAID' : 'PARTIAL';
       // Insert payment record
-      const payment = await paymentRepository.create({ ledgerId, amount, concessionAmount, method, details, receiptNumber, performedBy }, { session });
+      const payment = await paymentRepository.create({ ledgerId, amount, concessionAmount, method, details, receiptNumber, performedBy, gatewayTransactionId }, { session });
 
       // Atomic OCC ledger update
       const updateResult = await ledgerRepository.updateOne(
@@ -115,7 +115,7 @@ class PaymentService {
       let batchReceiptNumber = null;
 
       for (const payData of payments) {
-        const { ledgerId, amount, concessionAmount = 0, method, remark } = payData;
+        const { ledgerId, amount, concessionAmount = 0, method, remark, gatewayTransactionId = null, details = {} } = payData;
 
         // Find the ledger
         const ledger = await ledgerRepository.findById(ledgerId, null, { session });
@@ -142,6 +142,8 @@ class PaymentService {
 
           const status = remaining === 0 ? 'PAID' : 'PARTIAL';
 
+          const paymentDetails = { ...details, remark, transactionId: details.transactionId || batchTxnId };
+
           // Insert payment record
           const payment = await paymentRepository.create({
             ledgerId,
@@ -149,7 +151,8 @@ class PaymentService {
             amount,
             concessionAmount,
             method,
-            details: { remark, transactionId: batchTxnId },
+            gatewayTransactionId,
+            details: paymentDetails,
             performedBy
           }, { session });
 
