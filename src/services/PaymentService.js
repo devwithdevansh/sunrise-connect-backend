@@ -49,8 +49,24 @@ class PaymentService {
       );
       if (updateResult.modifiedCount !== 1) throw new AppError('Concurrency conflict', 409);
 
+      // Fetch student and parent info for enriched audit logging
+      const student = await studentRepository.findById(ledger.studentId, null, { session }).populate('parentId');
+      const studentName = student ? (student.name || student.studentName) : 'Unknown Student';
+      let parentName = 'Unknown Parent';
+      let parentPhone = '';
+      if (student && student.parentId) {
+        parentName = student.parentId.fatherName || student.parentId.name || 'Unknown';
+        parentPhone = student.parentId.phone || '';
+      }
+
       await AuditService.log(
-        { performedBy, targetLedgerId: ledgerId, action: 'PAYMENT_CREATED', details: { paymentId: payment._id, amount, concessionAmount, method } },
+        { 
+          performedBy, 
+          targetLedgerId: ledgerId, 
+          targetStudentId: ledger.studentId,
+          action: 'PAYMENT_CREATED', 
+          details: { paymentId: payment._id, amount, concessionAmount, method, studentName, parentName, parentPhone } 
+        },
         session
       );
       await session.commitTransaction();
@@ -121,6 +137,16 @@ class PaymentService {
         const ledger = await ledgerRepository.findById(ledgerId, null, { session });
         if (!ledger) throw new AppError(`Ledger not found for ID: ${ledgerId}`, 404);
 
+        // Fetch student and parent info for enriched audit logging
+        const student = await studentRepository.findById(ledger.studentId, null, { session }).populate('parentId');
+        const studentName = student ? (student.name || student.studentName) : 'Unknown Student';
+        let parentName = 'Unknown Parent';
+        let parentPhone = '';
+        if (student && student.parentId) {
+          parentName = student.parentId.fatherName || student.parentId.name || 'Unknown';
+          parentPhone = student.parentId.phone || '';
+        }
+
         if (batchReceiptNumber === null && amount > 0) {
           const ayDoc = await AcademicYear.findOneAndUpdate(
             { name: ledger.academicYear },
@@ -165,7 +191,13 @@ class PaymentService {
           if (updateResult.modifiedCount !== 1) throw new AppError('Concurrency conflict', 409);
 
           await AuditService.log(
-            { performedBy, targetLedgerId: ledgerId, action: 'PAYMENT_CREATED', details: { paymentId: payment._id, amount, concessionAmount, method } },
+            { 
+              performedBy, 
+              targetLedgerId: ledgerId, 
+              targetStudentId: ledger.studentId,
+              action: 'PAYMENT_CREATED', 
+              details: { paymentId: payment._id, amount, concessionAmount, method, studentName, parentName, parentPhone } 
+            },
             session
           );
 
@@ -187,7 +219,13 @@ class PaymentService {
           if (updateResult.modifiedCount !== 1) throw new AppError('Concurrency conflict', 409);
 
           await AuditService.log(
-            { performedBy, targetLedgerId: ledgerId, action: 'LEDGER_CONCESSION_APPLIED', details: { amount: concessionAmount, reason: remark || 'Concession applied' } },
+            { 
+              performedBy, 
+              targetLedgerId: ledgerId, 
+              targetStudentId: ledger.studentId,
+              action: 'LEDGER_CONCESSION_APPLIED', 
+              details: { amount: concessionAmount, reason: remark || 'Concession applied', studentName, parentName, parentPhone } 
+            },
             session
           );
         }
@@ -301,8 +339,24 @@ class PaymentService {
       );
       if (result.modifiedCount !== 1) throw new AppError('Concurrency conflict', 409);
 
+      // Fetch student and parent info for enriched audit logging
+      const student = await studentRepository.findById(ledger.studentId, null, { session }).populate('parentId');
+      const studentName = student ? (student.name || student.studentName) : 'Unknown Student';
+      let parentName = 'Unknown Parent';
+      let parentPhone = '';
+      if (student && student.parentId) {
+        parentName = student.parentId.fatherName || student.parentId.name || 'Unknown';
+        parentPhone = student.parentId.phone || '';
+      }
+
       await AuditService.log(
-        { performedBy, targetLedgerId: ledger._id, action: 'PAYMENT_REVERSED', details: { reversalId: reversal._id, reason } },
+        { 
+          performedBy, 
+          targetLedgerId: payment.ledgerId, 
+          targetStudentId: ledger.studentId,
+          action: 'PAYMENT_REVERSED', 
+          details: { paymentId, amount: payment.amount, reason, studentName, parentName, parentPhone } 
+        },
         session
       );
       await session.commitTransaction();
