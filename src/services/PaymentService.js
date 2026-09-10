@@ -49,14 +49,14 @@ class PaymentService {
       );
       if (updateResult.modifiedCount !== 1) throw new AppError('Concurrency conflict', 409);
 
-      // Fetch student and parent info for enriched audit logging
-      const student = await studentRepository.findById(ledger.studentId, null, { session }).populate('parentId');
+      // Fetch student and parent info for enriched audit logging (outside session - read-only)
+      const student = await studentRepository.findById(ledger.studentId);
       const studentName = student ? (student.name || student.studentName) : 'Unknown Student';
       let parentName = 'Unknown Parent';
       let parentPhone = '';
       if (student && student.parentId) {
-        parentName = student.parentId.fatherName || student.parentId.name || 'Unknown';
-        parentPhone = student.parentId.phone || '';
+        parentName = student.parentId.parentName || 'Unknown';
+        parentPhone = student.parentId.primaryMobileNumber || '';
       }
 
       await AuditService.log(
@@ -137,14 +137,14 @@ class PaymentService {
         const ledger = await ledgerRepository.findById(ledgerId, null, { session });
         if (!ledger) throw new AppError(`Ledger not found for ID: ${ledgerId}`, 404);
 
-        // Fetch student and parent info for enriched audit logging
-        const student = await studentRepository.findById(ledger.studentId, null, { session }).populate('parentId');
+        // Fetch student and parent info for enriched audit logging (outside session - read-only)
+        const student = await studentRepository.findById(ledger.studentId);
         const studentName = student ? (student.name || student.studentName) : 'Unknown Student';
         let parentName = 'Unknown Parent';
         let parentPhone = '';
         if (student && student.parentId) {
-          parentName = student.parentId.fatherName || student.parentId.name || 'Unknown';
-          parentPhone = student.parentId.phone || '';
+          parentName = student.parentId.parentName || 'Unknown';
+          parentPhone = student.parentId.primaryMobileNumber || '';
         }
 
         if (batchReceiptNumber === null && amount > 0) {
@@ -339,14 +339,14 @@ class PaymentService {
       );
       if (result.modifiedCount !== 1) throw new AppError('Concurrency conflict', 409);
 
-      // Fetch student and parent info for enriched audit logging
-      const student = await studentRepository.findById(ledger.studentId, null, { session }).populate('parentId');
+      // Fetch student and parent info for enriched audit logging (outside session - read-only)
+      const student = await studentRepository.findById(ledger.studentId);
       const studentName = student ? (student.name || student.studentName) : 'Unknown Student';
       let parentName = 'Unknown Parent';
       let parentPhone = '';
       if (student && student.parentId) {
-        parentName = student.parentId.fatherName || student.parentId.name || 'Unknown';
-        parentPhone = student.parentId.phone || '';
+        parentName = student.parentId.parentName || 'Unknown';
+        parentPhone = student.parentId.primaryMobileNumber || '';
       }
 
       await AuditService.log(
