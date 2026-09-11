@@ -292,7 +292,7 @@ class WhatsappService {
                     parameters: [
                       { type: 'text', text: 'accessing' },
                       { type: 'text', text: 'Sunrise Connect' }, // 15 chars (exact limit)
-                      { type: 'text', text: digits },  // 10 chars (must be <= 15)
+                      { type: 'text', text: `${digits.slice(0, 5)} ${digits.slice(5)}` },  // e.g. "96876 29341" (11 chars)
                       { type: 'text', text: generatedPassword }, // {{4}} = the code shown in body
                     ]
                   },
