@@ -299,10 +299,10 @@ class WhatsappService {
                   {
                     // Copy Code button — parent taps to copy the password
                     type: 'button',
-                    sub_type: 'COPY_CODE',
+                    sub_type: 'url',
                     index: '0',
                     parameters: [
-                      { type: 'payload', payload: generatedPassword }
+                      { type: 'text', text: generatedPassword }
                     ]
                   }
                 ]
