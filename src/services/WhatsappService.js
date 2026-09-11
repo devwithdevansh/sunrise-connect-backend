@@ -252,7 +252,18 @@ class WhatsappService {
               type: 'template',
               template: {
                 name: finalTemplateName,
-                language: { code: 'en' }
+                language: { code: 'en' },
+                components: [
+                  {
+                    type: 'header',
+                    parameters: [
+                      {
+                        type: 'image',
+                        image: { link: 'https://sunrise-connect.vercel.app/sunrise-round-logo.png' }
+                      }
+                    ]
+                  }
+                ]
               }
             });
           } else if (templateName === 'account_credentials') {
