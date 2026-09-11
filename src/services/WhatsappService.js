@@ -259,7 +259,7 @@ class WhatsappService {
                     parameters: [
                       {
                         type: 'image',
-                        image: { link: 'https://sunrise-connect.vercel.app/sunrise-round-logo.png' }
+                        image: { link: 'https://sunrise-connect.vercel.app/announcement-whatsapp-img.png' }
                       }
                     ]
                   }
