@@ -255,6 +255,59 @@ class WhatsappService {
                 language: { code: 'en' }
               }
             });
+          } else if (templateName === 'account_credentials') {
+            // ── Account Credentials Authentication Template ──────────────────
+            // Uses the Meta Authentication Template (Copy Code).
+            // Template text (fixed by Meta):
+            //   "This code is for {{1}} your {{2}} account and linking it to {{3}}. Code: {{4}}"
+            //
+            // We populate it as:
+            //   {{1}} = "accessing"
+            //   {{2}} = "Sunrise Connect"
+            //   {{3}} = "your school account"
+            //   {{4}} = the generated 5-digit password (from even-index digits of phone)
+            //
+            // Password rule: digits at 0-based index 1,3,5,7,9 of the 10-digit phone number.
+            //   e.g. 9687629341 → 6,7,2,3,1 → "67231"
+
+            const rawPhone = parent.primaryMobileNumber || '';
+            const digits = rawPhone.replace(/\D/g, '').slice(-10);
+            if (digits.length !== 10) {
+              logger.warn(`account_credentials: cannot generate password for phone "${rawPhone}" (parent ${parent._id}) — skipping`);
+              continue;
+            }
+            const generatedPassword = [1, 3, 5, 7, 9].map(i => digits[i]).join('');
+
+            payloadsToSend.push({
+              messaging_product: 'whatsapp',
+              to: phone,
+              type: 'template',
+              template: {
+                name: 'authentication_template',   // The exact name registered in Meta
+                language: { code: 'en_US' },
+                components: [
+                  {
+                    // Body: "This code is for {{1}} your {{2}} account and linking it to {{3}}. Code: {{4}}"
+                    type: 'body',
+                    parameters: [
+                      { type: 'text', text: 'accessing' },
+                      { type: 'text', text: 'Sunrise Connect' },
+                      { type: 'text', text: 'your school account' },
+                      { type: 'text', text: generatedPassword }, // {{4}} = the code shown in body
+                    ]
+                  },
+                  {
+                    // Copy Code button — parent taps to copy the password
+                    type: 'button',
+                    sub_type: 'COPY_CODE',
+                    index: '0',
+                    parameters: [
+                      { type: 'payload', payload: generatedPassword }
+                    ]
+                  }
+                ]
+              }
+            });
           } else {
             // Generic template message
             const languageCode = language === 'gu' ? 'gu' : 'en_US'; // Keep en_US default for other generic templates if not specified
