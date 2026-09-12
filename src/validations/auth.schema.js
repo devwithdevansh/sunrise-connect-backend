@@ -29,6 +29,13 @@ export const parentLoginSchema = {
   }),
 };
 
+export const teacherLoginSchema = {
+  body: z.object({
+    contactNo1: z.string().regex(/^[6-9]\d{9}$/, 'Enter Indian number or invalid number'),
+    password: z.string().min(1),
+  }),
+};
+
 export const refreshTokenSchema = {
   body: z.object({
     domain: z.enum(['parent', 'user']),

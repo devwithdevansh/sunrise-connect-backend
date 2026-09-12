@@ -3,6 +3,8 @@
 // Gracefully degrades if Firebase is not configured — logs warning and saves record with FAILED status.
 
 import Notification from '../models/Notification.js';
+import Parent from '../models/Parent.js';
+import User from '../models/User.js';
 import parentRepository from '../repositories/parentRepository.js';
 import studentRepository from '../repositories/studentRepository.js';
 import logger from '../config/logger.js';
@@ -48,6 +50,25 @@ class NotificationService {
       { _id: parentId },
       { $pull: { fcmTokens: { token } } }
     );
+    return { success: true };
+  }
+
+  /** Same as registerFcmToken, for a Staff/Teacher/Admin User instead of a Parent. */
+  static async registerStaffFcmToken({ userId, token, platform = 'android' }) {
+    if (!token || typeof token !== 'string' || token.trim() === '') {
+      throw new AppError('FCM token is required', 400);
+    }
+    await User.updateOne({ _id: userId }, { $pull: { fcmTokens: { token } } });
+    await User.updateOne(
+      { _id: userId },
+      { $push: { fcmTokens: { $each: [{ token, platform, updatedAt: new Date() }], $slice: -10 } } }
+    );
+    logger.info(`FCM token registered for user ${userId}`);
+    return { success: true };
+  }
+
+  static async removeStaffFcmToken({ userId, token }) {
+    await User.updateOne({ _id: userId }, { $pull: { fcmTokens: { token } } });
     return { success: true };
   }
 
@@ -279,6 +300,20 @@ class NotificationService {
       );
     }
     return { success: true, marked: unread.length };
+  }
+
+  /**
+   * Push a single transient notification to one recipient (parent or staff/
+   * teacher/admin User) — used for chat "new message" pushes, which don't
+   * need a row in the Notification inbox collection (the Message itself is
+   * the source of truth for chat history).
+   */
+  static async notifyUser({ recipientRole, recipientId, title, body, data = {} }) {
+    const Model = recipientRole === 'parent' ? Parent : User;
+    const doc = await Model.findById(recipientId).select('fcmTokens').lean();
+    const tokens = (doc?.fcmTokens || []).map((t) => t.token).filter(Boolean);
+    if (tokens.length === 0) return { successCount: 0, failureCount: 0 };
+    return NotificationService._sendViaFcm(tokens, { title, body, data });
   }
 
   /**

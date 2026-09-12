@@ -10,8 +10,8 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: [true, 'Email is required'],
       unique: true, // Index & Validation: Enforces unique accounts and generates a unique B-Tree index for O(1) login lookups.
+      sparse: true, // Allows email to be missing/null if phone is used for login
       trim: true,
       lowercase: true, // Validation Decision: Normalizes emails (e.g., 'Admin@school.com' becomes 'admin@school.com') to prevent duplicate accounts via case variations.
       match: [/^\S+@\S+\.\S+$/, 'Please provide a valid email address'], // Validation Decision: Strict Regex ensures only mathematically valid email formats enter the DB.
@@ -25,10 +25,56 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Role is required'],
       enum: {
-        values: ['ADMIN', 'STAFF'],
-        message: '{VALUE} is not a valid role. Allowed values: ADMIN, STAFF.',
+        values: ['ADMIN', 'STAFF', 'TEACHER'],
+        message: '{VALUE} is not a valid role. Allowed values: ADMIN, STAFF, TEACHER.',
       },
       default: 'STAFF', // Security Safeguard: Principle of Least Privilege. If role is accidentally omitted during creation, it defaults to the lowest permission level.
+    },
+    permissions: {
+      type: [String],
+      default: [],
+    },
+    dob: { type: Date, default: null },
+    aadharNo: { type: String, trim: true, default: null },
+    panNo: { type: String, trim: true, default: null },
+    contactNo1: { 
+      type: String, 
+      trim: true, 
+      default: null,
+      unique: true, 
+      sparse: true // Allows multiple nulls, but real numbers must be unique
+    },
+    contactNo2: { type: String, trim: true, default: null },
+    address: { type: String, trim: true, default: null },
+    photoUrl: { type: String, trim: true, default: null },
+    designation: { type: String, trim: true, default: null },
+    experience: { type: String, trim: true, default: null },
+    educationDetails: { type: Array, default: [] },
+    shift1: {
+      entry: { type: String, default: null },
+      exit: { type: String, default: null }
+    },
+    shift2: {
+      entry: { type: String, default: null },
+      exit: { type: String, default: null }
+    },
+    teacherProfile: {
+      isClassTeacherFor: {
+        standard: { type: String, default: null },
+        division: { type: String, default: null },
+        medium: { type: String, default: null }
+      },
+      subjectsAssigned: {
+        type: [
+          {
+            subjectName: { type: String, required: true },
+            standard: { type: String, required: true },
+            division: { type: String, required: true },
+            medium: { type: String, required: true }
+          }
+        ],
+        default: []
+      }
     },
     isActive: {
       type: Boolean,
@@ -50,6 +96,15 @@ const userSchema = new mongoose.Schema(
       select: false,
       default: [],
     },
+    // FCM push tokens — mirrors Parent.fcmTokens exactly, so Staff/Teachers
+    // can receive pushes too (e.g. new chat messages, leave requests to review).
+    fcmTokens: [
+      {
+        token: { type: String, required: true },
+        platform: { type: String, default: 'android', enum: ['android', 'ios', 'web'] },
+        updatedAt: { type: Date, default: Date.now },
+      },
+    ],
   },
   {
     timestamps: true, // Automatically manages createdAt and updatedAt fields for auditing.

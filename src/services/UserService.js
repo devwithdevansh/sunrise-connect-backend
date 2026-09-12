@@ -9,15 +9,22 @@ class UserService {
   /**
    * Create a new staff/clerk user. Only ADMIN should call this.
    */
-  static async createStaff({ name, email, password, role = 'STAFF' }) {
-    // Only allow creating STAFF accounts through this method
-    if (role !== 'STAFF') throw new AppError('Only STAFF accounts can be created through this endpoint', 400);
+  static async createStaff({ name, email, phone, password, role = 'STAFF' }) {
+    // Allow creating STAFF and TEACHER accounts through this method
+    if (role !== 'STAFF' && role !== 'TEACHER') throw new AppError('Only STAFF and TEACHER accounts can be created through this endpoint', 400);
 
-    const existing = await userRepository.findOne({ email });
-    if (existing) throw new AppError('A user with this email already exists', 409);
+    // Ensure uniqueness manually across email OR phone if they exist
+    if (email) {
+      const existingEmail = await userRepository.findOne({ email });
+      if (existingEmail) throw new AppError('A user with this email already exists', 409);
+    }
+    if (phone) {
+      const existingPhone = await userRepository.findOne({ contactNo1: phone });
+      if (existingPhone) throw new AppError('A user with this phone number already exists', 409);
+    }
 
     const passwordHash = await bcrypt.hash(password, 12);
-    const user = await userRepository.create({ name, email, passwordHash, role });
+    const user = await userRepository.create({ name, email: email || undefined, contactNo1: phone || undefined, passwordHash, role });
 
     await AuditService.log({
       performedBy: null,
@@ -30,10 +37,40 @@ class UserService {
   }
 
   /**
-   * List all staff users (no password hashes returned).
+   * List all staff and teacher users (no password hashes returned).
    */
   static async listStaff() {
-    return userRepository.find({ role: 'STAFF' }, 'name email role isActive lastLogin createdAt', { sort: { createdAt: -1 } });
+    return userRepository.find(
+      { role: { $in: ['STAFF', 'TEACHER'] } }, 
+      'name email contactNo1 role isActive lastLogin createdAt permissions', 
+      { sort: { createdAt: -1 } }
+    );
+  }
+
+  /**
+   * Update a user's teacher profile and permissions
+   */
+  static async updateTeacherProfile(userId, { role, permissions, teacherProfile }) {
+    const user = await userRepository.findById(userId);
+    if (!user) throw new AppError('User not found', 404);
+    
+    // Merge new values
+    if (role !== undefined) user.role = role;
+    if (permissions !== undefined) user.permissions = permissions;
+
+
+    await userRepository.updateOne(
+      { _id: userId },
+      { $set: { permissions: user.permissions } }
+    );
+
+    await AuditService.log({
+      performedBy: null,
+      action: 'TEACHER_PROFILE_UPDATED',
+      details: { userId, name: user.name }
+    });
+
+    return { _id: userId, permissions: user.permissions };
   }
 
   /**

@@ -19,16 +19,10 @@ async function cleanExpiredRefreshTokens(repo, entityId) {
 }
 
 class AuthService {
-  /* ----------------------------------------------------------------
-   * 1. Portal login – admin / staff (no audit – application event)
-   * ---------------------------------------------------------------- */
-  static async portalLogin({ email, password }) {
-    const user = await userRepository.findByEmailWithPassword(email);
-    if (!user) throw new AppError('Invalid credentials', 401);
-    if (!user.isActive) throw new AppError('Your account has been deactivated. Contact the administrator.', 403);
-    const match = await bcrypt.compare(password, user.passwordHash);
-    if (!match) throw new AppError('Invalid credentials', 401);
-
+  /** Shared token/refresh-token issuance for any User (ADMIN/STAFF/TEACHER),
+   *  used by both the web portal login and the mobile teacher login so the
+   *  two flows can't drift apart. */
+  static async _issueUserSession(user, { logLabel }) {
     const payload = { id: user._id.toString(), role: user.role };
     const accessToken = jwt.sign(payload, env.JWT_SECRET, { expiresIn: env.JWT_EXPIRES_IN });
 
@@ -54,8 +48,45 @@ class AuthService {
     // Update lastLogin timestamp
     await userRepository.updateOne({ _id: user._id }, { $set: { lastLogin: new Date() } });
 
-    logger.info(`Portal login: ${user._id}`);
+    logger.info(`${logLabel}: ${user._id}`);
     return { accessToken, refreshToken: refreshPlain, user: { name: user.name, role: user.role } };
+  }
+
+  /* ----------------------------------------------------------------
+   * 1. Portal login – admin / staff only (no audit – application event)
+   *    Teachers are mobile-only and are rejected here even with valid
+   *    credentials; they must use teacherLogin() instead.
+   * ---------------------------------------------------------------- */
+  static async portalLogin({ email, password }) {
+    // email can be an email string OR a phone string
+    const user = await userRepository.findByLoginIdWithPassword(email);
+    if (!user) throw new AppError('Invalid credentials', 401);
+    if (!user.isActive) throw new AppError('Your account has been deactivated. Contact the administrator.', 403);
+    const match = await bcrypt.compare(password, user.passwordHash);
+    if (!match) throw new AppError('Invalid credentials', 401);
+    if (user.role === 'TEACHER') {
+      throw new AppError('Teachers must use the Sunrise Connect mobile app to sign in.', 403);
+    }
+
+    return AuthService._issueUserSession(user, { logLabel: 'Portal login' });
+  }
+
+  /* ----------------------------------------------------------------
+   * 1b. Teacher mobile login – mobile number + password, mirrors the
+   *     parent mobile-login flow. ADMIN/STAFF accounts are rejected here
+   *     even with valid credentials; they must use the web portal.
+   * ---------------------------------------------------------------- */
+  static async teacherLogin({ contactNo1, password }) {
+    const user = await userRepository.findByLoginIdWithPassword(contactNo1);
+    if (!user) throw new AppError('Invalid credentials', 401);
+    if (!user.isActive) throw new AppError('Your account has been deactivated. Contact the administrator.', 403);
+    const match = await bcrypt.compare(password, user.passwordHash);
+    if (!match) throw new AppError('Invalid credentials', 401);
+    if (user.role !== 'TEACHER') {
+      throw new AppError('This login is for teachers only. Staff and admins should use the web portal.', 403);
+    }
+
+    return AuthService._issueUserSession(user, { logLabel: 'Teacher mobile login' });
   }
 
   /* ----------------------------------------------------------------

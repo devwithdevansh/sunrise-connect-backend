@@ -35,11 +35,11 @@ import Parent from '../src/models/Parent.js';
 // CONFIG
 // ──────────────────────────────────────────────────────────────────────────────
 
-// These 3 phones are used for TEST mode only
-const TEST_PHONES = ['9516238470', '6512473896', '9596234875'];
+// These phones are used for TEST mode only
+const TEST_PHONES = ['9516238470', '6512473896', '9596234875', '9687629341'];
 
 const IS_ALL_MODE = process.argv.includes('--all');
-const DRY_RUN     = process.argv.includes('--dry-run'); // prints but does NOT write to DB
+const DRY_RUN = process.argv.includes('--dry-run'); // prints but does NOT write to DB
 
 // ──────────────────────────────────────────────────────────────────────────────
 // PASSWORD GENERATION

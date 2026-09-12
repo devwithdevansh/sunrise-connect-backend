@@ -13,6 +13,7 @@ router.use(authorize('ADMIN'));
 router.post('/', UserController.createStaff);
 router.get('/', UserController.listStaff);
 router.patch('/:id/toggle-status', UserController.toggleStatus);
+router.put('/:id/teacher-profile', UserController.updateTeacherProfile);
 router.patch('/:id/reset-password', UserController.resetPassword);
 router.delete('/:id', UserController.deleteStaff);
 

@@ -24,6 +24,8 @@ import reportRoutes           from './routes/report.routes.js';
 import notificationRoutes     from './routes/notification.routes.js';
 import whatsappRoutes         from './routes/whatsapp.routes.js';
 import expenseRoutes          from './routes/expense.routes.js';
+import attendanceRoutes       from './routes/attendance.routes.js';
+import academicMasterRoutes   from './routes/academic-master.routes.js';
 
 const app = express();
 
@@ -82,6 +84,14 @@ app.get('/.well-known/assetlinks.json', (_req, res) => {
   ]);
 });
 
+import erpRoutes              from './routes/erp.routes.js';
+import allocationRoutes       from './routes/allocation.routes.js';
+import homeworkRoutes         from './routes/homework.routes.js';
+import leaveRoutes            from './routes/leave.routes.js';
+import examRoutes             from './routes/exam.routes.js';
+import timetableRoutes        from './routes/timetable.routes.js';
+import chatRoutes             from './routes/chat.routes.js';
+
 // ─── API Routes ───────────────────────────────────────────────────────────────
 const V1 = '/api/v1';
 app.use(`${V1}/auth`,       authRoutes);
@@ -100,6 +110,15 @@ app.use(`${V1}/reports`,        reportRoutes);
 app.use(`${V1}/notifications`,  notificationRoutes);
 app.use(`${V1}/whatsapp`,       whatsappRoutes);
 app.use(`${V1}/expenses`,       expenseRoutes);
+app.use(`${V1}/erp/allocations`, allocationRoutes); // Mount before erpRoutes
+app.use(`${V1}/erp/homework`,   homeworkRoutes);
+app.use(`${V1}/erp/leave`,      leaveRoutes);
+app.use(`${V1}/erp/exams`,      examRoutes);
+app.use(`${V1}/erp/timetable`,  timetableRoutes);
+app.use(`${V1}/erp`,            erpRoutes);
+app.use(`${V1}/attendance`,     attendanceRoutes);
+app.use(`${V1}/academic-master`,academicMasterRoutes);
+app.use(`${V1}/chat`,           chatRoutes);
 
 // ─── 404 Handler ──────────────────────────────────────────────────────────────
 app.all('/{*splat}', (req, _res, next) => {

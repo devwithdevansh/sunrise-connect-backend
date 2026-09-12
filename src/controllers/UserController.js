@@ -7,11 +7,11 @@ import AppError from '../utils/AppError.js';
 class UserController {
   /** POST /api/v1/users — Create a new staff/clerk account */
   static createStaff = catchAsync(async (req, res) => {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) throw new AppError('Name, email, and password are required', 400);
+    const { name, email, phone, password, role } = req.body;
+    if (!name || (!email && !phone) || !password) throw new AppError('Name, email/phone, and password are required', 400);
     if (password.length < 6) throw new AppError('Password must be at least 6 characters', 400);
 
-    const user = await UserService.createStaff({ name, email, password });
+    const user = await UserService.createStaff({ name, email, phone, password, role });
     sendResponse(res, 201, user, 'Staff account created successfully');
   });
 
@@ -25,6 +25,13 @@ class UserController {
   static toggleStatus = catchAsync(async (req, res) => {
     const result = await UserService.toggleStaffStatus(req.params.id);
     sendResponse(res, 200, result, `Staff account ${result.isActive ? 'activated' : 'deactivated'}`);
+  });
+
+  /** PATCH /api/v1/users/:id/teacher-profile — Update teacher permissions and assignments */
+  static updateTeacherProfile = catchAsync(async (req, res) => {
+    const { role, permissions } = req.body;
+    const result = await UserService.updateTeacherProfile(req.params.id, { role, permissions });
+    sendResponse(res, 200, result, 'Profile updated successfully');
   });
 
   /** PATCH /api/v1/users/:id/reset-password — Reset a staff account's password */

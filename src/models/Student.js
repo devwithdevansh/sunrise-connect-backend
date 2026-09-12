@@ -18,6 +18,26 @@ const studentSchema = new mongoose.Schema(
       trim: true,
       maxlength: [100, 'Student name cannot exceed 100 characters'],
     },
+    surname: { type: String, trim: true, default: null },
+    fatherName: { type: String, trim: true, default: null },
+    motherName: { type: String, trim: true, default: null },
+    grNo: { type: String, trim: true, default: null },
+    rollNo: { type: Number, default: null },
+    gender: { type: String, enum: ['Male', 'Female', null], default: null },
+    dob: { type: Date, default: null },
+    aadharNo: { type: String, trim: true, default: null },
+    penNo: { type: String, trim: true, default: null },
+    photoUrl: { type: String, trim: true, default: null },
+    profile: {
+      birthPlace: { type: String, trim: true, default: null },
+      religion: { type: String, trim: true, default: null },
+      category: { type: String, trim: true, default: null },
+      caste: { type: String, trim: true, default: null },
+      bloodGroup: { type: String, trim: true, default: null },
+      height: { type: String, trim: true, default: null },
+      weight: { type: String, trim: true, default: null },
+      medicalRemark: { type: String, trim: true, default: null },
+    },
     medium: {
       type: String,
       required: [true, 'Medium of instruction is required'],
@@ -41,6 +61,10 @@ const studentSchema = new mongoose.Schema(
       type: String,
       trim: true,
       default: 'None',
+    },
+    isMigrated: {
+      type: Boolean,
+      default: false, // Safe boundary: all legacy students will default to false.
     },
     isRTE: {
       type: Boolean,

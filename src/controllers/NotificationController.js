@@ -110,6 +110,28 @@ class NotificationController {
     const result = await NotificationService.removeFcmToken({ parentId, token });
     sendResponse(res, 200, result, 'FCM token removed');
   });
+
+  /**
+   * POST /api/v1/notifications/staff/fcm-token
+   * Staff/Teacher/Admin — register/refresh their FCM device token
+   */
+  static registerStaffToken = catchAsync(async (req, res) => {
+    const userId = req.user.id;
+    const { token, platform } = req.body;
+    const result = await NotificationService.registerStaffFcmToken({ userId, token, platform });
+    sendResponse(res, 200, result, 'FCM token registered');
+  });
+
+  /**
+   * DELETE /api/v1/notifications/staff/fcm-token
+   * Staff/Teacher/Admin — remove FCM token on logout
+   */
+  static removeStaffToken = catchAsync(async (req, res) => {
+    const userId = req.user.id;
+    const { token } = req.body;
+    const result = await NotificationService.removeStaffFcmToken({ userId, token });
+    sendResponse(res, 200, result, 'FCM token removed');
+  });
 }
 
 export default NotificationController;

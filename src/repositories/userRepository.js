@@ -13,9 +13,11 @@ const userRepository = {
     return User.findById(id, projection, opts).lean();
   },
 
-  /** Find by email including passwordHash (select: false override) */
-  async findByEmailWithPassword(email) {
-    return User.findOne({ email }).select('+passwordHash').lean();
+  /** Find by email or contactNo1 including passwordHash (select: false override) */
+  async findByLoginIdWithPassword(loginId) {
+    return User.findOne({
+      $or: [{ email: loginId }, { contactNo1: loginId }]
+    }).select('+passwordHash').lean();
   },
 
   /** Find by id including refreshTokens */
