@@ -29,8 +29,8 @@ class UserController {
 
   /** PATCH /api/v1/users/:id/teacher-profile — Update teacher permissions and assignments */
   static updateTeacherProfile = catchAsync(async (req, res) => {
-    const { role, permissions } = req.body;
-    const result = await UserService.updateTeacherProfile(req.params.id, { role, permissions });
+    const { role, permissions, teacherProfile } = req.body;
+    const result = await UserService.updateTeacherProfile(req.params.id, { role, permissions, teacherProfile });
     sendResponse(res, 200, result, 'Profile updated successfully');
   });
 

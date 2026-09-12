@@ -53,15 +53,23 @@ class UserService {
   static async updateTeacherProfile(userId, { role, permissions, teacherProfile }) {
     const user = await userRepository.findById(userId);
     if (!user) throw new AppError('User not found', 404);
-    
+
+    if (role !== undefined && role !== 'STAFF' && role !== 'TEACHER') {
+      throw new AppError('Role must be STAFF or TEACHER', 400);
+    }
+
     // Merge new values
     if (role !== undefined) user.role = role;
     if (permissions !== undefined) user.permissions = permissions;
-
+    if (teacherProfile !== undefined) user.teacherProfile = teacherProfile;
 
     await userRepository.updateOne(
       { _id: userId },
-      { $set: { permissions: user.permissions } }
+      { $set: { 
+        permissions: user.permissions, 
+        role: user.role,
+        ...(teacherProfile !== undefined && { teacherProfile: user.teacherProfile })
+      } }
     );
 
     await AuditService.log({
@@ -70,7 +78,11 @@ class UserService {
       details: { userId, name: user.name }
     });
 
-    return { _id: userId, permissions: user.permissions };
+    return {
+      _id: userId,
+      role: role !== undefined ? role : user.role,
+      permissions: permissions !== undefined ? permissions : user.permissions,
+    };
   }
 
   /**

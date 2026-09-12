@@ -1,5 +1,7 @@
 // src/controllers/StudentController.js
 import StudentService from '../services/StudentService.js';
+import AcademicYear from '../models/AcademicYear.js';
+import AllocationGuardService from '../services/AllocationGuardService.js';
 import catchAsync from '../utils/catchAsync.js';
 import sendResponse from '../utils/response.js';
 import AppError from '../utils/AppError.js';
@@ -16,6 +18,16 @@ class StudentController {
     const { limit = 20, skip = 0, ...filter } = req.query;
     if (req.user?.role === 'parent') {
       filter.parentId = req.user.id;
+    } else if (req.user?.role === 'TEACHER') {
+      // A teacher may only list the roster of a class they are the
+      // homeroom (class) teacher for — never an arbitrary class.
+      const { standard, division, medium } = filter;
+      if (!standard || !division || !medium) {
+        throw new AppError('standard, division and medium are required', 400);
+      }
+      const activeYear = await AcademicYear.findOne({ isActive: true });
+      if (!activeYear) throw new AppError('No active academic year found', 400);
+      await AllocationGuardService.verifyClassTeacherAccess(req.user, activeYear._id, standard, division, medium);
     }
     const students = await StudentService.listStudents(filter, { limit: Number(limit), skip: Number(skip) });
     sendResponse(res, 200, students);

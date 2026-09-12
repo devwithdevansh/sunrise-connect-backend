@@ -73,6 +73,7 @@ class ChatController {
     let query;
     if (req.user.role === 'parent') {
       query = { parentId: req.user.id };
+      if (req.query.studentId) query.studentId = req.query.studentId;
     } else if (req.user.role === 'ADMIN') {
       query = {};
     } else if (req.user.role === 'STAFF') {
