@@ -18,10 +18,22 @@ const examResultSchema = new mongoose.Schema(
       required: true,
     },
     marksObtained: {
-      type: Number, // If exam type is MARKS
+      type: Number, // If gradingSystem is Marks
     },
     gradeObtained: {
-      type: String, // If exam type is GRADES (e.g. A+, B)
+      type: String, // If gradingSystem is Grades
+    },
+    gradingSystem: {
+      type: String,
+      enum: ['Marks', 'Grades'],
+      required: true,
+      default: 'Marks',
+    },
+    maxMarks: {
+      type: Number, // Denormalized from Exam.subjects for fast queries
+    },
+    passingMarks: {
+      type: Number, // Denormalized from Exam.subjects for fast queries
     },
     remarks: {
       type: String,

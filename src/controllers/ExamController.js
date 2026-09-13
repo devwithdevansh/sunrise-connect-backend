@@ -13,7 +13,7 @@ class ExamController {
    * Admins create exams for a specific standard and medium.
    */
   static createExam = catchAsync(async (req, res) => {
-    const { standard, divisions, medium, examName, type, maxMarks, passingMarks, subjects } = req.body;
+    const { standard, divisions, medium, examName, subjects } = req.body;
 
     const activeYear = await AcademicYear.findOne({ isActive: true });
     if (!activeYear) {
@@ -31,10 +31,7 @@ class ExamController {
       divisions,
       medium,
       examName,
-      type,
-      maxMarks,
-      passingMarks,
-      subjects,
+      subjects, // subjects array now contains gradingSystem, maxMarks, passingMarks per subject
       createdBy: req.user._id
     });
 
@@ -155,7 +152,15 @@ class ExamController {
     );
 
     // Process bulk upsert
-    const bulkOps = results.map(r => ({
+    // Find the specific subject in the exam to get its grading rules
+    const examSubject = exam.subjects.find(s => s.subjectId.toString() === subjectId);
+    if (!examSubject) {
+      throw new AppError('This subject is not part of the exam', 400);
+    }
+
+    const { maxMarks, passingMarks, gradingSystem } = examSubject;
+
+    const operations = results.map(r => ({
       updateOne: {
         filter: { examId, subjectId, studentId: r.studentId },
         update: {
@@ -164,15 +169,16 @@ class ExamController {
             gradeObtained: r.gradeObtained,
             remarks: r.remarks,
             enteredBy: req.user._id,
+            maxMarks, // Denormalized from Exam.subjects
+            passingMarks, // Denormalized from Exam.subjects
+            gradingSystem, // Denormalized from Exam.subjects
           }
         },
         upsert: true
       }
     }));
 
-    if (bulkOps.length > 0) {
-      await ExamResult.bulkWrite(bulkOps);
-    }
+    await ExamResult.bulkWrite(operations);
 
     sendResponse(res, 200, null, 'Results saved successfully');
   });

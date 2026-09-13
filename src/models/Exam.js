@@ -26,26 +26,25 @@ const examSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    type: {
-      type: String,
-      enum: ['MARKS', 'GRADES'], // Marks based or Grade based
-      required: true,
-      default: 'MARKS',
-    },
-    maxMarks: {
-      type: Number,
-      default: 100, // Only applicable if type is MARKS
-    },
-    passingMarks: {
-      type: Number,
-      default: 35, // Only applicable if type is MARKS
-    },
     subjects: [{
       subjectId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Subject',
       },
       examDate: Date,
+      gradingSystem: {
+        type: String,
+        enum: ['Marks', 'Grades'],
+        default: 'Marks',
+      },
+      maxMarks: {
+        type: Number,
+        default: 100, // Only applicable if gradingSystem is Marks
+      },
+      passingMarks: {
+        type: Number,
+        default: 35, // Only applicable if gradingSystem is Marks
+      }
     }],
     isPublished: {
       type: Boolean,
