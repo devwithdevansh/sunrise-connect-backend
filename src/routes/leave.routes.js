@@ -11,4 +11,9 @@ router.post('/', authorize('ADMIN', 'TEACHER', 'STAFF', 'parent'), LeaveControll
 router.get('/', authorize('ADMIN', 'TEACHER', 'STAFF', 'parent'), LeaveController.getLeaveRequests);
 router.patch('/:id/status', authorize('ADMIN', 'TEACHER', 'STAFF'), LeaveController.updateLeaveStatus);
 
+// Staff Leaves
+router.post('/staff', authorize('ADMIN', 'TEACHER', 'STAFF'), LeaveController.createStaffLeaveRequest);
+router.get('/staff', authorize('ADMIN', 'TEACHER', 'STAFF'), LeaveController.getStaffLeaveRequests);
+router.patch('/staff/:id/status', authorize('ADMIN'), LeaveController.updateStaffLeaveStatus);
+
 export default router;
