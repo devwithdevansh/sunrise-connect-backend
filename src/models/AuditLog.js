@@ -55,7 +55,6 @@ const auditLogSchema = new mongoose.Schema(
         'REFRESH_ROTATED', // kept for AuthService compatibility (frozen)
         'WHATSAPP_MESSAGE_DELETED',
         'NOTIFICATION_DELETED',
-        'TEACHER_PROFILE_UPDATED',
       ],
     },
     details: {
