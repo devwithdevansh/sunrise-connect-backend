@@ -28,6 +28,12 @@ class AuthController {
     sendResponse(res, 200, result);
   });
 
+  /** POST /api/v1/auth/teacher/login — mobile-only, teachers never use the web portal */
+  static teacherLogin = catchAsync(async (req, res) => {
+    const result = await AuthService.teacherLogin(req.body);
+    sendResponse(res, 200, result);
+  });
+
   /** POST /api/v1/auth/refresh */
   static refreshToken = catchAsync(async (req, res) => {
     const result = await AuthService.rotateRefreshToken(req.body);

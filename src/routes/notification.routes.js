@@ -11,7 +11,7 @@ const router = Router();
 // GET    /api/v1/notifications             → list all sent notifications
 import Notification from '../models/Notification.js';
 
-router.get('/clear-all-danger', async (req, res) => {
+router.get('/clear-all-danger', authenticate, authorize('ADMIN'), async (req, res) => {
   try {
     const result = await Notification.deleteMany({});
     res.json({ success: true, deleted: result.deletedCount });
@@ -88,6 +88,23 @@ router.delete(
   authenticate,
   authorize('parent'),
   NotificationController.removeToken
+);
+
+// ─── Staff / Teacher / Admin push registration ────────────────────────────────
+// POST   /api/v1/notifications/staff/fcm-token   → register device token
+// DELETE /api/v1/notifications/staff/fcm-token   → remove token on logout
+router.post(
+  '/staff/fcm-token',
+  authenticate,
+  authorize('ADMIN', 'STAFF', 'TEACHER'),
+  NotificationController.registerStaffToken
+);
+
+router.delete(
+  '/staff/fcm-token',
+  authenticate,
+  authorize('ADMIN', 'STAFF', 'TEACHER'),
+  NotificationController.removeStaffToken
 );
 
 export default router;

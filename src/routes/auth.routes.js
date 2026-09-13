@@ -8,6 +8,7 @@ import {
   verifyParentSchema,
   setPasswordSchema,
   parentLoginSchema,
+  teacherLoginSchema,
   refreshTokenSchema,
 } from '../validations/auth.schema.js';
 
@@ -19,6 +20,7 @@ router.post('/portal/login',        validate(portalLoginSchema),   AuthControlle
 router.post('/parent/verify',       validate(verifyParentSchema),  AuthController.verifyParentLastFour);
 router.post('/parent/set-password', validate(setPasswordSchema),   AuthController.setParentPassword);
 router.post('/parent/login',        validate(parentLoginSchema),   AuthController.parentLogin);
+router.post('/teacher/login',       validate(teacherLoginSchema),  AuthController.teacherLogin);
 router.post('/refresh',             validate(refreshTokenSchema),  AuthController.refreshToken);
 
 // Protected
