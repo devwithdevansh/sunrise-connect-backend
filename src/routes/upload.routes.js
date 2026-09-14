@@ -1,7 +1,8 @@
 import express from 'express';
 import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
-import { auth, authorize } from '../middlewares/auth.middleware.js';
+import authenticate from '../middlewares/auth.middleware.js';
+import authorize from '../middlewares/authorize.middleware.js';
 import env from '../config/env.js';
 
 const router = express.Router();
@@ -16,7 +17,7 @@ cloudinary.config({
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-router.post('/image', auth, authorize('ADMIN', 'SUPERADMIN'), upload.single('image'), (req, res) => {
+router.post('/image', authenticate, authorize('ADMIN', 'SUPERADMIN'), upload.single('image'), (req, res) => {
     try {
         if (!req.file) {
             return res.status(400).json({ status: 'error', message: 'No image file provided' });
