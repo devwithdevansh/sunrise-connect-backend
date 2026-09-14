@@ -13,7 +13,7 @@ class WhatsappService {
    * Queue and send a WhatsApp message to parents based on target criteria.
    */
   async sendWhatsapp(senderId, payload) {
-    const { templateName, body, targetType, targetFilter, parentIds, language } = payload;
+    const { templateName, body, targetType, targetFilter, parentIds, language, imageUrl } = payload;
 
     let targetParentIds = [];
 
@@ -260,6 +260,27 @@ class WhatsappService {
                       {
                         type: 'image',
                         image: { link: 'https://sunrise-connect.vercel.app/announcement-whatsapp-img.png?v=2' }
+                      }
+                    ]
+                  }
+                ]
+              }
+            });
+          } else if (templateName === 'school_holiday_image') {
+            payloadsToSend.push({
+              messaging_product: 'whatsapp',
+              to: phone,
+              type: 'template',
+              template: {
+                name: 'school_holiday_image',
+                language: { code: 'en' },
+                components: [
+                  {
+                    type: 'header',
+                    parameters: [
+                      {
+                        type: 'image',
+                        image: { link: imageUrl || 'https://via.placeholder.com/600x400.png?text=Holiday+Image' }
                       }
                     ]
                   }
