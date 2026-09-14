@@ -1,6 +1,17 @@
 // src/validations/student.schema.js
 import { z } from 'zod';
 
+const profileSchema = z.object({
+  birthPlace: z.string().nullable().optional(),
+  religion: z.string().nullable().optional(),
+  category: z.string().nullable().optional(),
+  caste: z.string().nullable().optional(),
+  bloodGroup: z.string().nullable().optional(),
+  height: z.string().nullable().optional(),
+  weight: z.string().nullable().optional(),
+  medicalRemark: z.string().nullable().optional(),
+});
+
 export const createStudentSchema = {
   body: z.object({
     parentId: z.string().min(1).optional(),
@@ -18,6 +29,16 @@ export const createStudentSchema = {
     buyBagKit: z.boolean().optional(),
     admissionMonth: z.enum(['June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May']).optional(),
     transportStartMonth: z.enum(['June', 'July', 'August', 'September', 'October', 'November', 'December', 'January', 'February', 'March', 'April', 'May']).optional(),
+    surname: z.string().nullable().optional(),
+    fatherName: z.string().nullable().optional(),
+    motherName: z.string().nullable().optional(),
+    grNo: z.string().nullable().optional(),
+    gender: z.enum(['Male', 'Female']).nullable().optional(),
+    dob: z.coerce.date().nullable().optional(),
+    aadharNo: z.string().nullable().optional(),
+    penNo: z.string().nullable().optional(),
+    photoUrl: z.string().nullable().optional(),
+    profile: profileSchema.optional(),
   }),
 };
 
@@ -39,6 +60,17 @@ export const updateStudentSchema = {
     parentMobile: z.string().optional(),
     parentSecondaryMobile: z.string().nullable().optional(),
     parentAllowOtpReset: z.boolean().optional(),
+    isMigrated: z.boolean().optional(),
+    grNo: z.string().nullable().optional(),
+    fatherName: z.string().nullable().optional(),
+    motherName: z.string().nullable().optional(),
+    gender: z.enum(['Male', 'Female']).nullable().optional(),
+    dob: z.coerce.date().nullable().optional(),
+    aadharNo: z.string().nullable().optional(),
+    penNo: z.string().nullable().optional(),
+    photoUrl: z.string().nullable().optional(),
+    surname: z.string().nullable().optional(),
+    profile: profileSchema.optional(),
   }),
   params: z.object({ id: z.string().min(1) }),
 };

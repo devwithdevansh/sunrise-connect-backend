@@ -2,6 +2,7 @@ import Attendance from '../models/Attendance.js';
 import AcademicYear from '../models/AcademicYear.js';
 import Student from '../models/Student.js';
 import AllocationGuardService from '../services/AllocationGuardService.js';
+import NotificationService from '../services/NotificationService.js';
 import verifyParentOwnsStudent from '../utils/verifyParentOwnsStudent.js';
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/AppError.js';
@@ -62,6 +63,21 @@ class AttendanceController {
       medium
     );
 
+    // An absence needs admin sign-off before the parent is notified; every
+    // other status is auto-verified. Re-saving a sheet must not un-verify (and
+    // thus re-notify) an absence that was already reviewed.
+    const existing = await Attendance.findOne({ date: queryDate, standard, division, medium });
+    const preparedRecords = records.map((r) => {
+      if (r.status !== 'ABSENT') {
+        return { ...r, verifiedByAdmin: true, verifiedAt: null, verifiedBy: null };
+      }
+      const prior = existing?.records?.find((p) => p.studentId.toString() === r.studentId && p.status === 'ABSENT');
+      if (prior?.verifiedByAdmin) {
+        return { ...r, verifiedByAdmin: true, verifiedAt: prior.verifiedAt, verifiedBy: prior.verifiedBy };
+      }
+      return { ...r, verifiedByAdmin: false, verifiedAt: null, verifiedBy: null };
+    });
+
     // Upsert the attendance record
     const attendance = await Attendance.findOneAndUpdate(
       {
@@ -74,7 +90,7 @@ class AttendanceController {
         $set: {
           teacherId: req.user?._id || req.user?.id,
           academicYearId: activeYear._id,
-          records,
+          records: preparedRecords,
         }
       },
       {
@@ -85,6 +101,89 @@ class AttendanceController {
     );
 
     sendResponse(res, 200, attendance);
+  });
+
+  /**
+   * GET /api/v1/attendance/pending-absences
+   * Admin/staff queue of absences awaiting verification before the parent is notified.
+   */
+  static getPendingAbsences = catchAsync(async (req, res) => {
+    const sheets = await Attendance.find({
+      records: { $elemMatch: { status: 'ABSENT', verifiedByAdmin: false } },
+    })
+      .sort({ date: -1 })
+      .limit(200)
+      .lean();
+
+    const studentIds = [...new Set(
+      sheets.flatMap((s) => s.records.filter((r) => r.status === 'ABSENT' && !r.verifiedByAdmin).map((r) => r.studentId.toString()))
+    )];
+    const studentDocs = await Student.find({ _id: { $in: studentIds } })
+      .select('studentName standard division medium parentId')
+      .populate('parentId', 'parentName primaryMobileNumber')
+      .lean();
+    const studentMap = new Map(studentDocs.map((s) => [s._id.toString(), s]));
+
+    const pending = [];
+    for (const sheet of sheets) {
+      for (const rec of sheet.records) {
+        if (rec.status === 'ABSENT' && !rec.verifiedByAdmin) {
+          const student = studentMap.get(rec.studentId.toString());
+          pending.push({
+            attendanceId: sheet._id,
+            date: sheet.date,
+            studentId: rec.studentId,
+            studentName: student?.studentName || 'Unknown',
+            standard: sheet.standard,
+            division: sheet.division,
+            medium: sheet.medium,
+            remarks: rec.remarks || null,
+            parentMobile: student?.parentId?.primaryMobileNumber || null,
+          });
+        }
+      }
+    }
+
+    sendResponse(res, 200, pending);
+  });
+
+  /**
+   * POST /api/v1/attendance/:id/verify-absence
+   * Admin confirms one student's absence, which triggers the parent notification.
+   */
+  static verifyAbsence = catchAsync(async (req, res) => {
+    const { id } = req.params;
+    const { studentId } = req.body;
+    if (!studentId) throw new AppError('studentId is required', 400);
+
+    const sheet = await Attendance.findById(id);
+    if (!sheet) throw new AppError('Attendance sheet not found', 404);
+
+    const record = sheet.records.find((r) => r.studentId.toString() === studentId);
+    if (!record) throw new AppError('No attendance record for this student on this sheet', 404);
+    if (record.status !== 'ABSENT') throw new AppError('Only ABSENT records require verification', 400);
+
+    if (!record.verifiedByAdmin) {
+      record.verifiedByAdmin = true;
+      record.verifiedAt = new Date();
+      record.verifiedBy = req.user?._id || req.user?.id;
+      await sheet.save();
+
+      const student = await Student.findById(studentId).select('studentName parentId');
+      if (student?.parentId) {
+        const dateStr = new Date(sheet.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        await NotificationService.sendBroadcast({
+          sentBy: req.user?._id || req.user?.id,
+          title: 'Attendance Alert',
+          body: `${student.studentName} was marked absent on ${dateStr}.`,
+          targetType: 'STUDENT',
+          targetFilter: { studentId },
+          type: 'ATTENDANCE_ABSENT',
+        });
+      }
+    }
+
+    sendResponse(res, 200, { studentId, verifiedByAdmin: true });
   });
 
   /**

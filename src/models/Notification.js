@@ -30,7 +30,7 @@ const notificationSchema = new mongoose.Schema(
       type: String,
       required: true,
       enum: {
-        values: ['BROADCAST', 'PAYMENT_RECEIVED', 'FEE_REMINDER', 'SYSTEM'],
+        values: ['BROADCAST', 'PAYMENT_RECEIVED', 'FEE_REMINDER', 'SYSTEM', 'ATTENDANCE_ABSENT'],
         message: '{VALUE} is not a valid notification type',
       },
       default: 'BROADCAST',

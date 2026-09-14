@@ -18,6 +18,21 @@ const attendanceRecordSchema = new mongoose.Schema(
       trim: true,
       default: null,
     },
+    // Only meaningful for ABSENT records: an absence must be reviewed by an
+    // admin before the parent is notified. Every other status is auto-verified.
+    verifiedByAdmin: {
+      type: Boolean,
+      default: true,
+    },
+    verifiedAt: {
+      type: Date,
+      default: null,
+    },
+    verifiedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      default: null,
+    },
   },
   { _id: false }
 );
