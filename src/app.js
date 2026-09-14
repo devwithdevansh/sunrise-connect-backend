@@ -26,6 +26,7 @@ import whatsappRoutes         from './routes/whatsapp.routes.js';
 import expenseRoutes          from './routes/expense.routes.js';
 import attendanceRoutes       from './routes/attendance.routes.js';
 import academicMasterRoutes   from './routes/academic-master.routes.js';
+import uploadRoutes           from './routes/upload.routes.js';
 
 const app = express();
 
@@ -119,6 +120,7 @@ app.use(`${V1}/erp`,            erpRoutes);
 app.use(`${V1}/attendance`,     attendanceRoutes);
 app.use(`${V1}/academic-master`,academicMasterRoutes);
 app.use(`${V1}/chat`,           chatRoutes);
+app.use(`${V1}/upload`,         uploadRoutes);
 
 // ─── 404 Handler ──────────────────────────────────────────────────────────────
 app.all('/{*splat}', (req, _res, next) => {
