@@ -4,7 +4,9 @@ const conn = new Client();
 conn.on('ready', () => {
   const cmds = [
     'cd domains/linen-weasel-242678.hostingersite.com/nodejs',
-    'git pull origin main',
+    'git fetch origin main',
+    'git reset --hard origin/main',
+    'npm install --production',
     'mkdir -p tmp && touch tmp/restart.txt'
   ];
   conn.exec(cmds.join(' && '), (err, stream) => {
