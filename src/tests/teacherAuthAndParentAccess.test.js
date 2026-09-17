@@ -64,28 +64,110 @@ describe('Teacher web-portal lockout', () => {
 });
 
 describe('Teacher mobile login', () => {
-  test('teacherLogin succeeds via contactNo1 for a TEACHER account', async () => {
+  test('teacherLogin succeeds via the last 5 digits for a TEACHER account', async () => {
     await makeUser({ contactNo1: '9876543210', role: 'TEACHER' });
 
-    const result = await AuthService.teacherLogin({ contactNo1: '9876543210', password: 'password123' });
+    const result = await AuthService.teacherLogin({ last5: '43210', password: 'password123' });
     expect(result.user.role).toBe('TEACHER');
     expect(result.accessToken).toBeTruthy();
     expect(result.refreshToken).toBeTruthy();
+    expect(result.dualRole).toBeNull();
   });
 
-  test('teacherLogin rejects STAFF/ADMIN accounts even with correct credentials', async () => {
+  test('teacherLogin rejects a malformed (non-5-digit) suffix', async () => {
+    await makeUser({ contactNo1: '9876543211', role: 'TEACHER' });
+
+    await expect(
+      AuthService.teacherLogin({ last5: '321', password: 'password123' })
+    ).rejects.toMatchObject({ statusCode: 400 });
+  });
+
+  test('teacherLogin ignores STAFF/ADMIN accounts with a matching suffix', async () => {
     await makeUser({ contactNo1: '9876543211', role: 'STAFF' });
 
     await expect(
-      AuthService.teacherLogin({ contactNo1: '9876543211', password: 'password123' })
-    ).rejects.toMatchObject({ statusCode: 403 });
+      AuthService.teacherLogin({ last5: '43211', password: 'password123' })
+    ).rejects.toMatchObject({ statusCode: 401 });
   });
 
   test('teacherLogin rejects a wrong password', async () => {
     await makeUser({ contactNo1: '9876543212', role: 'TEACHER' });
 
     await expect(
-      AuthService.teacherLogin({ contactNo1: '9876543212', password: 'wrongpassword' })
+      AuthService.teacherLogin({ last5: '43212', password: 'wrongpassword' })
+    ).rejects.toMatchObject({ statusCode: 401 });
+  });
+
+  test('a shared number between a teacher and a parent yields dual-role tokens from either login', async () => {
+    const sharedNumber = '9876500001';
+    await makeUser({ contactNo1: sharedNumber, role: 'TEACHER' });
+    const parentPasswordHash = await bcrypt.hash('password123', 4);
+    await Parent.create({ parentName: 'Dual Role', primaryMobileNumber: sharedNumber, passwordHash: parentPasswordHash });
+
+    const teacherResult = await AuthService.teacherLogin({ last5: '00001', password: 'password123' });
+    expect(teacherResult.user.role).toBe('TEACHER');
+    expect(teacherResult.dualRole).toBeTruthy();
+    expect(teacherResult.dualRole.accessToken).toBeTruthy();
+
+    const parentResult = await AuthService.parentLogin({ primaryMobileNumber: sharedNumber, password: 'password123' });
+    expect(parentResult.accessToken).toBeTruthy();
+    expect(parentResult.dualRole).toBeTruthy();
+    expect(parentResult.dualRole.user.role).toBe('TEACHER');
+  });
+
+  test('a shared number does not yield dual-role tokens when the passwords differ', async () => {
+    const sharedNumber = '9876500002';
+    await makeUser({ contactNo1: sharedNumber, role: 'TEACHER' });
+    const parentPasswordHash = await bcrypt.hash('differentPassword', 4);
+    await Parent.create({ parentName: 'Not Dual', primaryMobileNumber: sharedNumber, passwordHash: parentPasswordHash });
+
+    const teacherResult = await AuthService.teacherLogin({ last5: '00002', password: 'password123' });
+    expect(teacherResult.dualRole).toBeNull();
+  });
+});
+
+describe('Unified mobile login', () => {
+  test('logs in as teacher when teacher password matches on a dual-role phone', async () => {
+    const phone = '9876500010';
+    await makeUser({ contactNo1: phone, role: 'TEACHER', passwordHash: await bcrypt.hash('teacherPass', 4) });
+    await Parent.create({ parentName: 'P Dual', primaryMobileNumber: phone, passwordHash: await bcrypt.hash('parentPass', 4) });
+
+    const result = await AuthService.unifiedLogin({ mobileNumber: phone, password: 'teacherPass' });
+    expect(result.role).toBe('teacher');
+    expect(result.accessToken).toBeTruthy();
+    expect(result.dualRole).toBeTruthy();
+  });
+
+  test('logs in as student when parent password matches on a dual-role phone', async () => {
+    const phone = '9876500011';
+    await makeUser({ contactNo1: phone, role: 'TEACHER', passwordHash: await bcrypt.hash('teacherPass', 4) });
+    await Parent.create({ parentName: 'P Dual', primaryMobileNumber: phone, passwordHash: await bcrypt.hash('parentPass', 4) });
+
+    const result = await AuthService.unifiedLogin({ mobileNumber: phone, password: 'parentPass' });
+    expect(result.role).toBe('student');
+    expect(result.accessToken).toBeTruthy();
+    expect(result.dualRole).toBeTruthy();
+  });
+
+  test('returns dual role when both parent and teacher share the exact same password (clash)', async () => {
+    const phone = '9876500012';
+    const sameHash = await bcrypt.hash('samePass', 4);
+    await makeUser({ contactNo1: phone, role: 'TEACHER', passwordHash: sameHash });
+    await Parent.create({ parentName: 'P Clash', primaryMobileNumber: phone, passwordHash: sameHash });
+
+    const result = await AuthService.unifiedLogin({ mobileNumber: phone, password: 'samePass' });
+    expect(result.role).toBe('dual');
+    expect(result.parent.accessToken).toBeTruthy();
+    expect(result.teacher.accessToken).toBeTruthy();
+  });
+
+  test('rejects with 401 when password matches neither account', async () => {
+    const phone = '9876500013';
+    await makeUser({ contactNo1: phone, role: 'TEACHER', passwordHash: await bcrypt.hash('teacherPass', 4) });
+    await Parent.create({ parentName: 'P', primaryMobileNumber: phone, passwordHash: await bcrypt.hash('parentPass', 4) });
+
+    await expect(
+      AuthService.unifiedLogin({ mobileNumber: phone, password: 'wrongPassword' })
     ).rejects.toMatchObject({ statusCode: 401 });
   });
 });

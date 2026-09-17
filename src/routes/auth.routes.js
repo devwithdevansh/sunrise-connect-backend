@@ -9,6 +9,7 @@ import {
   setPasswordSchema,
   parentLoginSchema,
   teacherLoginSchema,
+  unifiedLoginSchema,
   refreshTokenSchema,
 } from '../validations/auth.schema.js';
 
@@ -16,6 +17,7 @@ const router = Router();
 
 // Public – No app-level rate limiting; Hostinger WAF handles DDoS.
 // Only Zod schema validation for security.
+router.post('/login',               validate(unifiedLoginSchema),  AuthController.unifiedLogin);
 router.post('/portal/login',        validate(portalLoginSchema),   AuthController.portalLogin);
 router.post('/parent/verify',       validate(verifyParentSchema),  AuthController.verifyParentLastFour);
 router.post('/parent/set-password', validate(setPasswordSchema),   AuthController.setParentPassword);

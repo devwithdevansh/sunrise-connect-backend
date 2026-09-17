@@ -126,11 +126,9 @@ class LeaveController {
     );
 
     leave.status = status;
-    leave = await LeaveRequest.findByIdAndUpdate(
-      id,
-      { status, reviewedBy: req.user._id, remarks: remarks || reviewRemarks },
-      { new: true, runValidators: true }
-    );
+    leave.reviewedBy = req.user._id;
+    if (reviewRemarks) leave.reviewRemarks = reviewRemarks;
+    await leave.save();
 
     sendResponse(res, 200, leave, `Leave request ${status.toLowerCase()} successfully`);
   });

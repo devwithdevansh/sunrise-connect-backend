@@ -31,8 +31,15 @@ export const parentLoginSchema = {
 
 export const teacherLoginSchema = {
   body: z.object({
-    contactNo1: z.string().regex(/^[6-9]\d{9}$/, 'Enter Indian number or invalid number'),
+    last5: z.string().regex(/^\d{5}$/, 'Enter the last 5 digits of your registered mobile number'),
     password: z.string().min(1),
+  }),
+};
+
+export const unifiedLoginSchema = {
+  body: z.object({
+    mobileNumber: z.string().regex(/^[6-9]\d{9}$/, 'Enter a valid 10-digit Indian mobile number'),
+    password: z.string().min(1, 'Password is required'),
   }),
 };
 

@@ -22,6 +22,12 @@ class AuthController {
     sendResponse(res, 200, result);
   });
 
+  /** POST /api/v1/auth/login — unified mobile login for parents and teachers */
+  static unifiedLogin = catchAsync(async (req, res) => {
+    const result = await AuthService.unifiedLogin(req.body);
+    sendResponse(res, 200, result);
+  });
+
   /** POST /api/v1/auth/parent/login */
   static parentLogin = catchAsync(async (req, res) => {
     const result = await AuthService.parentLogin(req.body);

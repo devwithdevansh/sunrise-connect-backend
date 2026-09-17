@@ -1199,8 +1199,8 @@ class StudentService {
       const admissionCategory = await ensureCategory('ADMISSION', 'Admission Fees', 'One-time admission fee');
       const bagKitCategory = await ensureCategory('BAG_KIT', 'Bag & Kit', 'Bag & Kit fee category');
 
-      const existingLedgers = await mongoose.model('StudentFeeLedger').find({ studentId: student._id, academicYear: academicYearStr }).session(session);
-      
+      let existingLedgers = await mongoose.model('StudentFeeLedger').find({ studentId: student._id, academicYear: academicYearStr }).session(session);
+
       if (existingLedgers.length === 0 && !forceCreate) {
         if (!parentSession) await session.commitTransaction();
         return { created: 0, updated: 0 };

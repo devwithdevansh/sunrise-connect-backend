@@ -1,6 +1,10 @@
 import Subject from '../models/Subject.js';
 import Curriculum from '../models/Curriculum.js';
 import AcademicYear from '../models/AcademicYear.js';
+import TeacherAllocation from '../models/TeacherAllocation.js';
+import Timetable from '../models/Timetable.js';
+import Homework from '../models/Homework.js';
+import Exam from '../models/Exam.js';
 import catchAsync from '../utils/catchAsync.js';
 import AppError from '../utils/AppError.js';
 import sendResponse from '../utils/response.js';
@@ -34,13 +38,40 @@ class AcademicMasterController {
   });
 
   static deleteSubject = catchAsync(async (req, res) => {
-    // Check if subject is used in any curriculum before deleting
-    const inUse = await Curriculum.findOne({ subjects: req.params.id });
+    const { id } = req.params;
+
+    // A subject still referenced elsewhere must not be deleted — doing so
+    // would silently orphan the reference (Mongoose populate just returns
+    // null), which previously broke the teacher homework picker: the
+    // subject name showed as a blank fallback and publishing failed with
+    // an opaque error, because the allocation pointed at a Subject that no
+    // longer existed.
+    const inUse = await Curriculum.findOne({ subjects: id });
     if (inUse) {
       throw new AppError('Cannot delete subject because it is used in a curriculum', 400);
     }
-    
-    await Subject.findByIdAndDelete(req.params.id);
+
+    const allocated = await TeacherAllocation.findOne({ subjectId: id });
+    if (allocated) {
+      throw new AppError('Cannot delete subject because a teacher is currently allocated to teach it', 400);
+    }
+
+    const scheduled = await Timetable.findOne({ subjectId: id });
+    if (scheduled) {
+      throw new AppError('Cannot delete subject because it appears in a timetable', 400);
+    }
+
+    const hasHomework = await Homework.findOne({ subjectId: id });
+    if (hasHomework) {
+      throw new AppError('Cannot delete subject because homework has been assigned for it', 400);
+    }
+
+    const inExam = await Exam.findOne({ 'subjects.subjectId': id });
+    if (inExam) {
+      throw new AppError('Cannot delete subject because it is used in an exam', 400);
+    }
+
+    await Subject.findByIdAndDelete(id);
     sendResponse(res, 200, null, 'Subject deleted successfully');
   });
 

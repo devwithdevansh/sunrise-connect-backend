@@ -20,6 +20,21 @@ const userRepository = {
     }).select('+passwordHash').lean();
   },
 
+  /**
+   * Teachers log in with just the last 5 digits of their registered mobile
+   * number (distinct from the parent/student login, which uses the full
+   * number) so the two flows never collide even when the same person, or
+   * two unrelated people, share overlapping numbers. Returns every TEACHER
+   * whose contactNo1 ends with the suffix — password comparison in
+   * AuthService disambiguates the (extremely unlikely) case of more than one.
+   */
+  async findTeachersByContactSuffix(suffix) {
+    return User.find({
+      role: 'TEACHER',
+      contactNo1: { $regex: `${suffix}$` },
+    }).select('+passwordHash').lean();
+  },
+
   /** Find by id including refreshTokens */
   async findByIdWithTokens(id) {
     return User.findById(id).select('+refreshTokens').lean();

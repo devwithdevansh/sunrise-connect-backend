@@ -52,6 +52,63 @@ class AuthService {
     return { accessToken, refreshToken: refreshPlain, user: { name: user.name, role: user.role } };
   }
 
+  /**
+   * Unified mobile login: accepts 10-digit mobile number and password.
+   * Resolves whether the user is a Parent or a Teacher based on password match.
+   * If both match (clash scenario), returns role: 'dual' with both sessions.
+   */
+  static async unifiedLogin({ mobileNumber, password }) {
+    const cleanMobile = mobileNumber.toString().trim();
+
+    // 1. Check Parent
+    const parent = await parentRepository.findOneWithPassword({
+      $or: [
+        { primaryMobileNumber: cleanMobile },
+        { secondaryMobileNumber: cleanMobile }
+      ]
+    });
+    const isParentMatch = parent && parent.passwordHash && await bcrypt.compare(password, parent.passwordHash);
+
+    // 2. Check Teacher
+    const teacher = await userRepository.findByLoginIdWithPassword(cleanMobile);
+    const isTeacher = teacher && teacher.role === 'TEACHER' && teacher.isActive;
+    const isTeacherMatch = isTeacher && teacher.passwordHash && await bcrypt.compare(password, teacher.passwordHash);
+
+    if (!isParentMatch && !isTeacherMatch) {
+      throw new AppError('Mobile number or password is wrong. Please check and try again.', 401);
+    }
+
+    // Both match -> CLASH scenario (worst case)
+    if (isParentMatch && isTeacherMatch) {
+      const parentSession = await AuthService._issueParentSession(parent, { logLabel: 'Unified login (dual - parent)' });
+      const teacherSession = await AuthService._issueUserSession(teacher, { logLabel: 'Unified login (dual - teacher)' });
+      return {
+        role: 'dual',
+        parent: parentSession,
+        teacher: { ...teacherSession, contactNo1: teacher.contactNo1 }
+      };
+    }
+
+    // Only Teacher matches
+    if (isTeacherMatch) {
+      const teacherSession = await AuthService._issueUserSession(teacher, { logLabel: 'Unified login (teacher)' });
+      return {
+        role: 'teacher',
+        ...teacherSession,
+        contactNo1: teacher.contactNo1,
+        dualRole: parent ? { hasParentAccount: true } : null
+      };
+    }
+
+    // Only Parent matches
+    const parentSession = await AuthService._issueParentSession(parent, { logLabel: 'Unified login (parent)' });
+    return {
+      role: 'student',
+      ...parentSession,
+      dualRole: isTeacher ? { hasTeacherAccount: true } : null
+    };
+  }
+
   /* ----------------------------------------------------------------
    * 1. Portal login – admin / staff only (no audit – application event)
    *    Teachers are mobile-only and are rejected here even with valid
@@ -72,21 +129,41 @@ class AuthService {
   }
 
   /* ----------------------------------------------------------------
-   * 1b. Teacher mobile login – mobile number + password, mirrors the
-   *     parent mobile-login flow. ADMIN/STAFF accounts are rejected here
+   * 1b. Teacher mobile login – last 5 digits of the registered mobile
+   *     number + password (kept distinct from the parent/student login,
+   *     which uses the full number, so the two never collide or need
+   *     client-side guessing). ADMIN/STAFF accounts are rejected here
    *     even with valid credentials; they must use the web portal.
+   *
+   *     Same person may also be a parent under this teacher account's full
+   *     number — checked once, server-side, so login stays a single
+   *     request instead of the client probing both endpoints.
    * ---------------------------------------------------------------- */
-  static async teacherLogin({ contactNo1, password }) {
-    const user = await userRepository.findByLoginIdWithPassword(contactNo1);
-    if (!user) throw new AppError('Invalid credentials', 401);
-    if (!user.isActive) throw new AppError('Your account has been deactivated. Contact the administrator.', 403);
-    const match = await bcrypt.compare(password, user.passwordHash);
-    if (!match) throw new AppError('Invalid credentials', 401);
-    if (user.role !== 'TEACHER') {
-      throw new AppError('This login is for teachers only. Staff and admins should use the web portal.', 403);
+  static async teacherLogin({ last5, password }) {
+    if (!last5 || !/^\d{5}$/.test(last5)) {
+      throw new AppError('Enter the last 5 digits of your registered mobile number', 400);
     }
 
-    return AuthService._issueUserSession(user, { logLabel: 'Teacher mobile login' });
+    const candidates = await userRepository.findTeachersByContactSuffix(last5);
+    let user = null;
+    for (const candidate of candidates) {
+      if (candidate.passwordHash && await bcrypt.compare(password, candidate.passwordHash)) {
+        user = candidate;
+        break;
+      }
+    }
+    if (!user) throw new AppError('Invalid credentials', 401);
+    if (!user.isActive) throw new AppError('Your account has been deactivated. Contact the administrator.', 403);
+
+    const session = await AuthService._issueUserSession(user, { logLabel: 'Teacher mobile login' });
+
+    let dualRole = null;
+    const parent = await parentRepository.findOneWithPassword({ primaryMobileNumber: user.contactNo1 });
+    if (parent && parent.passwordHash && await bcrypt.compare(password, parent.passwordHash)) {
+      dualRole = await AuthService._issueParentSession(parent, { logLabel: 'Parent mobile login (dual-role via teacher)' });
+    }
+
+    return { ...session, contactNo1: user.contactNo1, dualRole };
   }
 
   /* ----------------------------------------------------------------
@@ -146,27 +223,15 @@ class AuthService {
     }
   }
 
-  /* ----------------------------------------------------------------
-   * 4. Parent login (password-based, no audit – application event)
-   * ---------------------------------------------------------------- */
-  static async parentLogin({ primaryMobileNumber, password }) {
-    const parent = await parentRepository.findOneWithPassword({
-      $or: [
-        { primaryMobileNumber },
-        { secondaryMobileNumber: primaryMobileNumber }
-      ]
-    });
-    if (!parent) throw new AppError('Parent not found', 404);
-    const match = await bcrypt.compare(password, parent.passwordHash);
-    if (!match) throw new AppError('Invalid credentials', 401);
-
+  /** Shared token/refresh-token issuance for a Parent, used by parentLogin
+   *  and by teacherLogin's opportunistic dual-role check, so the two flows
+   *  can't drift apart. */
+  static async _issueParentSession(parent, { logLabel }) {
     const payload = { id: parent._id.toString(), role: 'parent' };
     const accessToken = jwt.sign(payload, env.JWT_SECRET, { expiresIn: env.JWT_EXPIRES_IN });
 
-    // Clean expired tokens
     await cleanExpiredRefreshTokens(parentRepository, parent._id);
 
-    // Cap active refresh tokens to 10
     const entity = await parentRepository.findByIdWithTokens(parent._id);
     if (entity && entity.refreshTokens && entity.refreshTokens.length >= 10) {
       const sortedTokens = [...entity.refreshTokens].sort((a, b) => b.expiresAt - a.expiresAt);
@@ -189,7 +254,7 @@ class AuthService {
         { $push: { refreshTokens: { tokenHash: refreshHash, expiresAt } } },
         { session }
       );
-      logger.info(`Parent login: ${parent._id}`);
+      logger.info(`${logLabel}: ${parent._id}`);
       await session.commitTransaction();
       return { accessToken, refreshToken: refreshPlain };
     } catch (err) {
@@ -198,6 +263,36 @@ class AuthService {
     } finally {
       session.endSession();
     }
+  }
+
+  /* ----------------------------------------------------------------
+   * 4. Parent login (password-based, no audit – application event)
+   *
+   *    Same number may also belong to a teacher account (dual-role) —
+   *    checked once, server-side, so login stays a single request instead
+   *    of the client probing both endpoints.
+   * ---------------------------------------------------------------- */
+  static async parentLogin({ primaryMobileNumber, password }) {
+    const parent = await parentRepository.findOneWithPassword({
+      $or: [
+        { primaryMobileNumber },
+        { secondaryMobileNumber: primaryMobileNumber }
+      ]
+    });
+    if (!parent) throw new AppError('Parent not found', 404);
+    const match = await bcrypt.compare(password, parent.passwordHash);
+    if (!match) throw new AppError('Invalid credentials', 401);
+
+    const session = await AuthService._issueParentSession(parent, { logLabel: 'Parent login' });
+
+    let dualRole = null;
+    const teacher = await userRepository.findByLoginIdWithPassword(parent.primaryMobileNumber);
+    if (teacher && teacher.role === 'TEACHER' && teacher.isActive && teacher.passwordHash && await bcrypt.compare(password, teacher.passwordHash)) {
+      const teacherSession = await AuthService._issueUserSession(teacher, { logLabel: 'Teacher mobile login (dual-role via parent)' });
+      dualRole = { ...teacherSession, contactNo1: teacher.contactNo1 };
+    }
+
+    return { ...session, dualRole };
   }
 
   /* ----------------------------------------------------------------
