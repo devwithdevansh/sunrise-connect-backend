@@ -16,7 +16,7 @@ import AppError from '../utils/AppError.js';
 class PaymentService {
   /** Create a payment and atomically update the ledger paidAmount */
   static async createPayment({ ledgerId, amount, concessionAmount = 0, method, details = {}, performedBy = null, gatewayTransactionId = null }) {
-    if (amount <= 0) throw new AppError('Payment amount must be positive', 400);
+    if (amount < 0 || (amount === 0 && concessionAmount <= 0)) throw new AppError('Payment amount or concession must be positive', 400);
     const session = await mongoose.startSession();
     session.startTransaction();
     try {
@@ -24,13 +24,16 @@ class PaymentService {
       const ledger = await ledgerRepository.findById(ledgerId, null, { session });
       if (!ledger) throw new AppError('Ledger not found', 404);
 
-      const ayDoc = await AcademicYear.findOneAndUpdate(
-        { name: ledger.academicYear },
-        { $inc: { lastReceiptNumber: 1 } },
-        { new: true, session }
-      );
-      if (!ayDoc) throw new AppError('Academic year not found for ledger', 404);
-      const receiptNumber = ayDoc.lastReceiptNumber;
+      let receiptNumber = null;
+      if (amount > 0) {
+        const ayDoc = await AcademicYear.findOneAndUpdate(
+          { name: ledger.academicYear },
+          { $inc: { lastReceiptNumber: 1 } },
+          { new: true, session }
+        );
+        if (!ayDoc) throw new AppError('Academic year not found for ledger', 404);
+        receiptNumber = ayDoc.lastReceiptNumber;
+      }
 
       const newPaid = ledger.paidAmount + amount;
       const newConcession = ledger.concessionAmount + concessionAmount;
@@ -64,7 +67,7 @@ class PaymentService {
           performedBy, 
           targetLedgerId: ledgerId, 
           targetStudentId: ledger.studentId,
-          action: 'PAYMENT_CREATED', 
+          action: amount > 0 ? 'PAYMENT_CREATED' : 'LEDGER_CONCESSION_APPLIED', 
           details: { paymentId: payment._id, amount, concessionAmount, method, studentName, parentName, parentPhone } 
         },
         session
@@ -157,8 +160,8 @@ class PaymentService {
           batchReceiptNumber = ayDoc.lastReceiptNumber;
         }
 
-        if (amount > 0) {
-          const receiptNumber = batchReceiptNumber;
+        if (amount > 0 || concessionAmount > 0) {
+          const receiptNumber = amount > 0 ? batchReceiptNumber : null;
 
           // Process payment + concession
           const newPaid = ledger.paidAmount + amount;
@@ -166,7 +169,7 @@ class PaymentService {
           const remaining = ledger.totalAmount - newPaid - newConcession;
           if (remaining < 0) throw new AppError(`Over-payment not allowed for ledger ${ledgerId}`, 400);
 
-          const status = remaining === 0 ? 'PAID' : 'PARTIAL';
+          const status = remaining === 0 ? 'PAID' : (ledger.paidAmount + amount) > 0 ? 'PARTIAL' : 'PENDING';
 
           const paymentDetails = { ...details, remark, transactionId: details.transactionId || batchTxnId };
 
@@ -195,39 +198,13 @@ class PaymentService {
               performedBy, 
               targetLedgerId: ledgerId, 
               targetStudentId: ledger.studentId,
-              action: 'PAYMENT_CREATED', 
-              details: { paymentId: payment._id, amount, concessionAmount, method, studentName, parentName, parentPhone } 
+              action: amount > 0 ? 'PAYMENT_CREATED' : 'LEDGER_CONCESSION_APPLIED', 
+              details: { paymentId: payment._id, amount, concessionAmount, method: payment.method, studentName, parentName, parentPhone } 
             },
             session
           );
 
           createdPayments.push(payment);
-        } else if (concessionAmount > 0) {
-          // Process concession-only
-          const newConcession = ledger.concessionAmount + concessionAmount;
-          const remaining = ledger.totalAmount - ledger.paidAmount - newConcession;
-          if (remaining < 0) throw new AppError(`Concession exceeds remaining amount for ledger ${ledgerId}`, 400);
-
-          const status = remaining === 0 ? 'PAID' : ledger.paidAmount > 0 ? 'PARTIAL' : 'PENDING';
-
-          // Atomic OCC ledger update
-          const updateResult = await ledgerRepository.updateOne(
-            { _id: ledgerId, __v: ledger.__v },
-            { $set: { concessionAmount: newConcession, remainingAmount: remaining, status }, $inc: { __v: 1 } },
-            { session }
-          );
-          if (updateResult.modifiedCount !== 1) throw new AppError('Concurrency conflict', 409);
-
-          await AuditService.log(
-            { 
-              performedBy, 
-              targetLedgerId: ledgerId, 
-              targetStudentId: ledger.studentId,
-              action: 'LEDGER_CONCESSION_APPLIED', 
-              details: { amount: concessionAmount, reason: remark || 'Concession applied', studentName, parentName, parentPhone } 
-            },
-            session
-          );
         }
       }
 
