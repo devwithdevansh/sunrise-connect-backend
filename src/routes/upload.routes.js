@@ -24,7 +24,10 @@ router.post('/image', authenticate, authorize('ADMIN', 'SUPERADMIN'), upload.sin
         }
 
         const uploadStream = cloudinary.uploader.upload_stream(
-            { folder: 'whatsapp_templates' },
+            { 
+                folder: 'whatsapp_templates',
+                format: 'jpg'
+            },
             (error, result) => {
                 if (error) {
                     console.error('Cloudinary Upload Error:', error);
