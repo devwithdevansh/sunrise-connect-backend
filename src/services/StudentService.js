@@ -1347,16 +1347,8 @@ class StudentService {
             }
             return;
           } else {
-            // RTE revocation sync (100% concession with 0 paid is reset)
-            if (ledger.concessionAmount === ledger.totalAmount && (ledger.paidAmount || 0) === 0) {
-              ledger.concessionAmount = 0;
-              ledger.totalAmount = newAmount;
-              ledger.remainingAmount = newAmount;
-              ledger.status = 'PENDING';
-              await ledger.save({ session });
-              updated++;
-              return;
-            }
+            // Do not aggressively wipe 100% concessions when isRTE is false. 
+            // It was wiping valid manual full concessions.
           }
         }
 
