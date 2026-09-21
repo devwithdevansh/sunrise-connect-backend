@@ -33,6 +33,11 @@ const attendanceRecordSchema = new mongoose.Schema(
       ref: 'User',
       default: null,
     },
+    // Set once the parent has been pushed a notification for this status.
+    notifiedAt: {
+      type: Date,
+      default: null,
+    },
   },
   { _id: false }
 );
@@ -71,6 +76,19 @@ const attendanceSchema = new mongoose.Schema(
       required: true,
     },
     records: [attendanceRecordSchema],
+    // Workflow: teacher SUBMITs -> admin may edit -> admin CONFIRMs, which is
+    // what notifies parents. Sheets saved before this field existed have no
+    // status and are treated as CONFIRMED (they were already visible).
+    status: {
+      type: String,
+      enum: ['SUBMITTED', 'CONFIRMED'],
+      default: 'SUBMITTED',
+    },
+    submittedAt: { type: Date, default: null },
+    lastEditedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
+    lastEditedAt: { type: Date, default: null },
+    confirmedAt: { type: Date, default: null },
+    confirmedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
   },
   {
     timestamps: true,
