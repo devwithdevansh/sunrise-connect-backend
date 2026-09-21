@@ -53,7 +53,7 @@ class PaymentService {
       if (updateResult.modifiedCount !== 1) throw new AppError('Concurrency conflict', 409);
 
       // Fetch student and parent info for enriched audit logging (outside session - read-only)
-      const student = await studentRepository.findById(ledger.studentId).populate('parentId');
+      const student = await studentRepository.findById(ledger.studentId);
       const studentName = student ? (student.name || student.studentName) : 'Unknown Student';
       let parentName = 'Unknown Parent';
       let parentPhone = '';
@@ -144,7 +144,7 @@ class PaymentService {
         // Fetch student and parent info for enriched audit logging (cached to avoid redundant queries in batch)
         const studentIdStr = ledger.studentId.toString();
         if (!studentCache.has(studentIdStr)) {
-          const fetchedStudent = await studentRepository.findById(ledger.studentId).populate('parentId');
+          const fetchedStudent = await studentRepository.findById(ledger.studentId);
           studentCache.set(studentIdStr, fetchedStudent);
         }
         const student = studentCache.get(studentIdStr);
