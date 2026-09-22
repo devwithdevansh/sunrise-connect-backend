@@ -90,10 +90,10 @@ router.post(
             // Same file bytes → same hash → Cloudinary returns the existing asset
             // without re-uploading, saving storage and bandwidth.
             const hash = crypto.createHash('md5').update(req.file.buffer).digest('hex');
-            const publicId = `student_photos/${hash}`;
 
             const result = await uploadToCloudinary(req.file.buffer, {
-                public_id: publicId,
+                folder: 'student_photos',
+                public_id: hash,
                 // overwrite: false means if the asset already exists Cloudinary
                 // skips the upload and returns the existing resource immediately.
                 overwrite: false,
